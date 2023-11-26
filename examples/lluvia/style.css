@@ -1,0 +1,287 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+
+body{
+    height: 100vh;
+    display: grid;
+    place-items: center
+}
+
+.container {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  background: #1A2238;
+  color: #394568;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* LUNA */
+
+.moon {
+  position: absolute;
+  width: 47px;
+  height: 47px;
+  top: 45px;
+  left: 55px;
+  border-radius: 50px;
+  background: #F6EDBD;
+  overflow: hidden;
+  box-shadow: 0 0 10px 0 #F6EDBD;
+  animation: rise 1s ease-out;
+}
+
+@keyframes rise {
+  from {
+    transform: translate(-20px, 200px);
+  }
+  to {
+    transform: translate(0, 0px);
+  }
+}
+
+.moon .crater-1, .moon .crater-2, .moon .crater-3 {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 9px;
+  left: 28px;
+  border-radius: 10px;
+  background: #ECE1A8;
+}
+
+.moon .crater-1 {
+  top: 12px;
+  left: 31px;
+}
+
+.moon .crater-2 {
+  top: 12px;
+  left: 0px;
+}
+.moon .crater-3 {
+  top: 40px;
+  left: 20px;
+}
+
+/* LUNA */
+
+/* MONTAÑAS */
+
+.hill-bg-1, .hill-bg-2, .hill-fg-1,  .hill-fg-2{
+  position: absolute;
+  z-index: 2;
+  width: 337px;
+  height: 281px;
+  top: 201px;
+  left: -57px;
+  background: #26314F;
+  border-radius: 50%;
+}
+
+.hill-bg-2 {
+  top: 197px;
+  left: 177px;
+}
+
+.hill-fg-1, .hill-fg-3, .hill-fg-2 {
+  background: #303C5D;
+  top: 248px;
+  left: -137px;
+}
+
+.hill-fg-2 {
+  top: 221px;
+  left: 63px;
+}
+
+/* MONTAÑAS */
+
+/* LLUVIA */
+
+.drop-big,  .drop-medium, .drop-medium-1, .drop-medium-2,  .drop-small, .drop-small-1 , .drop-small-2  {
+  position: absolute;
+  z-index: 20;
+  left: 220px;
+  bottom: 20px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #7FC1F9;
+  animation: drop 1.5s linear 1.08s infinite;
+  animation-fill-mode: both;
+  transform-origin: 50% 100%;
+}
+
+.drop-big:before, .drop-medium:before, .drop-medium-1:before, .drop-medium-2:before, .drop-small:before , .drop-small-1:before , .drop-small-2:before{
+  position: absolute;
+  content: "";
+  display: block;
+  top: -2px;
+  left: 1px;
+  width: 5px;
+  height: 5px;
+  background: #7FC1F9;
+  border-radius: 3px;
+}
+
+.drop-big:after, .drop-medium:after, .drop-medium-1:after, .drop-medium-2:after, .drop-small:after,.drop-small-1:after ,.drop-small-2:after   {
+  position: absolute;
+  content: "";
+  display: block;
+  top: -5px;
+  left: 2px;
+  width: 4px;
+  height: 10px;
+  background: #7FC1F9;
+  border-radius: 50%;
+}
+
+.drop-medium {
+  left: 150px;
+  opacity: 0.6;
+  width: 5px;
+  height: 5px;
+  animation: drop 1.5s linear 0.24s infinite;
+  animation-fill-mode: both;
+}
+.drop-medium:before {
+  top: -2px;
+  left: 1px;
+  width: 4px;
+  height: 4px;
+}
+.drop-medium:after {
+  top: -4px;
+  left: 2px;
+  width: 2px;
+  height: 6px;
+}
+
+.drop-medium-1 {
+  left: 120px;
+  bottom: 50px;
+  opacity: 0.6;
+  width: 5px;
+  height: 5px;
+  animation: drop 1.5s linear 1.2s infinite;
+  animation-fill-mode: both;
+}
+.drop-medium-1:before {
+  top: -2px;
+  left: 1px;
+  width: 4px;
+  height: 4px;
+}
+.drop-medium-1:after {
+  top: -4px;
+  left: 2px;
+  width: 2px;
+  height: 6px;
+}
+
+.drop-medium-2 {
+  left: 180px;
+  bottom: 45px;
+  opacity: 0.6;
+  width: 5px;
+  height: 5px;
+  animation: drop 1.5s linear 2.1s infinite;
+  animation-fill-mode: both;
+}
+.drop-medium-2:before {
+  top: -2px;
+  left: 1px;
+  width: 4px;
+  height: 4px;
+}
+.drop-medium-2:after {
+  top: -4px;
+  left: 2px;
+  width: 2px;
+  height: 6px;
+}
+
+.drop-small {
+  left: 30px;
+  opacity: 0.3;
+  width: 4px;
+  height: 4px;
+  animation: drop 2s linear 1.36s infinite;
+  animation-fill-mode: both;
+}
+.drop-small:before {
+  top: -2px;
+  left: 1px;
+  width: 2px;
+  height: 2px;
+}
+.drop-small:after {
+  top: -3px;
+  left: 1px;
+  width: 2px;
+  height: 4px;
+}
+
+.drop-small-1 {
+  left: 250px;
+  bottom: 45px;
+  opacity: 0.3;
+  width: 4px;
+  height: 4px;
+  animation: drop 2s linear 1s infinite;
+  animation-fill-mode: both;
+}
+.drop-small-1:before {
+  top: -2px;
+  left: 1px;
+  width: 2px;
+  height: 2px;
+}
+.drop-small-1:after {
+  top: -3px;
+  left: 1px;
+  width: 2px;
+  height: 4px;
+}
+
+.drop-small-2 {
+  left: 90px;
+  bottom: 60px;
+  opacity: 0.3;
+  width: 4px;
+  height: 4px;
+  animation: drop 2s linear 1.5s infinite;
+  animation-fill-mode: both;
+}
+.drop-small-2:before {
+  top: -2px;
+  left: 1px;
+  width: 2px;
+  height: 2px;
+}
+.drop-small-2:after {
+  top: -3px;
+  left: 1px;
+  width: 2px;
+  height: 4px;
+}
+
+@keyframes drop {
+  0% {
+    transform: translate3d(40px, -320px, 0) scaleX(1) scaleY(1) rotate(17deg);
+  }
+  85% {
+    transform: translate3d(0, 0, 0) scaleX(1) scaleY(1) rotate(17deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scaleX(3) scaleY(0) rotate(0deg);
+  }
+}
+
+/* LLUVIA */
