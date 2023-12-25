@@ -48,17 +48,6 @@ new_df.dropna(inplace=True)
 
 df_humedad = pd.DataFrame(new_df)
 
-#Personalizar el color de fondo utilizando CSS
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: lightblue;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 st.title("La Húmedad Relativa en Cuba")
 
@@ -71,19 +60,12 @@ st.write(" ##### LA HUMEDAD RELATIVA EN CUBA EN CUBA DURANTE LOS ÚLTIMOS 30 AÑ
 
 st.write(" ###### ¡No pierdas más tiempo y realiza tu propia investigación!")
 
-user_name = st.text_input("Escribe tu nombre...")
-
-if user_name:
-    button_press = st.button("Bienvenid@ " + user_name + ".En esta app puedes encontrar información interesante sobre la húmedad relativa en Cuba en los últimos 30 años.")
-    if button_press:
-        st.write("Hola " + user_name + "! ¡Gracias por presionar el botón!")
 
 ###########################################################
 #COMO SE COMPORTO LA HUMEDAD RELATIVA A LO LARGO DEL TIEMPO 
 ###########################################################
-
-st.write(" ###### Comportamiento de la humedad relativa del país en cada mes desde 1990 hasta 2022")
-st.write(" ###### Compara los meses con humedad relativa más agradable o desagradable")
+st.write(" ###### Comportamiento de la humedad relativa del país en cada mes desde 1990 hasta 2022.")
+st.write(" ###### Compara los meses con humedad relativa más agradable o desagradable.")
   
 hu_re = df.groupby(["Año","Mes"])["Humedad Relat"].mean()
 
@@ -104,38 +86,36 @@ st.plotly_chart(fig)
 ################################################################
 #CREAR GRÁFICO DE LINEAS A LO LARGO DEL TIEMPO DE CADA ESTACIÓN 
 ###############################################################
+st.write(" ###### Comportamiento de las diferentes estaciones respecto a la humedad relativa a lo largo del tiempo desde 1990 hasta 2022.")
 
-st.write(" ###### Comportamiento de las diferentes estaciones respecto a la humedad relativa a lo largo del tiempo desde 1990 hasta 2022")
+estacion_default = df_humedad["Nombres Estaciones"].unique()[0]
+año_inicio_default = min(df_humedad["Año-Mes"].unique())
+año_fin_default = max(df_humedad["Año-Mes"].unique())
 
-estacion = pd.DataFrame()
+estacion = st.selectbox("Selecciona una estación:", [estacion_default] + df_humedad["Nombres Estaciones"].unique().tolist())
+año_inicio = st.selectbox("Selecciona el año de inicio:", [año_inicio_default] + df_humedad["Año-Mes"].unique().tolist())
+año_fin = st.selectbox("Selecciona el año de fin:", [año_fin_default] + df_humedad["Año-Mes"].unique().tolist())
 
-estacion = st.selectbox("Selecciona una estación:", [''] + df_humedad["Nombres Estaciones"].unique().tolist())
-
-if not  estacion:
-    df_estacion = None 
+df_estacion = df_humedad[(df_humedad["Nombres Estaciones"] == estacion) & (df_humedad["Año-Mes"] >= año_inicio) & (df_humedad["Año-Mes"] <= año_fin)]
+if df_estacion.empty:
+    st.warning("No hay datos disponibles para la estación y el rango de años seleccionados")
 else:
-    año_inicio = st.selectbox("Selecciona el año de inicio:", df_humedad["Año-Mes"].unique().tolist())
-    año_fin = st.selectbox("Selecciona el año de fin:", df_humedad["Año-Mes"].unique().tolist())
-    if not  año_inicio or not año_fin:
-        df_estacion = None 
-    else:
-        df_estacion = df_humedad[(df_humedad["Nombres Estaciones"] == estacion) & (df_humedad["Año-Mes"] >= año_inicio) & (df_humedad["Año-Mes"] <= año_fin)]
-        if df_estacion.empty:
-            st.warning("No hay datos disponibles para la estación y el rango de años seleccionados")
-        else:
-            fig = px.line(df_estacion, x="Año-Mes", y="Humedad Relat", title=f"Húmedad Relativa en la estación {estacion}({año_inicio} - {año_fin})")
-            st.plotly_chart(fig)
+    fig = px.line(df_estacion, x="Año-Mes", y="Humedad Relat", title=f"Húmedad Relativa en la estación {estacion}({año_inicio} - {año_fin})")
+    st.plotly_chart(fig)
 
 #####################################################################
 #COMPARAR ESTACIONES EN UN INTERVALO DE TIEMPO RESPECTO A LA HUMEDAD 
 ####################################################################
-st.write(" ###### Comportamiento de la humedad relativa en un intervalo de tiempo determinado en diferentes estaciones")
-st.write("Dato-La estación Bahía Honda desde 1990 hasta el mes 10 de 1992 no arrojo resultados de H.R.")
+st.write(" ###### Comportamiento de la humedad relativa en un intervalo de tiempo determinado en diferentes estaciones.")
+st.write(" ###### Dato-La estación Bahía Honda desde 1990 hasta el mes 10 de 1992 no arrojo resultados de H.R.")
 
 data = df_humedad
 
-selected_years = st.multiselect('Selecciona los años', data["Año-Mes"].unique())
-selected_stations = st.multiselect("Selecciona las estaciones:", [''] + df_humedad["Nombres Estaciones"].unique().tolist())
+selected_stations_default = df_humedad["Nombres Estaciones"].unique()[:3].tolist()
+selected_years_default = [year for year in df_humedad["Año-Mes"].unique() if '1990' in year]
+
+selected_stations = st.multiselect("Selecciona las estaciones:", df_humedad["Nombres Estaciones"].unique().tolist(), default=selected_stations_default)
+selected_years = st.multiselect('Selecciona los años', data["Año-Mes"].unique(), default=selected_years_default)
 
 filtered_data = data.loc[(data["Año-Mes"].isin(selected_years)) & (data["Nombres Estaciones"].isin(selected_stations))]
 
@@ -145,7 +125,7 @@ st.plotly_chart(fig)
 ######################
 #PROMEDIOS POR AÑOS 
 ######################
-st.write(" ###### La humedad relativa promedio en los últimos 30 años")
+st.write(" ###### Humedad relativa promedio de cada estación en los últimos 30 años.")
 
 df_humedad["Año"] = df_humedad["Año-Mes"].str.split('.').str[0]
 
@@ -161,9 +141,6 @@ df_promedio_años_estacion = df_filtrado.groupby(df_filtrado[("Año")].str[:4])[
 
 st.write("Acerca el gráfico tanto como quieras y obtén una mejor visualización.")
 
-#colores
-colores = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#C0C0C0", "#000000", "#800000", "#808000", "#008000", "#800080", "#008080", "#000080", "#FFA07A", "#FFD700", "#ADFF2F", "#7FFFD4", "#00BFFF", "#1E90FF", "#8A2BE2", "#FF69B4", "#FF1493", "#9400D3", "#4B0082", "#FF4500"]
-
 fig = px.bar(df_promedio_años_estacion, x="Año", y="Humedad Relat", color="Año",color_discrete_sequence=colores,
              labels={"Húmedad Relat": "Promedio de Humedad Relativa", "Año": "Año"},
              title=f"Promedios de humedad relativa por año para la estación {estacion_elegida}")
@@ -171,66 +148,69 @@ fig = px.bar(df_promedio_años_estacion, x="Año", y="Humedad Relat", color="Añ
 st.plotly_chart(fig)
 
 
-##############################################################################################################
-#Analizar de regiones más humedas o secas según el promedio general en los 30 años a traves de mapa iteractivo
-##############################################################################################################
-#Calcular el promedio de humedad relativa por años
+###############################################################################################################
+#Analizar de regiones más humedas o secas según el promedio general en los 30 años a traves de mapa iteractivo. 
+###############################################################################################################
+st.write(" ##### ¿Cúales son las estaciones más humedas ?¿Cúales son las estaciones  más secas?")
+st.write(" ###### Al observar los valores de humedad relativa promedio de cada estación en cada año de los últimos 30 años se podría conocer cual de estas estaciones es más humeda o más seca.En términos generales,se considera que un ambiente es húmedo cuando la humedad relativa es superior al 60%,por otro lado, si la humedad relativa es inferior al 30%,el ambiente se considera seco.")
 
-df_promedio_años = df_humedad.groupby(["Estación", df_humedad["Año"].str[:4]])["Humedad Relat"].mean()
+# Extraer el año y convertirlo a int
+df_humedad['Año'] = df_humedad['Año'].str.split('-').str[0].astype(int)
+
+# Filtrar los datos desde 1990 hasta 2022
+df_humedad = df_humedad[(df_humedad['Año'] >= 1990) & (df_humedad['Año'] <= 2022)]
+
+# Calcular el promedio de humedad relativa por años
+df_promedio_años = df_humedad.groupby(["Estación", df_humedad["Año"]])["Humedad Relat"].mean()
 
 promed = df_promedio_años.reset_index()
 
-df_promedio_estaciones = promed.groupby(["Estación"])["Humedad Relat"].mean()
+# Agregar un slider para filtrar por el año seleccionado
+año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
 
-df_new_promedios_estaciones = df_promedio_estaciones.reset_index()
+promed_año_seleccionado = promed[promed['Año'] == año_seleccionado]
 
-st.write(" ##### ¿Cúales son las estaciones más humedas ?¿Cúales son las estaciones  más secas?")
-st.write(" ###### Al observar los valores de humedad relativa promedio de cada estación en los últimos 30 años se podría conocer cual de estas estaciones es más humeda o más seca.En términos generales,se considera que un ambiente es húmedo cuando la humedad relativa es superior al 60%,por otro lado, si la humedad relativa es inferior al 30%,el ambiente se considera seco.")
+# En el popup aparecerá el promedio correspondiente de cada estación en ese año
+dict = dict(zip(promed_año_seleccionado["Estación"], promed_año_seleccionado["Humedad Relat"]))
 
+# Definir las ubicaciones
 coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str)), axis=1).values
-
 coordenadas_unicas = list(OrderedDict.fromkeys(coordenadas))
- 
 ubicaciones = [tuple(map(float, ubicacion.split(','))) for ubicacion in coordenadas_unicas]
 
+# Definir las estaciones únicas
 estaciones = df["Nombres Estaciones"].values
-
 estaciones_unicas = list(OrderedDict.fromkeys(estaciones))
-
-promedios = df_new_promedios_estaciones["Humedad Relat"]
-
-dict = dict(zip(df_new_promedios_estaciones["Estación"],df_new_promedios_estaciones["Humedad Relat"]))
 
 mapa_estaciones = folium.Map(location=[21.93277,-80.41813], zoom_start=6)
 
 for i ,(ubicacion, estacion) in  enumerate(zip(ubicaciones, estaciones_unicas)):
     promedio = dict.get(estacion)
-    folium.Marker(ubicacion, popup=f"{estaciones_unicas[i]}: {promedio}").add_to(mapa_estaciones)
+    if promedio is not None:
+        folium.Marker(ubicacion, popup=f"{estacion}: {promedio}").add_to(mapa_estaciones)
     
-datos_mapa_calor = [(ubicacion[0], ubicacion[1], promedio) for ubicacion, promedio in zip(ubicaciones, promedios)]
+datos_mapa_calor = [(ubicacion[0], ubicacion[1], promedio) for ubicacion, promedio in zip(ubicaciones, promed_año_seleccionado["Humedad Relat"]) if promedio is not None]
 
 HeatMap(datos_mapa_calor).add_to(mapa_estaciones)
 
 folium_static(mapa_estaciones)
 
+
 st.write(" ##### ¿Ha observado que todas las estaciones presentan un promedio de humedad relativa casi idéntico y superio al 60%?")
 st.write(" ###### Cuba es un país que se distingue por su clima cálido y tropical,que por estaciones es considerablemente húmedo.La humedad ambiental se debe a la inevitable influencia del mar y los rasgos de la insularidad,cumpliéndose la prevalencia de constante humedad y lluvias.")
-st.write("El rol del Citma en asegurar la sostenibilidad ambiental en el desarrollo económico y social del país,el Citma da coherencia a la política medioambiental.")
-st.write("Día Mundial del Medio Ambiente se celebra cada año el 5 de junio?")
 
 ############################################################
 #GRÁFICO COMPARATIVO DE PROMEDIOS GENERALES DE CADA ESTACIÓN 
 ############################################################
 st.write(" ###### Comprueba tu mism@ la humedad de estas 26 estaciones según el promedio de cada una en los últimos 30 años.")
 
-prome =df_new_promedios_estaciones["Humedad Relat"]
+# Calcular el promedio de humedad relativa por estación
+df_promedio_estaciones = df_humedad.groupby("Estación")["Humedad Relat"].mean()
 
-nombres_estaciones = df_new_promedios_estaciones["Estación"]
+# Crear un DataFrame con los nombres de las estaciones y los promedios de humedad
+pro_est = pd.DataFrame({"Estaciones": df_promedio_estaciones.index, "Promedio de humedad": df_promedio_estaciones.values})
 
-pro_est = pd.DataFrame({"Estaciones": nombres_estaciones, "Promedio de humedad": prome})
-
-colores = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#C0C0C0", "#000000", "#800000", "#808000", "#008000", "#800080", "#008080", "#000080", "#FFA07A", "#FFD700", "#ADFF2F", "#7FFFD4", "#00BFFF", "#1E90FF", "#8A2BE2", "#FF69B4", "#FF1493", "#9400D3", "#4B0082", "#FF4500"]
-
+# Crear el gráfico de dispersión
 fig = px.scatter(pro_est, x="Estaciones", y="Promedio de humedad", title="Promedio general de humedad por estación en los últimos 30 años",color = "Estaciones",color_discrete_sequence=colores)
 
 fig.update_layout(legend={
@@ -248,16 +228,35 @@ fig.update_layout(legend={
 
 st.plotly_chart(fig)
 
+
+
 st.write(" ###### Realiza tu propia comparación con las estaciones deseadas.")
 
-estaciones_seleccionadas = st.multiselect('Selecciona las estaciones que quieres comparar :', nombres_estaciones)
+# Verificar si la columna 'Año' es de tipo str
+if df_humedad['Año'].dtype == 'object':
+    # Extraer el año y convertirlo a int
+    df_humedad['Año'] = df_humedad['Año'].str.split('-').str[0].astype(int)
+
+# Filtrar los datos desde 1990 hasta 2022
+df_humedad = df_humedad[(df_humedad['Año'] >= 1990) & (df_humedad['Año'] <= 2022)]
+
+# Calcular el promedio de humedad relativa por estaciones
+df_promedio_estaciones = df_humedad.groupby("Estación")["Humedad Relat"].mean()
+
+# Crear un DataFrame con los nombres de las estaciones y los promedios de humedad
+pro_est = pd.DataFrame({"Estaciones": df_promedio_estaciones.index, "Promedio de humedad": df_promedio_estaciones.values})
+
+# Definir las estaciones seleccionadas por defecto
+estaciones_seleccionadas_default = pro_est['Estaciones'][:3]
+
+# Permitir al usuario seleccionar las estaciones
+estaciones_seleccionadas = st.multiselect('Selecciona las estaciones que quieres comparar :', pro_est['Estaciones'], default=estaciones_seleccionadas_default)
 
 if estaciones_seleccionadas:
     pro_est_filtrado = pro_est[pro_est['Estaciones'].isin(estaciones_seleccionadas)]
     fig = px.scatter(pro_est_filtrado, x="Estaciones", y="Promedio de humedad", 
-                     title="Comparación de humedad por estación seleccionada",
+                     title="Comparación de humedad promedio por cada estación seleccionada",
                      color="Estaciones", color_discrete_sequence=colores)
-    
     fig.update_layout(legend={
         'title': 'Estaciones',
         'traceorder': 'normal',
@@ -270,11 +269,7 @@ if estaciones_seleccionadas:
         'bordercolor': 'Black',
         'borderwidth': 2
     })
-    
     st.plotly_chart(fig)
-    
-    
-
 
 
 
