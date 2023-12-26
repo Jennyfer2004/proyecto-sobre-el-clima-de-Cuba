@@ -1,7 +1,7 @@
 
 import pandas as pd
 
-df = pd.read_excel("D:/proyecto-sobre-el-clima-de-Cuba/app/data/data.xlsx")
+df = pd.read_excel("./data/data.xlsx")
 
 nombres_estaciones = {
     78310:"Cabo de San Antonio.Pinar del Río",
@@ -33,7 +33,7 @@ nombres_estaciones = {
 }
 
 df["Nombres Estaciones"] = df["Estación"].replace(nombres_estaciones)
-#print(df["Nombres Estaciones"])
+
 
 
 
@@ -68,14 +68,12 @@ latitudes = {
 
 }
 
-#print(latitudes)
 
 
 
 df["Latitud"] = df["Estación"].replace(latitudes)
-#print(df["Latitud"])
 
-#print(df)
+
 
 
 
@@ -111,13 +109,13 @@ longitudes = {
 
 }
 
-#print(longitudes)
+
 
 
 df["Longitud"] = df["Estación"].replace(longitudes)
-#print(df["Latitud"])
 
-#print(df)
+
+
 
 
 
@@ -157,21 +155,17 @@ regiones  = {
 
 }
 
-#print(regiones)
+
 
 
 df["Región"] = df["Estación"].replace(regiones)
-#print(df["Latitud"])
 
-#print(df)
+
+
 
 
 
 
 #Convertir a archivo csv 
-df.to_csv("base_datos.csv",index=False)
+df.to_csv("./data/base_datos.csv",index=False)
 
-
-
-data = pd.read_csv("D:/proyecto-sobre-el-clima-de-Cuba/base_datos.csv")
-print(data)
