@@ -10,7 +10,7 @@ df = pd.read_csv("../data/base_datos.csv")
  
 df["Año-Mes"] = df.apply(lambda row: str(row['Año']) + '-' + str(row['Mes']), axis=1)
 
-new_df = df.loc[:, ["Estación", "Año-Mes", "Humedad Relat"]]
+new_df = df.loc[:, ["Estacion", "Año-Mes", "Humedad Relat"]]
 
 #create station dictionary
 nombres_estaciones = {
@@ -42,7 +42,7 @@ nombres_estaciones = {
     78325:"Casablanca.La Habana"
 }
 
-new_df["Nombres Estaciones"] = new_df["Estación"].replace(nombres_estaciones)
+new_df["Nombres Estaciones"] = new_df["Estacion"].replace(nombres_estaciones)
 
 new_df.dropna(inplace=True)
 
@@ -110,7 +110,6 @@ st.write(" ###### Comportamiento de la humedad relativa en un intervalo de tiemp
 st.write(" ###### Dato-La estación Bahía Honda desde 1990 hasta el mes 10 de 1992 no arrojo resultados de H.R.")
 
 data = df_humedad
-
 selected_stations_default = df_humedad["Nombres Estaciones"].unique()[:3].tolist()
 selected_years_default = [year for year in df_humedad["Año-Mes"].unique() if '1990' in year]
 
@@ -129,13 +128,13 @@ st.write(" ###### Humedad relativa promedio de cada estación en los últimos 30
 
 df_humedad["Año"] = df_humedad["Año-Mes"].str.split('.').str[0]
 
-df_humedad["Estación"] = df_humedad["Nombres Estaciones"]
+df_humedad["Estacion"] = df_humedad["Nombres Estaciones"]
 
-df_promedio_años = df_humedad.groupby(["Año","Estación"])["Humedad Relat"].mean()
+df_promedio_años = df_humedad.groupby(["Año","Estacion"])["Humedad Relat"].mean()
 
 estacion_elegida = st.selectbox('Selecciona la estación a analizar', df_humedad["Nombres Estaciones"].unique())
 
-df_filtrado = df_humedad[df_humedad["Estación"] == estacion_elegida]
+df_filtrado = df_humedad[df_humedad["Estacion"] == estacion_elegida]
 
 df_promedio_años_estacion = df_filtrado.groupby(df_filtrado[("Año")].str[:4])["Humedad Relat"].mean().reset_index()
 
@@ -161,7 +160,7 @@ df_humedad['Año'] = df_humedad['Año'].str.split('-').str[0].astype(int)
 df_humedad = df_humedad[(df_humedad['Año'] >= 1990) & (df_humedad['Año'] <= 2022)]
 
 # Calcular el promedio de humedad relativa por años
-df_promedio_años = df_humedad.groupby(["Estación", df_humedad["Año"]])["Humedad Relat"].mean()
+df_promedio_años = df_humedad.groupby(["Estacion", df_humedad["Año"]])["Humedad Relat"].mean()
 
 promed = df_promedio_años.reset_index()
 
@@ -171,7 +170,7 @@ año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
 promed_año_seleccionado = promed[promed['Año'] == año_seleccionado]
 
 # En el popup aparecerá el promedio correspondiente de cada estación en ese año
-dict = dict(zip(promed_año_seleccionado["Estación"], promed_año_seleccionado["Humedad Relat"]))
+dict = dict(zip(promed_año_seleccionado["Estacion"], promed_año_seleccionado["Humedad Relat"]))
 
 # Definir las ubicaciones
 coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str)), axis=1).values
@@ -205,7 +204,7 @@ st.write(" ###### Cuba es un país que se distingue por su clima cálido y tropi
 st.write(" ###### Comprueba tu mism@ la humedad de estas 26 estaciones según el promedio de cada una en los últimos 30 años.")
 
 # Calcular el promedio de humedad relativa por estación
-df_promedio_estaciones = df_humedad.groupby("Estación")["Humedad Relat"].mean()
+df_promedio_estaciones = df_humedad.groupby("Estacion")["Humedad Relat"].mean()
 
 # Crear un DataFrame con los nombres de las estaciones y los promedios de humedad
 pro_est = pd.DataFrame({"Estaciones": df_promedio_estaciones.index, "Promedio de humedad": df_promedio_estaciones.values})
@@ -241,7 +240,7 @@ if df_humedad['Año'].dtype == 'object':
 df_humedad = df_humedad[(df_humedad['Año'] >= 1990) & (df_humedad['Año'] <= 2022)]
 
 # Calcular el promedio de humedad relativa por estaciones
-df_promedio_estaciones = df_humedad.groupby("Estación")["Humedad Relat"].mean()
+df_promedio_estaciones = df_humedad.groupby("Estacion")["Humedad Relat"].mean()
 
 # Crear un DataFrame con los nombres de las estaciones y los promedios de humedad
 pro_est = pd.DataFrame({"Estaciones": df_promedio_estaciones.index, "Promedio de humedad": df_promedio_estaciones.values})
