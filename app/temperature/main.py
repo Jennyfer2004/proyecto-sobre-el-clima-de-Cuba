@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import plotly.express as px
 from typing import List, Dict
+import numpy as np
 
 st.title("Comportamiento de las Temperaturas en Cuba 1990-2022")
 
@@ -43,8 +42,8 @@ for i, (label, value) in enumerate(options.items()):
 def filter_data_by_year(database: pd.DataFrame, start_year: int, end_year: int) -> pd.DataFrame:
     return database[(database["Año"] >= start_year) & (database["Año"] <= end_year)]
 
-def filter_data_by_state(database: pd.DataFrame, states: List[str]) -> pd.DataFrame:
-    return database[database["Provincias"].isin(states)]
+def filter_data_by_state(database: pd.DataFrame, states: List[str], variable: str = "Provincias") -> pd.DataFrame:
+    return database[database[variable].isin(states)]
 
 def separate_by_states(database: pd.DataFrame) -> Dict[str, pd.DataFrame]:
     states = database.Provincias.unique()
@@ -63,8 +62,17 @@ def filter_data_annual(database: pd.DataFrame, start_year: int,
 
 if selected_state_annual and selected_values:
     df_filtered = filter_data_annual(df, start_year, end_year, selected_state_annual, selected_values)
-    fig_annual = go.Figure()
     
+    table = pd.concat([j for i, j in df_filtered.items()])
+    
+    provinces = []
+    for i in selected_state_annual:
+        for _ in range(start_year, end_year + 1):
+            provinces.append(i)
+    
+    table["Provincias"] = provinces
+    
+    fig_annual = go.Figure()
     for name, data in df_filtered.items():
         for indicator in selected_values:
             data['Name'] = name
@@ -72,7 +80,12 @@ if selected_state_annual and selected_values:
                                             name = f"{indicator} de {name}", text = data['Name'],
                                             hoverinfo= "text+x+y"))
         
+    fig_annual.update_layout(title="Gráfico de línea de las temperaturas de cada año por provincias",
+                             xaxis_title="Años",
+                             yaxis_title="Valor de Temperatura")
+   
     st.plotly_chart(fig_annual)
+    st.write(table.reset_index(drop= True))
 
 ##########################################
 # Comparación de la temperatura mensual
@@ -104,7 +117,8 @@ cols = st.columns(len(options))
 
 for i, (label, value) in enumerate(options.items()):
     with cols[i]:
-        option = st.checkbox(label = label, disabled = disabled_monthly, value = not disabled_monthly, key = f"check monthly {i}")
+        option = st.checkbox(label = label, disabled = disabled_monthly, 
+                             value = not disabled_monthly, key = f"check monthly {i}")
         if option:
             selected_values.append(value)
 
@@ -128,6 +142,14 @@ def filter_data_monthly(database: pd.DataFrame, start_year: int,
 if selected_state_monthly:
     filtered_monthly = filter_data_monthly(df, start_year, end_year,
                                            selected_state_monthly, start_month, end_month, selected_values)
+    
+    table = filtered_monthly
+    for i, d in table.items(): 
+        d['Provincias'] = np.nan
+        d['Provincias'] = d['Provincias'].fillna(i)
+    
+    table = pd.concat([j for i, j in table.items()])
+    
     fig_monthly = go.Figure()
     for name, data in filtered_monthly.items():
         for indicator in selected_values:
@@ -153,4 +175,76 @@ if selected_state_monthly:
                 name= f"{indicator} {mes}"
                 ))
     
+    fig_monthly.update_layout(title="Scatterplot de temperatura de los mes de cada año por provincias",
+                             xaxis_title="Años",
+                             yaxis_title="Valor de Temperatura") 
+    
     st.plotly_chart(fig_monthly)
+    st.write(table)
+
+##################################################
+# Comparación de la temperatura anual por region
+##################################################
+st.write("Comparación de la temperatura anual por región")
+
+selected_region_annual = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
+                                placeholder ="Región", key = "annual_region")
+
+disabled_region_year = not bool(selected_region_annual)
+
+year_range_region = st.slider('Selecciona un rango de años', min_value = 1990, max_value = 2022, disabled = disabled_region_year)
+
+selected_values = []
+options = {"Temperatura máxima media" : "Temperatura max med", 
+           "Temperatura media" : "Temperatura med",
+           "Temperatura mínima media" : "Temperatura min med"}
+
+cols = st.columns(len(options))  
+
+for i, (label, value) in enumerate(options.items()):
+    with cols[i]:
+        option = st.checkbox(label = label, disabled = disabled_region_year, 
+                             value = not disabled_region_year, key = f"region {i}")
+        if option:
+            selected_values.append(value)
+
+def filter_data_by_one_year(database: pd.DataFrame, year: int) -> pd.DataFrame:
+    return database[database["Año"] == year]
+
+def separate_by_region(database: pd.DataFrame) -> Dict[str, pd.DataFrame]:
+    states = database.Región.unique()
+    return {state : database[database["Región"] == state] for state in states}
+
+def filter_data_by_region(database: pd.DataFrame, year: int, indicators: List[str]) -> Dict[str, pd.DataFrame]:
+    year = filter_data_by_one_year(database, year)
+    states = filter_data_by_state(year, selected_region_annual, "Región")
+    separate = separate_by_region(states)
+    temperature = average_temperature(separate, indicators)
+    return temperature
+
+if selected_region_annual:
+    filtered_region_data =  filter_data_by_region(df, year_range_region, selected_values)
+
+    table = pd.concat([j for i, j in filtered_region_data.items()])
+    table["Región"] = selected_region_annual
+    
+    fig_region = go.Figure()
+    for indicator in selected_values:
+        for region, data in filtered_region_data.items():
+            fig_region.add_trace(go.Bar(x=[region], y=data[indicator], name=indicator))
+            # fig_region.add_trace(go.Scatter(x=[region], y=data[indicator], name=indicator, mode = "markers"))
+    
+        fig_region.add_trace(go.Scatter(x=table['Región'], y=table[indicator], mode='lines+markers'))
+    
+                  
+    fig_region.update_layout(title="Gráfico de barras de temperatura por región",
+                             xaxis_title="Región",
+                             yaxis_title="Valor de Temperatura",
+                             barmode='overlay')  
+                             
+    st.plotly_chart(fig_region)
+    st.write(table.reset_index(drop= True))
+
+
+
+
