@@ -51,21 +51,16 @@ df_humedad = pd.DataFrame(new_df)
 
 st.title("La Húmedad Relativa en Cuba")
 
-st.write(" ###### La húmedad relativa(H.R) es una variable importante en el estudio del clima y el entorno atmosférico,es la relación entre la presión parcial del vapor de agua y la presión de vapor de equilibrio del agua a una temperatura dada,por ende esta depende de la temperatura y la presión del sistema de interés.La misma se puede medir con un instrumento conocido como higrómetro,los resultados de las medidas del higrómetro se expresan en porcentajes,un valor de 100% de humedad relativa significa que el aire está totalmente saturado con vapor de agua y no puede contener más,creando la posibilidad de lluvia.")
-st.write(" ###### El análisis de la humedad relativa permite obtener una comprensión más profunda de cómo influye en el bienestar humano y en la propagación de enfermedades,en general juega un papel importante en el confort térmico de la humanidad.")
-st.write(" ###### Los niveles de húmedad del aire pueden variar dependiendo de factores como la ubicación geográfica,la altitud,las condiciones atmosféricas,la vegetación y la época del año.")
-st.write(" ###### En esta aplicación se realiza un análisis detallado sobre la H.R en Cuba desde 1990 hasta 2022.Esta herramienta le proporcionará una visión profunda del comportamiento de la humedad en los diferentes meses,años y estaciones de nuestro país,permitiéndole comprender mejor su variación y tendencias a lo largo del tiempo,con gráficos intuitivos y datos precisos.En general con esta app podrá obtener una visión clara y concisa de este aspecto crucial del medio ambiente.")
-st.write(" ###### Sin más le invito a explorar la app web dedicada exclusivamente a:")
-st.write(" ##### LA HUMEDAD RELATIVA EN CUBA EN CUBA DURANTE LOS ÚLTIMOS 30 AÑOS")
+st.write("La húmedad relativa (H.R) es una variable importante en el estudio del clima y el entorno atmosférico,es la relación entre la presión parcial del vapor de agua y la presión de vapor de equilibrio del agua a una temperatura dada,por ende esta depende de la temperatura y la presión del sistema de interés.La misma se puede medir con un instrumento conocido como higrómetro,los resultados de las medidas del higrómetro se expresan en porcentajes,un valor de 100% de humedad relativa significa que el aire está totalmente saturado con vapor de agua y no puede contener más,creando la posibilidad de lluvia.")
+st.write("El análisis de la humedad relativa permite obtener una comprensión más profunda de cómo influye en el bienestar humano y en la propagación de enfermedades,en general juega un papel importante en el confort térmico de la humanidad.")
+st.write("Los niveles de húmedad del aire pueden variar dependiendo de factores como la ubicación geográfica,la altitud,las condiciones atmosféricas,la vegetación y la época del año.")
+st.write("En esta aplicación se realiza un análisis detallado sobre la H.R en Cuba desde 1990 hasta 2022.Esta herramienta le proporcionará una visión profunda del comportamiento de la humedad en los diferentes meses,años y estaciones de nuestro país,permitiéndole comprender mejor su variación y tendencias a lo largo del tiempo,con gráficos intuitivos y datos precisos.En general con esta app podrá obtener una visión clara y concisa de este aspecto crucial del medio ambiente.")
 
-st.write(" ###### ¡No pierdas más tiempo y realiza tu propia investigación!")
 
 
 ###########################################################
 #COMO SE COMPORTO LA HUMEDAD RELATIVA A LO LARGO DEL TIEMPO 
 ###########################################################
-st.write(" ###### Comportamiento de la humedad relativa del país en cada mes desde 1990 hasta 2022.")
-st.write(" ###### Compara los meses con humedad relativa más agradable o desagradable.")
   
 hu_re = df.groupby(["Año","Mes"])["Humedad Relat"].mean()
 

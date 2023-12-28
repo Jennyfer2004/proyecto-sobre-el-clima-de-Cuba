@@ -5,12 +5,12 @@ import streamlit_folium as stf
 import PIL as pl
 import os
 import io
+import sklearn as sk
 
 ruta = os.getcwd()
 st.set_page_config(layout = "wide")
-st.title("Analisis de variables climatologicas en Cuba en el periodo 1990-2023")
+st.title("Analisis de variables climatologicas en Cuba en el periodo 1990-2022")
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
-
 
 
 # Crear el menú de selección en la barra lateral
@@ -64,6 +64,5 @@ elif seleccion == 'Temperatura':
         exec(f.read())
 
 elif seleccion == "Analisis Multivariado":
-    st.write("""
-    Aquí puedes mostrar información o visualizaciones para la Variable3.
-    """)
+    with open(f'{ruta}' + '\\Analisis Multivariado\mvanalysis.py', encoding="UTF-8") as f:
+        exec(f.read())
