@@ -6,7 +6,7 @@ from streamlit_folium import folium_static
 from collections import OrderedDict
 from folium.plugins import HeatMap
 
-df = pd.read_csv("../data/base_datos.csv")
+df = pd.read_csv("./data/base_datos.csv")
  
 df["Año-Mes"] = df.apply(lambda row: str(row['Año']) + '-' + str(row['Mes']), axis=1)
 

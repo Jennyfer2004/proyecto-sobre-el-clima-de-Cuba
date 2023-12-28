@@ -14,7 +14,7 @@ st.write("La precipitación es un factor fundamental en el estudio del clima y e
 st.write("Al igual que la humedad relativa, la precipitación es una variable crucial que varía en función de la ubicación geográfica, las condiciones atmosféricas y la época del año. Nuestra herramienta interactiva te permitirá explorar estos aspectos y comprender mejor las tendencias y variaciones en las precipitaciones en Cuba. A través de gráficos intuitivos y datos precisos, podrás sumergirte en el fascinante mundo de las lluvias y su impacto en el clima cubano.")
 st.write("Desde 1990 hasta la actualidad, nuestra página te brindará una visión clara y concisa de las precipitaciones por años, meses y estaciones, permitiéndote obtener una comprensión profunda de este aspecto crucial del medio ambiente cubano. Te invitamos a que explorar nuestra plataforma y a que descubras la riqueza de información que tenemos para ofrecerte. ¡Bienvenido a nuestro análisis detallado de las lluvias en Cuba!")
 # read database with pandas
-df = pd.read_csv("../data/base_datos.csv")
+df = pd.read_csv("./data/base_datos.csv")
 # write on the page
 st.write("#### Precipitaciones promedios y totales de Cuba en los ultimos 30 años.")
 # remove rows from the precipitation column that are empty

@@ -7,7 +7,7 @@ from typing import List, Dict
 
 st.title("Comportamiento de las Temperaturas en Cuba 1990-2022")
 
-df = pd.read_csv("../data/base_datos.csv")
+df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", 
         "Nombres Estaciones", "Latitud", "Longitud", "Región", "Provincias"]]
 
