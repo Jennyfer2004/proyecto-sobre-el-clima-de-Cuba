@@ -3,12 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-import folium
-from folium.plugins import HeatMap
-import streamlit.components.v1 as components
+from sklearn.linear_model import LinearRegression
+import datetime
 
 df = pd.read_csv("./data/base_datos.csv")
-df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", "Humedad Relat", "Precipitaciones",
+df = df.loc[:, ["Estacion", "Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", "Humedad Relat", "Precipitaciones",
         "Nombres Estaciones", "Latitud", "Longitud", "Región", "Provincias"]]
 
 df = df.rename(columns={"Temperatura max med": "Temperatura Maxima Media", "Temperatura min med": "Temperatura Minima Media", "Temperatura med": "Temperatura Media", "Humedad Relat": "Humedad Relativa",
@@ -98,6 +97,69 @@ if seleccion == "General":
         
         
 #################################################
-#Analisis por mes/ano
+#Regresiones
 #################################################
         
+        variables.append("Año")
+        variables.append("Longitud")
+        import seaborn as sns
+
+        variable_independiente = st.selectbox('Seleccione la variable independiente:', variables)
+
+        dependientes = [var for var in df.columns if var not in ["Mes", "Año", "Longitud", "Estacion", "Nombre de Estacion", "Latitud", "Región", "Provincias"]] # Todas las variables excepto "Año" y "Longitud" pueden ser dependientes
+        variable_dependiente = st.selectbox('Seleccione la variable dependiente:', dependientes)
+
+        REWORKED_df = df.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
+
+        plt.figure(figsize=(12, 8))
+
+        if variable_independiente in ['Año']: # Si 'Año' o 'Longitud' es la variable independiente
+    # Agrupa por 'Año', 'Mes' y la variable independiente, calcula la media de la variable dependiente
+                grouped_df = REWORKED_df.groupby(['Año', 'Mes'])[variable_dependiente].mean().reset_index()
+        # Crea una nueva columna 'Fecha' que combina 'Año' y 'Mes'
+                grouped_df['Fecha'] = grouped_df['Año'].astype(str) + '-' + grouped_df['Mes'].astype(str)
+                grouped_df['Fecha'] = pd.to_datetime(grouped_df['Fecha'])
+        # Ordena el dataframe por 'Fecha'
+                grouped_df = grouped_df.sort_values('Fecha')
+        
+        # Realiza la regresión lineal
+                X = grouped_df['Fecha'].map(datetime.datetime.toordinal).values.reshape(-1, 1)
+                y = grouped_df[variable_dependiente]
+                modelo = LinearRegression()
+                modelo.fit(X, y)
+                regression_line = modelo.predict(X)
+        
+                plt.plot(grouped_df['Fecha'], grouped_df[variable_dependiente], marker='o')
+                plt.plot(grouped_df['Fecha'], regression_line, color='red') # Línea de regresión en rojo
+                plt.title(f'Media de {variable_dependiente} a lo largo del tiempo')
+
+        elif variable_independiente in ["Longitud"]:
+                grouped_df = REWORKED_df.groupby(['Longitud'])[variable_dependiente].mean().reset_index()
+                grouped_df = grouped_df.sort_values('Longitud')
+                X = grouped_df['Longitud'].values.reshape(-1, 1)
+                y = grouped_df[variable_dependiente]
+                modelo = LinearRegression()
+                modelo.fit(X, y)
+                regression_line = modelo.predict(X)
+        
+                plt.plot(grouped_df['Longitud'], grouped_df[variable_dependiente], marker='o')
+                plt.plot(grouped_df['Longitud'], regression_line, color='red') # Línea de regresión en rojo
+                plt.title(f'Media de {variable_dependiente} a lo largo de la Isla')
+
+
+
+        else: # Si otra variable es la variable independiente
+        # Realiza la regresión lineal
+                X = REWORKED_df[variable_independiente].values.reshape(-1, 1)
+                y = REWORKED_df[variable_dependiente]
+                modelo = LinearRegression()
+                modelo.fit(X, y)
+                regression_line = modelo.predict(X)
+        
+                plt.scatter(REWORKED_df[variable_independiente], REWORKED_df[variable_dependiente], s=3)
+                plt.plot(REWORKED_df[variable_independiente], regression_line, color='red') # Línea de regresión en rojo
+                plt.title(f'Regresión lineal de {variable_dependiente} vs {variable_independiente}')
+
+        plt.xlabel(variable_independiente)
+        plt.ylabel(variable_dependiente)
+        st.pyplot(plt.gcf())
