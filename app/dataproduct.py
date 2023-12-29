@@ -19,10 +19,10 @@ if seleccion == 'Introducción':
     col1,col2 = st.columns(2)
     with open(f'{ruta}' + '/images/cubaAI.jpg', 'rb') as f:
         datos_imagen = f.read()
-    imagen = pl.Image.open(io.BytesIO(datos_imagen)).resize((1300,1100))
+    imagen = pl.Image.open(io.BytesIO(datos_imagen)).resize((900,700))
     col2.image(imagen, use_column_width=True)
     col1.write("""
-    El clima de un país tiene un impacto profundo y multifacético en casi todos los aspectos de la vida y la sociedad. En el caso de Cuba, su clima tropical no es una excepción. Desde la economía hasta la cultura, la vida cotidiana hasta la biodiversidad, el clima influye en todo.
+    El clima de un país tiene un impacto profundo y multifacético en casi todos los aspectos de la vida y la sociedad. En el caso de Cuba, su clima tropical no es una excepción. Desde la economía hasta la cultura, la vida cotidiana hasta la biodiversidad, el impacto del clima es significativo.
 
 En términos económicos, el clima afecta a sectores como la agricultura, la pesca y el turismo. La agricultura, por ejemplo, depende en gran medida de las condiciones climáticas para el crecimiento de los cultivos. El turismo, una parte vital de la economía cubana, también está estrechamente ligado al clima, ya que los turistas suelen preferir el clima cálido y soleado para sus visitas. Culturalmente, el clima también juega un papel importante. Ha influido en la música, la danza, la literatura y las tradiciones de la isla. Por ejemplo, muchas canciones y poemas cubanos hacen referencia al clima y a la belleza natural de la isla. En cuanto a la biodiversidad, el clima tropical de Cuba ha permitido el florecimiento de una rica y diversa vida de plantas y animales. Muchas especies se han adaptado a las condiciones específicas del clima cubano, lo que ha resultado en una biodiversidad única.""")
 
@@ -46,6 +46,7 @@ Este data product te permitirá explorar estas variables en profundidad. Al ente
     st.markdown('''
 Arriba a la izquierda, encontraras un menu desplegable en donde podras elegir que variable o analisis quieres explorar. Dentro de cada una de las secciones encontraras distintos medios de interaccion y visualizacion para hacer mas clara la comprension de las variables y sus relaciones. Nuestro objetivo es que el usurario reciba claramente los datos que busca, para que pueda utilizarlos por si mismo para realizar los analisis que necesite.
 ''')
+
 
 
 elif seleccion == 'Humedad Relativa':

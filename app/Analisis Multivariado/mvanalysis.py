@@ -1,7 +1,7 @@
 import streamlit as st 
 import pandas as pd
-import statsmodels.api as sm
-from statsmodels.multivariate.manova import MANOVA
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 df = pd.read_csv("./data/base_datos.csv")
@@ -30,5 +30,26 @@ if seleccion == "General":
          temperaturas altas, las temperaturas minimas fueron tambien mas altas si las comparamos con luagres donde se registraron menores temperaturas maximas. Asimismo, notamos que 
          las Precipitaciones estan mas relacionadas con el incremento de la humedad relativa que con otras variables. Resulta tambien intersante que, a pesar de que la relacion entre la Humedad 
          Relativa y las temperaturas maximas es pequena, estas variables son inversamente proporcionales.''')
+        
+#################################################
+#Nubes de Puntos
+#################################################
+        
+        inicio_año, fin_año = st.slider('Selecciona el rango de años', min_value=df['Año'].min(), max_value=df['Año'].max(), value=(df['Año'].min(), df['Año'].max()))
+        inicio_mes, fin_mes = st.slider('Selecciona el rango de meses', min_value=df['Mes'].min(), max_value=df['Mes'].max(), value=(df['Mes'].min(), df['Mes'].max()))
 
+        df_filtrado = df[(df['Año'] >= inicio_año) & (df['Año'] <= fin_año) & (df['Mes'] >= inicio_mes) & (df['Mes'] <= fin_mes)]
+
+        variables = ['Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
+        variable_x = st.selectbox('Selecciona la variable para el eje X', variables)
+        variable_y = st.selectbox('Selecciona la variable para el eje Y', variables)
+
+        plt.figure(figsize=(15, 11))
+        plt.scatter(df_filtrado[variable_x], df_filtrado[variable_y], s=3)
+        plt.axvline(np.mean(df_filtrado[variable_x]), color="red", linestyle = "dashed")
+        plt.axhline(np.mean(df_filtrado[variable_y]), color="red", linestyle = "dashed")
+        plt.title('Gráfico de dispersión')
+        plt.xlabel(variable_x)
+        plt.ylabel(variable_y)
+        st.pyplot(plt.gcf())
 
