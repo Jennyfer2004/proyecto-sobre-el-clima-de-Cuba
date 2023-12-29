@@ -113,16 +113,13 @@ if seleccion == "General":
 
         plt.figure(figsize=(12, 8))
 
-        if variable_independiente in ['Año']: # Si 'Año' o 'Longitud' es la variable independiente
-    # Agrupa por 'Año', 'Mes' y la variable independiente, calcula la media de la variable dependiente
+        if variable_independiente in ['Año']:
+
                 grouped_df = REWORKED_df.groupby(['Año', 'Mes'])[variable_dependiente].mean().reset_index()
-        # Crea una nueva columna 'Fecha' que combina 'Año' y 'Mes'
                 grouped_df['Fecha'] = grouped_df['Año'].astype(str) + '-' + grouped_df['Mes'].astype(str)
                 grouped_df['Fecha'] = pd.to_datetime(grouped_df['Fecha'])
-        # Ordena el dataframe por 'Fecha'
                 grouped_df = grouped_df.sort_values('Fecha')
         
-        # Realiza la regresión lineal
                 X = grouped_df['Fecha'].map(datetime.datetime.toordinal).values.reshape(-1, 1)
                 y = grouped_df[variable_dependiente]
                 modelo = LinearRegression()
@@ -134,6 +131,7 @@ if seleccion == "General":
                 plt.title(f'Media de {variable_dependiente} a lo largo del tiempo')
 
         elif variable_independiente in ["Longitud"]:
+
                 grouped_df = REWORKED_df.groupby(['Longitud'])[variable_dependiente].mean().reset_index()
                 grouped_df = grouped_df.sort_values('Longitud')
                 X = grouped_df['Longitud'].values.reshape(-1, 1)
@@ -146,10 +144,7 @@ if seleccion == "General":
                 plt.plot(grouped_df['Longitud'], regression_line, color='red') # Línea de regresión en rojo
                 plt.title(f'Media de {variable_dependiente} a lo largo de la Isla')
 
-
-
-        else: # Si otra variable es la variable independiente
-        # Realiza la regresión lineal
+        else:
                 X = REWORKED_df[variable_independiente].values.reshape(-1, 1)
                 y = REWORKED_df[variable_dependiente]
                 modelo = LinearRegression()
