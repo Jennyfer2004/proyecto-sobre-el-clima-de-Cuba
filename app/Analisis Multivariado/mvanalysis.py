@@ -30,3 +30,7 @@ st.write('''Como es posible observar, una Temperatura Maxima Media elevada esta 
          temperaturas altas, las temperaturas minimas fueron tambien mas altas si las comparamos con luagres donde se registraron menores temperaturas maximas. Asimismo, notamos que 
          las Precipitaciones estan mas relacionadas con el incremento de la humedad relativa que con otras variables. Resulta tambien intersante que, a pesar de que la relacion entre la Humedad 
          Relativa y las temperaturas maximas es pequena, estas variables son inversamente proporcionales.''')
+
+
+################################################
+#

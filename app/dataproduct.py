@@ -8,6 +8,7 @@ import io
 import sklearn as sk
 
 ruta = os.getcwd()
+ruta = ruta.replace("\\", "/")
 st.set_page_config(layout = "wide")
 st.title("Analisis de variables climatologicas en Cuba en el periodo 1990-2022")
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
@@ -20,7 +21,7 @@ seleccion = st.sidebar.selectbox('Selecciona una opción:', opciones)
 # Mostrar la sección correspondiente basada en la selección del usuario
 if seleccion == 'Introducción':
     col1,col2 = st.columns(2)
-    with open(f'{ruta}' + '\images\cubaAI.jpg', 'rb') as f:
+    with open(f'{ruta}' + '/images/cubaAI.jpg', 'rb') as f:
         datos_imagen = f.read()
     imagen = pl.Image.open(io.BytesIO(datos_imagen)).resize((1300,1100))
     col2.image(imagen, use_column_width=True)
@@ -52,17 +53,17 @@ Arriba a la izquierda, encontraras un menu desplegable en donde podras elegir qu
 
 
 elif seleccion == 'Humedad Relativa':
-    with open(f'{ruta}' + '\Humedad\humedad.py', encoding="UTF-8") as f:
+    with open(f'{ruta}' + '/Humedad/humedad.py', encoding="UTF-8") as f:
         exec(f.read())
 
 elif seleccion == 'Precipitaciones':
-    with open(f'{ruta}' + '\Precipitaciones\precipitacion.py', encoding="UTF-8") as f:
+    with open(f'{ruta}' + '/Precipitaciones/precipitacion.py', encoding="UTF-8") as f:
         exec(f.read())
 
 elif seleccion == 'Temperatura':
-    with open(f'{ruta}' + '\\temperature\main.py', encoding="UTF-8") as f:
+    with open(f'{ruta}' + '/temperature/main.py', encoding="UTF-8") as f:
         exec(f.read())
 
 elif seleccion == "Analisis Multivariado":
-    with open(f'{ruta}' + '\\Analisis Multivariado\mvanalysis.py', encoding="UTF-8") as f:
+    with open(f'{ruta}' + '/Analisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
         exec(f.read())
