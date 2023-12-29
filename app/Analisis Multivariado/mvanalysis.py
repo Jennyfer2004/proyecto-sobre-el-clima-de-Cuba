@@ -1,14 +1,6 @@
 import streamlit as st 
-import matplotlib as plt
-import folium as fl
-import streamlit_folium as stf
-import PIL as pl
-import os
-import io
-import sklearn.cluster as sk
-import sklearn.impute as im
 import pandas as pd
-import seaborn as sb
+
 
 df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", "Humedad Relat", "Precipitaciones",

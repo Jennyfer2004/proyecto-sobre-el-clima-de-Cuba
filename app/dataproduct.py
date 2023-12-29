@@ -1,11 +1,7 @@
 import streamlit as st 
-import matplotlib as plt
-import folium as fl
-import streamlit_folium as stf
 import PIL as pl
 import os
 import io
-import sklearn as sk
 
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")
