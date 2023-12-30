@@ -5,6 +5,14 @@ import numpy as np
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 import datetime
+import sys
+import os
+ruta = os.getcwd()
+ruta = ruta.replace("\\", "/")
+sys.path.append(f'{ruta}' + '/Analisis Multivariado')
+import mvLogic
+
+
 
 df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Estacion", "Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", "Humedad Relat", "Precipitaciones",
@@ -12,11 +20,20 @@ df = df.loc[:, ["Estacion", "Año", "Mes", "Temperatura max med", "Temperatura m
 
 df = df.rename(columns={"Temperatura max med": "Temperatura Maxima Media", "Temperatura min med": "Temperatura Minima Media", "Temperatura med": "Temperatura Media", "Humedad Relat": "Humedad Relativa",
         "Nombres Estaciones": "Nombre de Estacion"})
+df_Occidente = df.loc[df['Región'] == 'Occidente']
+df_Centro = df.loc[df['Región'] == 'Centro']
+df_Oriente = df.loc[df['Región'] == 'Oriente']
+
+variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
 
 a = st.markdown("## Seleccione la region en la que quiere explorar datos")
 
 opciones = ['General', 'Occidente', 'Centro', 'Oriente']
 seleccion = st.selectbox('Selecciona una opción:', opciones)
+
+#############################################################################################################################
+#Analisis Multivariado General
+#############################################################################################################################
 
 if seleccion == "General":
     
@@ -28,10 +45,6 @@ if seleccion == "General":
         df_corr = df[["Temperatura Media", "Temperatura Maxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
         st.write(df_corr.corr()) 
 
-        st.write('''Como es posible observar, en Cuba una Temperatura Maxima Media elevada esta directamente una Temperatura Minima Media tambien elevada. Esto nos indica que los lugares donde se registaron
-         temperaturas altas, las temperaturas minimas fueron tambien mas altas si las comparamos con luagres donde se registraron menores temperaturas maximas. Asimismo, notamos que 
-         las Precipitaciones estan mas relacionadas con el incremento de la humedad relativa que con otras variables. Resulta tambien intersante que, a pesar de que la relacion entre la Humedad 
-         Relativa y las temperaturas maximas es pequena, estas variables son inversamente proporcionales.''')
         
 #################################################
 #Nubes de Puntos
@@ -49,60 +62,21 @@ if seleccion == "General":
         variable_y = st.selectbox('Selecciona la variable para el eje Y', variables)
 
         col1,col2 = st.columns(2)
-        plt.figure(figsize=(12, 8))
-        plt.scatter(df_filtrado[variable_x], df_filtrado[variable_y], s=3)
-        linea_media_x = plt.axvline(np.mean(df_filtrado[variable_x]), color="red", linestyle = "dashed")
-        linea_media_y = plt.axhline(np.mean(df_filtrado[variable_y]), color="red", linestyle = "dashed")
-        plt.title('Gráfico de dispersión')
-        plt.xlabel(variable_x)
-        plt.ylabel(variable_y)
-        legend = plt.legend([linea_media_x, linea_media_y], [f'Media {variable_x}: {np.mean(df_filtrado[variable_x]):.2f}', f'Media {variable_y}: {np.mean(df_filtrado[variable_y]):.2f}'], loc='upper left')
-        col1.pyplot(plt.gcf())
-        
-        plt.figure(figsize=(10, 6))
-        sns.kdeplot(data=df_filtrado, x=variable_x, y=variable_y, fill=True)
-        linea_media_x = plt.axvline(np.mean(df_filtrado[variable_x]), color="red", linestyle = "dashed")
-        linea_media_y = plt.axhline(np.mean(df_filtrado[variable_y]), color="red", linestyle = "dashed")
-        plt.title(f'Diagrama de densidad de {variable_x} vs {variable_y}')
-        plt.xlabel(variable_x)
-        plt.ylabel(variable_y)
 
-        col2.pyplot(plt.gcf())
+        col1.write(mvLogic.ScatterPlot(df_filtrado, variable_x, variable_y, inicio_año, fin_año, inicio_mes, fin_mes))
 
-#################################################
-#Mapas de Calor
-#################################################
-        
-#         variable1 = st.selectbox('Selecciona la primera variable:', variables)
-#         variable2 = st.selectbox('Selecciona la segunda variable:', [var for var in variables if var != variable1])
+        col2.write(mvLogic.Dispersion(df_filtrado, variable_x, variable_y))
 
-#         df_filtrado = df[df[variable1].notna() & df[variable2].notna()]
-
-#         data1 = df_filtrado[['Latitud', 'Longitud', variable1]].values.tolist()
-#         data2 = df_filtrado[['Latitud', 'Longitud', variable2]].values.tolist()
-
-#         m = folium.Map(location=[21.5218, -79.5812], zoom_start=7)
-
-#         HeatMap(data1).add_to(m)
-#         HeatMap(data2).add_to(m)
-
-
-#         # Muestra el mapa
-#         m.save('mapa.html')
-
-#         with open('mapa.html', 'r') as f:
-#                 html_string = f.read()
-
-#         components.html(html_string, width=1000, height=400)
         
         
 #################################################
 #Regresiones
 #################################################
         
+        st.markdown("### Graficos de Regresion Lineal")
+        
         variables.append("Año")
         variables.append("Longitud")
-        import seaborn as sns
 
         variable_independiente = st.selectbox('Seleccione la variable independiente:', variables)
 
@@ -111,50 +85,177 @@ if seleccion == "General":
 
         REWORKED_df = df.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
 
-        plt.figure(figsize=(12, 8))
+        st.write(mvLogic.Regresion(REWORKED_df, variable_independiente, variable_dependiente))
 
-        if variable_independiente in ['Año']:
 
-                grouped_df = REWORKED_df.groupby(['Año', 'Mes'])[variable_dependiente].mean().reset_index()
-                grouped_df['Fecha'] = grouped_df['Año'].astype(str) + '-' + grouped_df['Mes'].astype(str)
-                grouped_df['Fecha'] = pd.to_datetime(grouped_df['Fecha'])
-                grouped_df = grouped_df.sort_values('Fecha')
+
+
+############################################################################################################################
+#Analisis Multivariado Occidente
+############################################################################################################################
+    
+if seleccion == "Occidente":
+
+################################################
+#COEFICIENTE DE CORRELACION
+################################################
+
+        st.markdown("### Coeficiente de Correlacion entre las variables")
+        df_corr = df_Occidente[["Temperatura Media", "Temperatura Maxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
+        st.write(df_corr.corr()) 
+
         
-                X = grouped_df['Fecha'].map(datetime.datetime.toordinal).values.reshape(-1, 1)
-                y = grouped_df[variable_dependiente]
-                modelo = LinearRegression()
-                modelo.fit(X, y)
-                regression_line = modelo.predict(X)
+#################################################
+#Nubes de Puntos
+#################################################
         
-                plt.plot(grouped_df['Fecha'], grouped_df[variable_dependiente], marker='o')
-                plt.plot(grouped_df['Fecha'], regression_line, color='red') # Línea de regresión en rojo
-                plt.title(f'Media de {variable_dependiente} a lo largo del tiempo')
+        st.markdown("### Graficos de Dispersion")
 
-        elif variable_independiente in ["Longitud"]:
+        inicio_año, fin_año = st.slider('Selecciona el rango de años', min_value=df_Occidente['Año'].min(), max_value=df_Occidente['Año'].max(), value=(df_Occidente['Año'].min(), df_Occidente['Año'].max()))
+        inicio_mes, fin_mes = st.slider('Selecciona el rango de meses', min_value=df_Occidente['Mes'].min(), max_value=df_Occidente['Mes'].max(), value=(df_Occidente['Mes'].min(), df_Occidente['Mes'].max()))
 
-                grouped_df = REWORKED_df.groupby(['Longitud'])[variable_dependiente].mean().reset_index()
-                grouped_df = grouped_df.sort_values('Longitud')
-                X = grouped_df['Longitud'].values.reshape(-1, 1)
-                y = grouped_df[variable_dependiente]
-                modelo = LinearRegression()
-                modelo.fit(X, y)
-                regression_line = modelo.predict(X)
+        df_filtrado = df_Occidente[(df_Occidente['Año'] >= inicio_año) & (df_Occidente['Año'] <= fin_año) & (df_Occidente['Mes'] >= inicio_mes) & (df_Occidente['Mes'] <= fin_mes)]
+
+        variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
+        variable_x = st.selectbox('Selecciona la variable para el eje X', variables)
+        variable_y = st.selectbox('Selecciona la variable para el eje Y', variables)
+
+        col1,col2 = st.columns(2)
+
+        col1.write(mvLogic.ScatterPlot(df_filtrado, variable_x, variable_y, inicio_año, fin_año, inicio_mes, fin_mes))
+
+        col2.write(mvLogic.Dispersion(df_filtrado, variable_x, variable_y))
+
         
-                plt.plot(grouped_df['Longitud'], grouped_df[variable_dependiente], marker='o')
-                plt.plot(grouped_df['Longitud'], regression_line, color='red') # Línea de regresión en rojo
-                plt.title(f'Media de {variable_dependiente} a lo largo de la Isla')
-
-        else:
-                X = REWORKED_df[variable_independiente].values.reshape(-1, 1)
-                y = REWORKED_df[variable_dependiente]
-                modelo = LinearRegression()
-                modelo.fit(X, y)
-                regression_line = modelo.predict(X)
         
-                plt.scatter(REWORKED_df[variable_independiente], REWORKED_df[variable_dependiente], s=3)
-                plt.plot(REWORKED_df[variable_independiente], regression_line, color='red') # Línea de regresión en rojo
-                plt.title(f'Regresión lineal de {variable_dependiente} vs {variable_independiente}')
+#################################################
+#Regresiones
+#################################################
+        
+        st.markdown("### Graficos de Regresion Lineal")
+        
+        variables.append("Año")
+        variables.append("Longitud")
 
-        plt.xlabel(variable_independiente)
-        plt.ylabel(variable_dependiente)
-        st.pyplot(plt.gcf())
+        variable_independiente = st.selectbox('Seleccione la variable independiente:', variables)
+
+        dependientes = [var for var in df_Occidente.columns if var not in ["Mes", "Año", "Longitud", "Estacion", "Nombre de Estacion", "Latitud", "Región", "Provincias"]] # Todas las variables excepto "Año" y "Longitud" pueden ser dependientes
+        variable_dependiente = st.selectbox('Seleccione la variable dependiente:', dependientes)
+
+        REWORKED_df = df_Occidente.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
+
+        st.write(mvLogic.Regresion(REWORKED_df, variable_independiente, variable_dependiente))
+
+
+
+##################################################################################################################################
+#Analisis Multivariado Centro
+##################################################################################################################################
+    
+if seleccion == "Centro":
+
+################################################
+#COEFICIENTE DE CORRELACION
+################################################
+
+        st.markdown("### Coeficiente de Correlacion entre las variables")
+        df_corr = df_Centro[["Temperatura Media", "Temperatura Maxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
+        st.write(df_corr.corr()) 
+
+        
+#################################################
+#Nubes de Puntos
+#################################################
+        
+        st.markdown("### Graficos de Dispersion")
+
+        inicio_año, fin_año = st.slider('Selecciona el rango de años', min_value=df_Centro['Año'].min(), max_value=df_Centro['Año'].max(), value=(df_Centro['Año'].min(), df_Centro['Año'].max()))
+        inicio_mes, fin_mes = st.slider('Selecciona el rango de meses', min_value=df_Centro['Mes'].min(), max_value=df_Centro['Mes'].max(), value=(df_Centro['Mes'].min(), df_Centro['Mes'].max()))
+
+        df_filtrado = df_Centro[(df_Centro['Año'] >= inicio_año) & (df_Centro['Año'] <= fin_año) & (df_Centro['Mes'] >= inicio_mes) & (df_Centro['Mes'] <= fin_mes)]
+
+        variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
+        variable_x = st.selectbox('Selecciona la variable para el eje X', variables)
+        variable_y = st.selectbox('Selecciona la variable para el eje Y', variables)
+
+        col1,col2 = st.columns(2)
+
+        col1.write(mvLogic.ScatterPlot(df_filtrado, variable_x, variable_y, inicio_año, fin_año, inicio_mes, fin_mes))
+
+        col2.write(mvLogic.Dispersion(df_filtrado, variable_x, variable_y))
+
+        
+        
+#################################################
+#Regresiones
+#################################################
+        
+        st.markdown("### Graficos de Regresion Lineal")
+        
+        variables.append("Año")
+        variables.append("Longitud")
+
+        variable_independiente = st.selectbox('Seleccione la variable independiente:', variables)
+
+        dependientes = [var for var in df_Centro.columns if var not in ["Mes", "Año", "Longitud", "Estacion", "Nombre de Estacion", "Latitud", "Región", "Provincias"]] # Todas las variables excepto "Año" y "Longitud" pueden ser dependientes
+        variable_dependiente = st.selectbox('Seleccione la variable dependiente:', dependientes)
+
+        REWORKED_df = df_Centro.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
+
+        st.write(mvLogic.Regresion(REWORKED_df, variable_independiente, variable_dependiente))
+
+##################################################################################################################################
+#Analisis Multivariado Oriente
+##################################################################################################################################
+    
+if seleccion == "Oriente":
+
+################################################
+#COEFICIENTE DE CORRELACION
+################################################
+
+        st.markdown("### Coeficiente de Correlacion entre las variables")
+        df_corr = df_Oriente[["Temperatura Media", "Temperatura Maxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
+        st.write(df_corr.corr()) 
+
+        
+#################################################
+#Nubes de Puntos
+#################################################
+        
+        st.markdown("### Graficos de Dispersion")
+
+        inicio_año, fin_año = st.slider('Selecciona el rango de años', min_value=df_Oriente['Año'].min(), max_value=df_Oriente['Año'].max(), value=(df_Oriente['Año'].min(), df_Oriente['Año'].max()))
+        inicio_mes, fin_mes = st.slider('Selecciona el rango de meses', min_value=df_Oriente['Mes'].min(), max_value=df_Oriente['Mes'].max(), value=(df_Oriente['Mes'].min(), df_Oriente['Mes'].max()))
+
+        df_filtrado = df_Oriente[(df_Oriente['Año'] >= inicio_año) & (df_Oriente['Año'] <= fin_año) & (df_Oriente['Mes'] >= inicio_mes) & (df_Oriente['Mes'] <= fin_mes)]
+
+        variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
+        variable_x = st.selectbox('Selecciona la variable para el eje X', variables)
+        variable_y = st.selectbox('Selecciona la variable para el eje Y', variables)
+
+        col1,col2 = st.columns(2)
+
+        col1.write(mvLogic.ScatterPlot(df_filtrado, variable_x, variable_y, inicio_año, fin_año, inicio_mes, fin_mes))
+
+        col2.write(mvLogic.Dispersion(df_filtrado, variable_x, variable_y))
+
+        
+        
+#################################################
+#Regresiones
+#################################################
+        
+        st.markdown("### Graficos de Regresion Lineal")
+        
+        variables.append("Año")
+        variables.append("Longitud")
+
+        variable_independiente = st.selectbox('Seleccione la variable independiente:', variables)
+
+        dependientes = [var for var in df_Oriente.columns if var not in ["Mes", "Año", "Longitud", "Estacion", "Nombre de Estacion", "Latitud", "Región", "Provincias"]] # Todas las variables excepto "Año" y "Longitud" pueden ser dependientes
+        variable_dependiente = st.selectbox('Seleccione la variable dependiente:', dependientes)
+
+        REWORKED_df = df_Oriente.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
+
+        st.write(mvLogic.Regresion(REWORKED_df, variable_independiente, variable_dependiente))
