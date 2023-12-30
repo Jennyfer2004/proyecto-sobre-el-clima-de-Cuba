@@ -11,11 +11,13 @@ st.title("Analisis de variables climatologicas en Cuba en el periodo 1990-2022")
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
 
 
-# Crear el menú de selección en la barra lateral
 opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Analisis Multivariado']
 seleccion = st.sidebar.selectbox('Selecciona una opción:', opciones)
 
-# Mostrar la sección correspondiente basada en la selección del usuario
+#################################################################################################################################
+#Introduccion
+#################################################################################################################################
+
 if seleccion == 'Introducción':
     col1,col2 = st.columns(2)
     with open(f'{ruta}' + '/images/cubaAI.jpg', 'rb') as f:
@@ -48,6 +50,9 @@ Este data product te permitirá explorar estas variables en profundidad. Al ente
 Arriba a la izquierda, encontraras un menu desplegable en donde podras elegir que variable o analisis quieres explorar. Dentro de cada una de las secciones encontraras distintos medios de interaccion y visualizacion para hacer mas clara la comprension de las variables y sus relaciones. Nuestro objetivo es que el usurario reciba claramente los datos que busca, para que pueda utilizarlos por si mismo para realizar los analisis que necesite.
 ''')
 
+####################################################################################################################################
+#Secciones del DataFrame
+####################################################################################################################################
 
 
 elif seleccion == 'Humedad Relativa':
