@@ -2,10 +2,8 @@ import streamlit as st
 import PIL as pl
 import os
 import io
-import pydeck as pdk
-import pandas as pd
-from streamlit_folium import folium_static
-import folium
+
+
 
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")
@@ -14,7 +12,7 @@ st.title("Analisis de variables climatologicas en Cuba en el periodo 1990-2022")
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
 
 
-opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Analisis Multivariado']
+opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Analisis Multivariado', "Huracanes"]
 seleccion = st.sidebar.radio('Selecciona una opción:', opciones)
 
 #################################################################################################################################
@@ -74,6 +72,9 @@ elif seleccion == "Analisis Multivariado":
     with open(f'{ruta}' + '/Analisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
         exec(f.read())
 
+elif seleccion == "Huracanes":
+    with open(f'{ruta}' + '/Huracanes/huracanes.py', encoding="UTF-8") as f:
+        exec(f.read())
 
 
 
