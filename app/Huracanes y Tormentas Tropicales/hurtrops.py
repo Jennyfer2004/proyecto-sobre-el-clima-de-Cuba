@@ -78,3 +78,31 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
 
     plt.xticks(rotation='horizontal')
     col1.pyplot(fig)
+
+###########################################################################################################
+#Informacion General de los Huracanes
+###########################################################################################################
+    
+    st.markdown("### Visualizacion Comparativa de la informacion sobre Huracanes")
+
+    hurricane_names = df['Nombre'].unique().tolist()
+
+    selected_hurricanes = st.multiselect('Elige los Huracanes que quieres visualizar:', hurricane_names)
+
+    col1, col2 = st.columns(2)
+
+    for i, hurricane in enumerate(selected_hurricanes):
+        
+        col = col1 if i % 2 == 0 else col2
+
+        hurricane_data = df[df['Nombre'] == hurricane].drop(['Latitud', 'Longitud'], axis=1)
+
+        col.write(hurricane_data)
+
+        if os.path.exists(f'{path}' + "/app/images/" + f"{hurricane}" + ".jpg"):
+            with open(f'{path}' + "/app/images/" + f"{hurricane}" + ".jpg", 'rb') as f:
+                datos_imagen = f.read()
+            imagen = pl.Image.open(io.BytesIO(datos_imagen)).resize((1000,700))
+            col.image(imagen, caption=hurricane, use_column_width=True)
+        else:
+            col.warning(f"No se encontró la imagen para el huracán {hurricane}")
