@@ -2,7 +2,10 @@ import streamlit as st
 import PIL as pl
 import os
 import io
-
+import pydeck as pdk
+import pandas as pd
+from streamlit_folium import folium_static
+import folium
 
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")
@@ -12,7 +15,7 @@ st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333
 
 
 opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Analisis Multivariado']
-seleccion = st.sidebar.selectbox('Selecciona una opción:', opciones)
+seleccion = st.sidebar.radio('Selecciona una opción:', opciones)
 
 #################################################################################################################################
 #Introduccion
@@ -70,3 +73,9 @@ elif seleccion == 'Temperatura':
 elif seleccion == "Analisis Multivariado":
     with open(f'{ruta}' + '/Analisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
         exec(f.read())
+
+
+
+
+
+
