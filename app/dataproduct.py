@@ -73,7 +73,7 @@ elif seleccion == "Analisis Multivariado":
         exec(f.read())
 
 elif seleccion == "Huracanes":
-    with open(f'{ruta}' + '/Huracanes/huracanes.py', encoding="UTF-8") as f:
+    with open(f'{ruta}' + '/Huracanes y Tormentas Tropicales/hurtrops.py', encoding="UTF-8") as f:
         exec(f.read())
 
 
