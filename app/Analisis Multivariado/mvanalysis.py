@@ -172,7 +172,7 @@ if seleccion == "Occidente":
     
 if seleccion == "Centro":
 
-        opciones = ['General', 'Villa Clara', 'Cienfuegos', 'Sancti Sps', 'Ciego de Ávila', 'Camagüey']
+        opciones = ['General', 'Villa Clara', 'Cienfuegos', 'Sancti Spíritus', 'Ciego de Ávila', 'Camagüey']
         seleccion = st.selectbox('Selecciona una Provincia:', opciones)
 
         
