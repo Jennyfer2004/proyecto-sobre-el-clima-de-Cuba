@@ -138,6 +138,7 @@ def ScatLogic(df):
     col2.write(Dispersion(df_filtrado, variable_x, variable_y))
 
 
+
 def RegLogic(df):
 
     variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa',"Año","Longitud"]
@@ -150,3 +151,14 @@ def RegLogic(df):
     REWORKED_df = df.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
 
     st.write(Regresion(REWORKED_df, variable_independiente, variable_dependiente))
+
+
+def JDist(df,variable1,variable2):
+
+    df[variable1] = pd.to_numeric(df[variable1], errors='coerce')
+    df[variable2] = pd.to_numeric(df[variable2], errors='coerce')
+
+    df = df.dropna(subset=[variable1, variable2])
+
+    sns_plot = sns.jointplot(x=variable1, y=variable2, data=df)
+    st.pyplot(sns_plot.fig)

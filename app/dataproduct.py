@@ -45,7 +45,7 @@ Este data product te permitirá explorar estas variables en profundidad. Al ente
     
     st.markdown('')
     st.markdown('')
-    st.markdown('### ¿Cómo navegar el data product?')
+    st.markdown('### ¿Cómo navegar el Data Product?')
     st.markdown("<hr style='height:5px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
     st.markdown('''
 Arriba a la izquierda, encontraras un menu desplegable en donde podras elegir que variable o analisis quieres explorar. Dentro de cada una de las secciones encontraras distintos medios de interaccion y visualizacion para hacer mas clara la comprension de las variables y sus relaciones. Nuestro objetivo es que el usurario reciba claramente los datos que busca, para que pueda utilizarlos por si mismo para realizar los analisis que necesite.

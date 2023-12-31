@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import io
 import PIL as pl
-
+import seaborn as sns
 
 current_path = os.getcwd()
 path= os.path.dirname(current_path)
