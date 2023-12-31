@@ -45,9 +45,9 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
 
 
 ###########################################################################################################
-#Cantidad de Huracanes por Mes y Ano
+#Cantidad de Huracanes por Mes Categoria y Ano
 ###########################################################################################################
-    st.markdown("### Cantidad de Huracanes en Cuba por Mes y Año")
+    st.markdown("### Cantidad de Huracanes en Cuba por Mes, Año, Categoria y Region de Entrada")
 
     col1, col2 = st.columns(2)
 
@@ -79,6 +79,28 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
     plt.xticks(rotation='horizontal')
     col1.pyplot(fig)
 
+    data = df.groupby('Categoria').size().reset_index(name='Huracanes')
+    fig, ax = plt.subplots()
+    ax.bar(data['Categoria'], data['Huracanes'])
+    ax.set_title('Número de Huracanes por Categoria')
+    ax.set_xlabel('Categoria')
+    ax.set_ylabel('Número de Huracanes')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+    plt.xticks(rotation='horizontal')
+    col1.pyplot(fig)
+
+    data = df.groupby('Region').size().reset_index(name='Huracanes')
+    fig, ax = plt.subplots()
+    ax.bar(data['Region'], data['Huracanes'])
+    ax.set_title('Número de Huracanes por Region')
+    ax.set_xlabel('Region')
+    ax.set_ylabel('Número de Huracanes')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+    plt.xticks(rotation='horizontal')
+    col2.pyplot(fig)
+
 ###########################################################################################################
 #Informacion General de los Huracanes
 ###########################################################################################################
@@ -95,7 +117,7 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
         
         col = col1 if i % 2 == 0 else col2
 
-        hurricane_data = df[df['Nombre'] == hurricane].drop(['Latitud', 'Longitud'], axis=1)
+        hurricane_data = df[df['Nombre'] == hurricane].drop(['Latitud', 'Longitud', 'Mes', 'Año'], axis=1)
 
         col.write(hurricane_data)
 
@@ -106,3 +128,7 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
             col.image(imagen, caption=hurricane, use_column_width=True)
         else:
             col.warning(f"No se encontró la imagen para el huracán {hurricane}")
+
+###########################################################################################################
+#Informacion General de los Huracanes
+###########################################################################################################

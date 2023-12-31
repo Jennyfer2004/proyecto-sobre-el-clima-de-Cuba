@@ -4,6 +4,7 @@ import numpy as np
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 import datetime
+import streamlit as st
 
 
 ###################################
@@ -115,3 +116,37 @@ def Regresion(df, variable_independiente, variable_dependiente):
     a = plt.gcf()
 
     return a
+
+
+
+
+def ScatLogic(df):
+
+    inicio_año, fin_año = st.slider('Selecciona el rango de años', min_value=df['Año'].min(), max_value=df['Año'].max(), value=(df['Año'].min(), df['Año'].max()))
+    inicio_mes, fin_mes = st.slider('Selecciona el rango de meses', min_value=df['Mes'].min(), max_value=df['Mes'].max(), value=(df['Mes'].min(), df['Mes'].max()))
+
+    df_filtrado = df[(df['Año'] >= inicio_año) & (df['Año'] <= fin_año) & (df['Mes'] >= inicio_mes) & (df['Mes'] <= fin_mes)]
+
+    variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
+    variable_x = st.selectbox('Selecciona la variable para el eje X', variables)
+    variable_y = st.selectbox('Selecciona la variable para el eje Y', variables)
+
+    col1,col2 = st.columns(2)
+
+    col1.write(ScatterPlot(df_filtrado, variable_x, variable_y, inicio_año, fin_año, inicio_mes, fin_mes))
+
+    col2.write(Dispersion(df_filtrado, variable_x, variable_y))
+
+
+def RegLogic(df):
+
+    variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa',"Año","Longitud"]
+
+    variable_independiente = st.selectbox('Seleccione la variable independiente:', variables)
+
+    dependientes = [var for var in df.columns if var not in ["Mes", "Año", "Longitud", "Estacion", "Nombre de Estacion", "Latitud", "Región", "Provincias"]] # Todas las variables excepto "Año" y "Longitud" pueden ser dependientes
+    variable_dependiente = st.selectbox('Seleccione la variable dependiente:', dependientes)
+
+    REWORKED_df = df.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
+
+    st.write(Regresion(REWORKED_df, variable_independiente, variable_dependiente))
