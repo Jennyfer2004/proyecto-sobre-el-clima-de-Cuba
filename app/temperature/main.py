@@ -388,7 +388,7 @@ if selected_zone:
                              barmode='overlay')
     
     st.plotly_chart(fig_zone)
-    st.write(filter_zones)
+    st.write(filter_zones.reset_index(drop= True))
 
 ###############################################################
 # Comparación de la temperatura mensual en las zonas turísticas
@@ -434,7 +434,8 @@ def filter_zones_monthly(database: pd.DataFrame, start_year: int,
     years = filter_data_by_year(database, start_year, end_year)
     fil = years[years["Zona"].isin(zones)]
     month = fil[(fil["Mes"] >= months[start_month]) & (fil["Mes"] <= months[end_month])]
-    return month
+    group = month.groupby(["Año", "Mes", "Zona"])[indicators].mean().reset_index()
+    return group
             
 if selected_zone_monthly:
     filter_monthly_zones = filter_zones_monthly(data_zone, start_year, end_year, selected_values, 
@@ -459,7 +460,7 @@ if selected_zone_monthly:
             mode="markers",
             showlegend = False,
             hoverinfo='text+x+y', 
-            marker=dict(size=8, color=color_por_zona[zona]),  
+            marker=dict(size=8),  
             text=zona_filtrada['Mes'] + " - " + zona  
         ))
 
@@ -468,3 +469,4 @@ if selected_zone_monthly:
                                yaxis_title="Temperatura")
 
     st.plotly_chart(fig_zone_monthly)
+    st.write(filter_monthly_zones.reset_index(drop= True))
