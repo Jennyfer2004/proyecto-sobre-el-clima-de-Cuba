@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 from typing import List, Dict
 import numpy as np
 
@@ -394,7 +395,6 @@ if selected_zone:
 ###############################################################
 st.write("Comparación de la temperatura mensual en las zona turísiticas")
 
-
 selected_zone_monthly = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
                                 placeholder ="Zona", key = "annual_zone_monthly")
 
@@ -402,6 +402,8 @@ disabled_zone_monthly = not bool(selected_zone_monthly)
 
 monthly_year_zone = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, value= (1990, 2022),
                               disabled = disabled_zone_monthly, key = "mon_zone")
+
+start_year, end_year = monthly_year_zone
 
 selected_month_zone = st.select_slider('Selecciona un rango de meses', options= list(months.keys()),
                       value=("Enero", "Diciembre"), disabled = disabled_zone_monthly)
@@ -421,4 +423,48 @@ for i, (label, value) in enumerate(options.items()):
         option = st.checkbox(label = label, disabled = disabled_zone_monthly, 
                              value = not disabled_zone_monthly, key = f"zone_{i}")
         if option:
-            selected_values.append(value)
+            selected_values.append(value) 
+   
+months = { "Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,
+        "Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
+ 
+def filter_zones_monthly(database: pd.DataFrame, start_year: int, 
+                       end_year: int, indicators: List[str], zones: List[str],
+                       start_month: int, end_month: int):
+    years = filter_data_by_year(database, start_year, end_year)
+    fil = years[years["Zona"].isin(zones)]
+    month = fil[(fil["Mes"] >= months[start_month]) & (fil["Mes"] <= months[end_month])]
+    return month
+            
+if selected_zone_monthly:
+    filter_monthly_zones = filter_zones_monthly(data_zone, start_year, end_year, selected_values, 
+                                                selected_zone_monthly, start_month, end_month)
+    
+    filter_monthly_zones['Mes'] = filter_monthly_zones['Mes'].replace({1: 'enero', 2: 'febrero', 3: 'marzo', 4: 'abril',
+                                   5: 'mayo', 6: 'junio', 7: 'julio', 8: 'agosto', 
+                                   9: 'septiembre', 10: 'octubre', 11: 'noviembre', 12: 'diciembre'})
+     
+    colores_zonas = px.colors.qualitative.Set1  # Usamos una paleta de colores predefinida de Plotly Express
+
+    fig_zone_monthly = go.Figure()
+
+    color_por_zona = dict(zip(selected_zone_monthly, colores_zonas))
+    added_to_legend = {} 
+    for indicator in selected_values:
+        for zona in selected_zone_monthly:
+            zona_filtrada = filter_monthly_zones[filter_monthly_zones['Zona'] == zona]
+            fig_zone_monthly.add_trace(go.Scatter(
+            x=zona_filtrada['Año'],
+            y=zona_filtrada[indicator],
+            mode="markers",
+            showlegend = False,
+            hoverinfo='text+x+y', 
+            marker=dict(size=8, color=color_por_zona[zona]),  
+            text=zona_filtrada['Mes'] + " - " + zona  
+        ))
+
+    fig_zone_monthly.update_layout(title="Comparación de la temperatura mensual en las zonas turísticas",
+                               xaxis_title="Año",
+                               yaxis_title="Temperatura")
+
+    st.plotly_chart(fig_zone_monthly)
