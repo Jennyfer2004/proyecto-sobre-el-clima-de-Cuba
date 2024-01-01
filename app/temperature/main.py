@@ -231,9 +231,9 @@ if selected_region_annual:
     fig_region = go.Figure()
     for indicator in selected_values:
         for region, data in filtered_region_data.items():
-            fig_region.add_trace(go.Bar(x=[region], y=data[indicator], name=indicator))
+            fig_region.add_trace(go.Bar(x=[region], y=data[indicator], name=f"{indicator} del {region}"))
            
-        fig_region.add_trace(go.Scatter(x=table['Región'], y=table[indicator], mode='lines+markers'))
+        fig_region.add_trace(go.Scatter(x=table['Región'], y=table[indicator], mode='lines+markers', showlegend = False))
     
                   
     fig_region.update_layout(title="Gráfico de barras de temperatura por región",
@@ -245,7 +245,7 @@ if selected_region_annual:
     st.write(table.reset_index(drop= True))
 
 ##################################################
-# Comparación de la temperatura anual por region
+# Comparación de la temperatura mensual por region
 ##################################################
 st.write("Comparación de la temperatura mensual por región")
 
@@ -308,7 +308,7 @@ if selected_region_monthly:
                 data['Popup'] = data['Mes'].astype(str)  + '-' + data['Año'].astype(str) + '-' + name 
             
                 fig_monthly_region.add_trace(go.Scatter(x = data['Mes'], y = data[indicator], name = f"{indicator} de {name}",
-                                                    text = data["Popup"], hoverinfo = 'text+y',
+                                                    text = data["Popup"], hoverinfo = 'text+y', 
                                                     marker=dict(size=8)))
             
     fig_monthly_region.update_layout(title="Gráfico de barras de temperatura por mes por región",
@@ -324,3 +324,101 @@ if selected_region_monthly:
     
     table = pd.concat([j for i, j in table.items()])
     st.write(table)
+    
+
+#############################################################
+# Comparación de la temperatura anual en las zonas turísticas
+#############################################################
+st.write("Comparación de la temperatura anual en las zona turísiticas")
+
+zones = ['Cabo de San Antonio.Pinar del Río', 'Varadero.Matanzas', 'Playa Girón.Matanzas',
+         'Cayo Coco.Ciego de Ávila','Cabo Lucrecia.Holguín', 'Cabo Cruz.Granma', 'Punta de Maisí.Guantánamo']
+
+data_zone = df[df["Nombres Estaciones"].isin(zones)].copy()
+data_zone["Zona"] = data_zone["Nombres Estaciones"].str.split(".").str[0]
+data_zone["Zona"] = data_zone["Zona"].replace("Cabo Lucrecia", "Guardalavaca")
+data_zone["Zona"] = data_zone["Zona"].replace("Playa Girón", "Ciénaga de Zapata")
+
+data_zone = data_zone.loc[:, ["Año", "Mes","Temperatura max med","Temperatura med",
+                    "Temperatura min med", "Zona"]]
+
+selected_zone = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
+                                placeholder ="Zona", key = "annual_zone")
+
+disabled_zone = not bool(selected_zone)
+
+zone_year = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, disabled = disabled_zone, key= "year_zone")
+
+selected_values = []
+options = {"Temperatura máxima media" : "Temperatura max med", 
+           "Temperatura media" : "Temperatura med",
+           "Temperatura mínima media" : "Temperatura min med"}
+
+cols = st.columns(len(options))  
+
+for i, (label, value) in enumerate(options.items()):
+    with cols[i]:
+        option = st.checkbox(label = label, disabled = disabled_zone, 
+                             value = not disabled_zone, key = f"zone {i}")
+        if option:
+            selected_values.append(value)
+
+def filter_data_by_zone(database: pd.DataFrame, year: int, indicators: List[str], zones: List[str]):
+    years = filter_data_by_one_year(database, year)
+    group = years.groupby(["Año", "Zona"])[indicators].mean().reset_index()
+    separate = group[group["Zona"].isin(zones)]
+    return separate
+
+if selected_zone:
+    filter_zones = filter_data_by_zone(data_zone, zone_year, selected_values, selected_zone)
+    
+    fig_zone = go.Figure()
+    for indicator in selected_values:
+        fig_zone.add_trace(go.Bar(x = filter_zones['Zona'], y=filter_zones[indicator],
+                                  name = indicator, hoverinfo = 'x+y'))
+        
+        if len(selected_zone) > 1:
+            fig_zone.add_trace(go.Scatter(x = filter_zones['Zona'], y =filter_zones[indicator],
+                                   showlegend=False, hoverinfo = 'x+y'))
+    
+    fig_zone.update_layout(title="Gráfico de barras de temperatura por mes por zona turistica",
+                             xaxis_title="Zona",
+                             yaxis_title="Valor de Temperatura",
+                             barmode='overlay')
+    
+    st.plotly_chart(fig_zone)
+    st.write(filter_zones)
+
+###############################################################
+# Comparación de la temperatura mensual en las zonas turísticas
+###############################################################
+st.write("Comparación de la temperatura mensual en las zona turísiticas")
+
+
+selected_zone_monthly = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
+                                placeholder ="Zona", key = "annual_zone_monthly")
+
+disabled_zone_monthly = not bool(selected_zone_monthly)
+
+monthly_year_zone = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, value= (1990, 2022),
+                              disabled = disabled_zone_monthly, key = "mon_zone")
+
+selected_month_zone = st.select_slider('Selecciona un rango de meses', options= list(months.keys()),
+                      value=("Enero", "Diciembre"), disabled = disabled_zone_monthly)
+
+start_month, end_month = selected_month_zone
+
+
+selected_values = []
+options = {"Temperatura máxima media" : "Temperatura max med", 
+           "Temperatura media" : "Temperatura med",
+           "Temperatura mínima media" : "Temperatura min med"}
+
+cols = st.columns(len(options))  
+
+for i, (label, value) in enumerate(options.items()):
+    with cols[i]:
+        option = st.checkbox(label = label, disabled = disabled_zone_monthly, 
+                             value = not disabled_zone_monthly, key = f"zone_{i}")
+        if option:
+            selected_values.append(value)
