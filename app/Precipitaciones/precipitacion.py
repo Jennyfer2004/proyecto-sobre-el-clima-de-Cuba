@@ -16,7 +16,7 @@ path= os.path.dirname(current_path)
 path = path.replace("\\", "/") 
 
 # title the page
-st.title("Comportamiento de las precipitaciones en Cuba")
+st.title("Precipitaciones")
 # write on the page
 col1, col2 = st.columns(2)
 with open(f'{path}' + '/app/images/CubaRain.jpg', 'rb') as f:

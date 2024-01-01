@@ -52,7 +52,7 @@ new_df.dropna(inplace=True)
 df_humedad = pd.DataFrame(new_df)
 
 
-st.title("La Húmedad Relativa en Cuba")
+st.title("Húmedad Relativa")
 
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")

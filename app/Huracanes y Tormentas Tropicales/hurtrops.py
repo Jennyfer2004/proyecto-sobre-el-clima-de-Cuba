@@ -12,7 +12,7 @@ path = path.replace("\\", "/")
 df = pd.read_csv("./data/huracanes.csv")
 df_storms = pd.read_csv("./data/tstorms.csv")
 
-st.title("Huracanes y Tormentas Tropicales en Cuba")
+st.title("Huracanes y Tormentas Tropicales")
 
 opciones = ["Huracanes", "Tormentas Tropicales"]
 seleccion = st.selectbox('Selecciona una opción:', opciones)

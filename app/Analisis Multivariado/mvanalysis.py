@@ -7,7 +7,7 @@ ruta = ruta.replace("\\", "/")
 sys.path.append(f'{ruta}' + '/Analisis Multivariado')
 import mvLogic
 
-
+st.title("Análisis Multivariado")
 
 df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Estacion", "Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", "Humedad Relat", "Precipitaciones",
