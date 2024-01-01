@@ -13,7 +13,7 @@ df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Te
 ##########################################
 # Comparación de la temperatura anual
 ###########################################
-st.write("Comparación de la temperatura anual")
+st.write("Comparación de la temperatura anual por provincias")
 
 # Station Multiselect 
 selected_state_annual = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
@@ -90,7 +90,7 @@ if selected_state_annual and selected_values:
 ##########################################
 # Comparación de la temperatura mensual
 ###########################################
-st.write("Comparación de la temperatura mensual")
+st.write("Comparación de la temperatura mensual por provincias")
 
 selected_state_monthly = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
                                 placeholder ="Provincias", key = "monthly")
@@ -223,7 +223,7 @@ def filter_data_by_region(database: pd.DataFrame, year: int, indicators: List[st
     return temperature
 
 if selected_region_annual:
-    filtered_region_data =  filter_data_by_region(df, year_range_region, selected_values)
+    filtered_region_data = filter_data_by_region(df, year_range_region, selected_values)
 
     table = pd.concat([j for i, j in filtered_region_data.items()])
     table["Región"] = selected_region_annual
@@ -232,8 +232,7 @@ if selected_region_annual:
     for indicator in selected_values:
         for region, data in filtered_region_data.items():
             fig_region.add_trace(go.Bar(x=[region], y=data[indicator], name=indicator))
-            # fig_region.add_trace(go.Scatter(x=[region], y=data[indicator], name=indicator, mode = "markers"))
-    
+           
         fig_region.add_trace(go.Scatter(x=table['Región'], y=table[indicator], mode='lines+markers'))
     
                   
@@ -245,6 +244,83 @@ if selected_region_annual:
     st.plotly_chart(fig_region)
     st.write(table.reset_index(drop= True))
 
+##################################################
+# Comparación de la temperatura anual por region
+##################################################
+st.write("Comparación de la temperatura mensual por región")
 
+selected_region_monthly = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
+                                placeholder ="Región", key = "monthly_region")
 
+disabled_region_monthly = not bool(selected_region_monthly)
 
+monthly_year = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, disabled = disabled_region_monthly)
+
+selected_month = st.select_slider('Selecciona un mes', options= list(months.keys()),
+                      value=("Enero", "Diciembre"), disabled = disabled_region_monthly)
+
+start_month, end_month = selected_month
+
+selected_values = []
+options = {"Temperatura máxima media" : "Temperatura max med", 
+           "Temperatura media" : "Temperatura med",
+           "Temperatura mínima media" : "Temperatura min med"}
+
+cols = st.columns(len(options))  
+
+for i, (label, value) in enumerate(options.items()):
+    with cols[i]:
+        option = st.checkbox(label = label, disabled = disabled_region_monthly, 
+                             value = not disabled_region_monthly, key = f"region_{i}")
+        if option:
+            selected_values.append(value)
+      
+def separate_by_region_and_months(database: pd.DataFrame, start_month: str, end_month: str):
+    states = database.Región.unique()
+    return {state : database[(database["Región"] == state) & (database["Mes"] >= months[start_month])
+                             & (database["Mes"] <= months[end_month])] for state in states}      
+          
+def filter_data_monthly_by_region(database: pd.DataFrame,year: int ,
+                                states: List[str], start_month: str, end_month: str,
+                                indicators: List[str]) -> Dict[str, pd.DataFrame]:
+    years = filter_data_by_one_year(database, year)
+    states = filter_data_by_state(years, states, "Región")
+    separate = separate_by_region_and_months(states, start_month, end_month)
+    temperatures = average_temperature_also_by_month(separate, indicators)
+    return temperatures
+
+if selected_region_monthly:
+    filtered_monthly_by_region = filter_data_monthly_by_region(df, monthly_year,
+                            selected_region_monthly, start_month, end_month, selected_values)
+    
+    fig_monthly_region = go.Figure()
+    for name, data in filtered_monthly_by_region.items():
+        for indicator in selected_values:
+            data['Mes'] = data['Mes'].replace({1: 'enero', 2: 'febrero', 3: 'marzo', 4: 'abril',
+                                   5: 'mayo', 6: 'junio', 7: 'julio', 8: 'agosto', 
+                                   9: 'septiembre', 10: 'octubre', 11: 'noviembre', 12: 'diciembre'})
+            
+            fig_monthly_region.add_trace(go.Bar(x=data['Mes'], y=data[indicator], 
+                                                name=f"{indicator} de {name}", hoverinfo = f'y'))
+            
+            
+            if len(selected_region_monthly) == 1 and len(selected_values) < 3:
+                data['Popup'] = data['Mes'].astype(str)  + '-' + data['Año'].astype(str) + '-' + name 
+            
+                fig_monthly_region.add_trace(go.Scatter(x = data['Mes'], y = data[indicator], name = f"{indicator} de {name}",
+                                                    text = data["Popup"], hoverinfo = 'text+y',
+                                                    marker=dict(size=8)))
+            
+    fig_monthly_region.update_layout(title="Gráfico de barras de temperatura por mes por región",
+                             xaxis_title="Mes",
+                             yaxis_title="Valor de Temperatura")
+    
+    st.plotly_chart(fig_monthly_region)
+    
+    table = filtered_monthly_by_region
+    for i, d in table.items(): 
+        d['Región'] = np.nan
+        d['Región'] = d['Región'].fillna(i)
+    
+    table = pd.concat([j for i, j in table.items()])
+    st.write(table)
