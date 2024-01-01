@@ -434,7 +434,7 @@ def filter_zones_monthly(database: pd.DataFrame, start_year: int,
     years = filter_data_by_year(database, start_year, end_year)
     fil = years[years["Zona"].isin(zones)]
     month = fil[(fil["Mes"] >= months[start_month]) & (fil["Mes"] <= months[end_month])]
-    group = month.groupby(["Año", "Mes", "Zona"])[indicators].mean().reset_index()
+    group = month.groupby(["Zona","Año", "Mes"])[indicators].mean().reset_index()
     return group
             
 if selected_zone_monthly:
