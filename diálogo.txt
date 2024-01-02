@@ -1,0 +1,49 @@
+Name PODCAST: "Bajo el Clima"
+ 
+"¡Hola apreciados oyentes! Les dan la más cálida bienvenida a ‘Bajo el Clima’.En el episodio de hoy,se van a sumergirnos en la fascinante intersección entre el clima y la salud."
+
+######################################################################################################################## 
+Pregunta a la audiencia:¿Alguna vez se han preguntado cómo un cambio en el clima puede afectar la propagación de enfermedades transmitidas por mosquitos como el dengue?
+########################################################################################################################
+
+#### No se preocupen que poco a poco entenderan más sobre esta intenrelación ####
+
+En 2019,la Región de las Américas experimentó la mayor epidemia de dengue de su historia,con más de 3 millones de casos reportados.Este brote fue impulsado en parte por condiciones climáticas que favorecieron la reproducción y supervivencia del mosquito Aedes aegypti,el principal vector del dengue.
+
+########################################################################################################################
+Pregunta a la audiencia:Antes de continuar,me gustaría hacerles una pregunta:¿Saben cuáles son las condiciones climáticas que más favorecen la propagación de esta infección?
+Encuesta:A continuación les dejaré una encuesta para saber su opinión....... 
+#########################################################################################################################
+
+Bueno para ilustrar esto,me gustaría invitarlos a observar un gráfico interactivo que muestra el comportamiento de las variables climáticas a lo largo del tiempo en 2019.Este gráfico ilustra cómo las condiciones climáticas,como la temperatura,la humedad y las precipitaciones,pueden influir significativamente en la reproducción y supervivencia de los mosquitos.
+
+####### Gráfico #######
+
+#########################################################################################
+Pregunta a la audiencia:¿Sabían que un aumento en las precipitaciones puede crear más lugares de cría para los mosquitos que transmiten el dengue? Los leo en los comentarios...
+#########################################################################################
+
+Durante este año,se observaron temperaturas y niveles de humedad más altos de lo normal,lo que proporcionó un ambiente ideal para la reproducción y supervivencia del mosquito Aedes aegypti.Además,las precipitaciones frecuentes crearon más lugares de cría para estos mosquitos.Como resultado,se registró un número sin precedentes de casos de dengue.
+
+Este clima propicia la reproducción del mosquito la cual se incrementa con el calor,las elevadas temperaturas hacen que el proceso evolutivo del vector,su ciclo de vida,se acorte y por ende aumente el riesgo de transmisión de enfermedades. Además,luego de que la hembra del mosquito pone el huevo en un lugar húmedo,requiere agua limpia,donde el aumento de las precipitaciones juega un papel fundamental,pero cuando no encuentra esas condiciones puede ponerlo en una pared o un muro, y ese huevo seguirá madurando.Si no encuentra las condiciones favorables,se deseca,y cuando haya humedad o caiga en un sitio que la tenga comienza su evolución.
+
+#########################################################################################################################
+Pregunta:“Si alguno de nuestros oyentes reside o ha residido en una zona que ha experimentado un brote de dengue,¿podrían compartir su experiencia sobre cómo fueron las condiciones climáticas durante ese tiempo y cómo creen que estas condiciones pudieron haber influido en la situación?”
+
+Nota:Compartiré algunas de esas historias en el próximo episodio,así que no dejen de compartir sus experiencias.¡Estoy deseando leerlas!"
+##########################################################################################################################
+
+Ahora,hablemos de cómo podemos usar esta información a nuestro favor.El uso de datos climáticos tiene un gran potencial para predecir la propagación de los mosquitos Ae.aegypti,lo que puede permitir una respuesta más rápida y efectiva a los brotes de enfermedades transmitidas por estos mosquitos.Las condiciones climáticas pueden indicar los posibles brotes de esta población,lo que a su vez puede permitir la intensificación de las medidas de control de mosquitos,tomando todas las precauciones necesarias en el hogar como  eliminando el agua estancada después de una lluvia fuerte para prevenir la reproducción de mosquitos.Además,la información meteorológica resulta de utilidad para la investigación sobre el dengue y otras enfermedades transmitidas por mosquitos.Los investigadores pueden usar estos datos para estudiar cómo las condiciones climáticas afectan la propagación de los mosquitos y el riesgo de brotes de enfermedades.Esto puede ayudar a desarrollar modelos predictivos más precisos y estrategias de control de enfermedades más efectivas.
+
+Es importante destacar que el clima no afecta solo la propagación de enfermedades como el dengue,sino que tiene un profundo impacto en muchas otras áreas de nuestras vidas incluyendo la agricultura,la economía,la salud y el medioambiente.Al analizar las condiciones climáticas y sus variaciones a lo largo del tiempo,podemos obtener una visión valiosa de cómo estos aspectos pueden verse afectados.Por ejemplo,en la agricultura,las condiciones climáticas pueden influir en los rendimientos de los cultivos,la disponibilidad de alimentos y los precios de los productos básicos.En la salud,pueden afectar la propagación de enfermedades transmitidas por vectores,como hemos discutido con el dengue entre muchisimas más.Y en la economía,pueden tener un impacto en sectores como el turismo,la construcción y la energía.
+
+Si te interesa profundizar más en este tema y explorar cómo han variado las condiciones climáticas en Cuba a lo largo del tiempo,te invito a visitar mi aplicación web.Allí podrás encontrar datos detallados y visualizaciones interactivas que te ayudarán a entender mejor las tendencias y variaciones climáticas a lo largo del tiempo.Recuerda,cada pequeño cambio en nuestro clima puede tener un gran impacto en nuestra salud,nuestra economía y nuestro planeta.
+
+############# Link de la app web #############
+
+                                              #### pregunta de cierre ####
+##########################################################################################################################
+Preguntas de Reflexión Profunda:"Dado el impacto significativo del clima en tantos aspectos de nuestra vida,¿cómo crees que podemos integrar de manera más efectiva el análisis climático en nuestras decisiones diarias para anticipar y mitigar estos efectos?,¿Qué acciones concretas podemos tomar hoy para utilizar mejor estos datos climáticos y prepararnos para los desafíos del mañana?."
+##########################################################################################################################
+
+“Con la última y crucial pregunta de hoy,llegamos al final de este episodio.Agradecemos a todos los oyentes por su tiempo y esperamos con entusiasmo leer sus respuestas a nuestras preguntas y encuestas.Tu participación es esencial para nuestra comunidad y aporta una riqueza de perspectivas a nuestras conversaciones.Si aún no has tenido la oportunidad de unirte a la discusión,te animamos a hacerlo.Recuerda,estamos aquí para informarte y valoramos tu opinión,tu experiencia podría ser el tema de discusión en un próximo episodio de:‘Bajo el Clima’.¡Hasta la próxima!”.
