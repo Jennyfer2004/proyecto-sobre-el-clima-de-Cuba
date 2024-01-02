@@ -4,17 +4,28 @@ import plotly.graph_objects as go
 import plotly.express as px
 from typing import List, Dict
 import numpy as np
+import folium
+from streamlit_folium import folium_static
+from collections import OrderedDict
+from folium.plugins import HeatMap
 
 st.title("Temperatura")
+st.write("Se llama temperatura atmosférica a uno de los elementos constitutivos del clima que se refiere al grado de calor específico del aire en un lugar y momento determinados así como la evolución temporal y espacial de dicho elemento en las distintas zonas climáticas. Constituye el elemento meteorológico más importante en la delimitación de la mayor parte de los tipos climáticos.")
+st.write("Medir la temperatura en el clima es fundamental para comprender el comportamiento atmosférico y predecir cambios en el clima a corto y largo plazo. La temperatura del aire es una medida clave que influye en una amplia gama de fenómenos meteorológicos, como la formación de nubes, la lluvia, las tormentas y la dirección del viento.")
+st.markdown("**Temperatura máxima:** Es la mayor temperatura del aire alcanzada en un lugar en un día (máxima diaria), en un mes (máxima mensual) o en un año (máxima anual). También puede referirse a la temperatura máxima registrada en un lugar durante mucho tiempo (máxima absoluta). En condiciones normales, y sin tener en cuenta otros elementos del clima, las temperaturas máximas diarias se alcanzan en las primeras horas de la tarde; las máximas mensuales suelen alcanzarse durante julio o agosto en la zona templada del hemisferio norte y en enero o febrero en el hemisferio sur. Las máximas absolutas dependen de muchos factores, sobre todo de la insolación, de la continentalidad, de la mayor o menor humedad, de los vientos y de otros.")
+st.markdown("**Temperatura mínima:** Se trata de la menor temperatura alcanzada en un lugar en un día, en un mes o en un año y también la mínima absoluta alcanzada en los registros de temperaturas de un lugar determinado. También en condiciones normales, las temperaturas mínimas diarias se registran en horas del amanecer, las mínimas mensuales se obtienen en enero o febrero en el hemisferio norte y en julio o agosto en el hemisferio sur. Y también las temperaturas mínimas absolutas dependen de numerosos factores.")
+st.markdown("**Temperatura media:** Se trata de los promedios estadísticos obtenidos entre las temperaturas máximas y mínimas. Con las temperaturas medias mensuales (promedio de las temperaturas medias diarias a lo largo del mes) se obtiene un gráfico de las temperaturas medias de un lugar para un año determinado. Y con estos mismos datos referidos a una sucesión de muchos años (30 o más) se obtiene un promedio estadístico de la temperatura en dicho lugar. Estos últimos datos, unidos al promedio de los montos pluviométricos (lluvias) mensuales de ese mismo lugar ofrecen los datos necesarios para la elaboración de un gráfico climático (a veces identificado como climograma) de dicho lugar. En el climograma empleado como ejemplo, las temperaturas mínimas se producen en enero y las máximas en julio o agosto. El gráfico podría servir como ejemplo de un clima templado templado lluvioso.")
 
 df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", 
         "Nombres Estaciones", "Latitud", "Longitud", "Región", "Provincias"]]
 
+st.markdown("<h3>Selecciona en cada caso para visualizar y obtener los datos &#128071;</h3>", unsafe_allow_html=True)
+
 ##########################################
 # Comparación de la temperatura anual
 ###########################################
-st.write("Comparación de la temperatura anual por provincias")
+st.markdown("<h4>Comparación de la temperatura anual por provincias</h4>", unsafe_allow_html=True)
 
 # Station Multiselect 
 selected_state_annual = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
@@ -91,7 +102,7 @@ if selected_state_annual and selected_values:
 ##########################################
 # Comparación de la temperatura mensual
 ###########################################
-st.write("Comparación de la temperatura mensual por provincias")
+st.markdown("<h4>Comparación de la temperatura mensual por provincias</h4>", unsafe_allow_html=True)
 
 selected_state_monthly = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
                                 placeholder ="Provincias", key = "monthly")
@@ -186,7 +197,7 @@ if selected_state_monthly:
 ##################################################
 # Comparación de la temperatura anual por region
 ##################################################
-st.write("Comparación de la temperatura anual por región")
+st.markdown("<h4>Comparación de la temperatura anual por región</h4>", unsafe_allow_html=True)
 
 selected_region_annual = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
                                 placeholder ="Región", key = "annual_region")
@@ -248,7 +259,7 @@ if selected_region_annual:
 ##################################################
 # Comparación de la temperatura mensual por region
 ##################################################
-st.write("Comparación de la temperatura mensual por región")
+st.markdown("<h4>Comparación de la temperatura mensual por región</h4>", unsafe_allow_html=True)
 
 selected_region_monthly = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
                                 placeholder ="Región", key = "monthly_region")
@@ -330,7 +341,7 @@ if selected_region_monthly:
 #############################################################
 # Comparación de la temperatura anual en las zonas turísticas
 #############################################################
-st.write("Comparación de la temperatura anual en las zona turísiticas")
+st.markdown("<h4>Comparación de la temperatura anual en las zona turísiticas</h4>", unsafe_allow_html=True)
 
 zones = ['Cabo de San Antonio.Pinar del Río', 'Varadero.Matanzas', 'Playa Girón.Matanzas',
          'Cayo Coco.Ciego de Ávila','Cabo Lucrecia.Holguín', 'Cabo Cruz.Granma', 'Punta de Maisí.Guantánamo']
@@ -393,7 +404,7 @@ if selected_zone:
 ###############################################################
 # Comparación de la temperatura mensual en las zonas turísticas
 ###############################################################
-st.write("Comparación de la temperatura mensual en las zona turísiticas")
+st.markdown("<h4>Comparación de la temperatura mensual en las zona turísiticas</h4>", unsafe_allow_html=True)
 
 selected_zone_monthly = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
                                 placeholder ="Zona", key = "annual_zone_monthly")
@@ -470,3 +481,45 @@ if selected_zone_monthly:
 
     st.plotly_chart(fig_zone_monthly)
     st.write(filter_monthly_zones.reset_index(drop= True))
+   
+    
+##########    
+# MAPA   
+##########    
+st.markdown("<h4>Mapa de Temperatura media anual por estación</h4>", unsafe_allow_html=True)
+
+df = df.dropna()
+
+# Calcular el promedio de humedad relativa por años
+promed = df.groupby(["Nombres Estaciones","Año"])["Temperatura med"].mean().reset_index()
+
+# Agregar un slider para filtrar por el año seleccionado
+año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
+
+promed_año_seleccionado = promed[promed['Año'] == año_seleccionado]
+
+# En el popup aparecerá el promedio correspondiente de cada estación en ese año
+dic = dict(zip(promed_año_seleccionado["Nombres Estaciones"], promed_año_seleccionado["Temperatura med"]))
+
+# Definir las ubicaciones
+coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str)), axis=1).values
+coordenadas_unicas = list(OrderedDict.fromkeys(coordenadas))
+ubicaciones = [tuple(map(float, ubicacion.split(','))) for ubicacion in coordenadas_unicas]
+
+# Definir las estaciones únicas
+estaciones = df["Nombres Estaciones"].values
+estaciones_unicas = list(OrderedDict.fromkeys(estaciones))
+
+mapa_estaciones = folium.Map(location=[21.93277,-80.41813], zoom_start=6)
+
+for i ,(ubicacion, estacion) in  enumerate(zip(ubicaciones, estaciones_unicas)):
+    promedio = dic.get(estacion)
+    if promedio:
+        folium.Marker(ubicacion, popup=f"{estacion}: {promedio}").add_to(mapa_estaciones)
+    
+datos_mapa_calor = [(ubicacion[0], ubicacion[1], promedio) for ubicacion, promedio in zip(ubicaciones, promed_año_seleccionado["Temperatura med"]) if promedio is not None]
+
+HeatMap(datos_mapa_calor).add_to(mapa_estaciones)
+
+folium_static(mapa_estaciones)
+st.write(promed_año_seleccionado.reset_index(drop = True))
