@@ -68,7 +68,7 @@ elif seleccion == 'Temperatura':
         exec(f.read())
 
 elif seleccion == "Análisis Multivariado":
-    with open(f'{ruta}' + '/Análisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
+    with open(f'{ruta}' + '/Analisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
         exec(f.read())
 
 elif seleccion == "Huracanes y Tormentas Tropicales":
