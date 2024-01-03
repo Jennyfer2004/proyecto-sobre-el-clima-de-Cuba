@@ -49,7 +49,7 @@ colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#C0
 # write on the page
 st.write("Elige los años que desees, compáralos y saca tus propias conclusiones")
 # create a box to select the years
-selected_years = st.multiselect('Seleccióna los años que quieres visualizar:',options=df["Año"].unique(), default=[])  
+selected_years = st.multiselect('Selecciona los años que quieres visualizar:',options=df["Año"].unique(), default=[])  
 # filters the dataframe according to the selected years
 df_filtered = df_mean[df_mean["Año"].isin(selected_years) | (selected_years == [])]  
 # line graph comparing selected years
@@ -76,18 +76,18 @@ st.write("   Comparación del comportamiento de diferentes estaciónes meteororl
 # unite all stations once
 selected_stations_default = df["Nombres Estaciónes"].unique()[:3].tolist()
 # create multiselect from stations
-selected_stations = st.multiselect("Seleccióna las estaciónes:", df["Nombres Estaciónes"].unique().tolist(), default=selected_stations_default)
+selected_stations = st.multiselect("Selecciona las estaciónes:", df["Nombres Estaciónes"].unique().tolist(), default=selected_stations_default)
 # create a minimun and maximun year by default
 start_year_default  = min(df["fecha"].unique())
 end_year_default  = max(df["fecha"].unique())
 # create a selectbox from the years
-start_year = st.selectbox("Seleccióna el año de inicio:", [start_year_default ] + df["fecha"].unique().tolist())
-end_year = st.selectbox("Seleccióna el año de fin:", [end_year_default ] + df["fecha"].unique().tolist())
+start_year = st.selectbox("Selecciona el año de inicio:", [start_year_default ] + df["fecha"].unique().tolist())
+end_year = st.selectbox("Selecciona el año de fin:", [end_year_default ] + df["fecha"].unique().tolist())
 # filter the data as select
 filtered_data = df[(df["Nombres Estaciónes"].isin(selected_stations)) & (df["fecha"] >= start_year) & (df["fecha"] <= end_year)]
 # if an error occurs, it throws an exception,and if not, create a line graph
 if filtered_data.empty:
-    st.warning("No hay datos disponibles para la estación y el rango de años selecciónados o ha puesto la fecha inicial por encima de la final, vuelva a intentarlo")
+    st.warning("No hay datos disponibles para la estación y el rango de años seleccionados o ha puesto la fecha inicial por encima de la final, vuelva a intentarlo")
 else:
     fig = px.line(filtered_data, x='fecha', y='Precipitaciones', color='Nombres Estaciónes', title='Comparación respecto a las precipitaciones en diferentes rangos de tiempo y diferentes estaciónes',)
     st.plotly_chart(fig)
@@ -96,7 +96,7 @@ st.write("Comportamiento de las estaciónes según sus precipitaciones anuales")
 # groupby a dataframe from years and stations name with sum
 df_mean_years = df.groupby(["Año","Nombres Estaciónes"])["Precipitaciones"].sum()
 # create a selectbox from the station name
-chosen_station= st.selectbox('Seleccióna la estación a analizar', df["Nombres Estaciónes"].unique())
+chosen_station= st.selectbox('Selecciona la estación a analizar', df["Nombres Estaciónes"].unique())
 # if station is selected,ilter the data as selected , if not select, filter the data with Cabo Cruz.Granma
 if chosen_station:
     df_filtered= df[df["Nombres Estaciónes"] == chosen_station]
@@ -118,9 +118,9 @@ df_mean_years = df.groupby(["Nombres Estaciónes", df["Año"]])["Precipitaciones
 promed = df_mean_years.reset_index()
 
 # Add a slider to filter by the selected yea
-año_selecciónado = st.slider('Seleccióna un año', 1990, 2022, 1990)
+año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
 # filtred the dataframe
-mean_selected_year = promed[promed['Año'] == año_selecciónado]
+mean_selected_year = promed[promed['Año'] == año_seleccionado]
 
 
 # define the locations

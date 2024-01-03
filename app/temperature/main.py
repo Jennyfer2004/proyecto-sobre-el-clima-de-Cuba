@@ -37,12 +37,12 @@ df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Te
 st.markdown("<h4>Comparación de la temperatura anual por provincias</h4>", unsafe_allow_html=True)
 
 # Station Multiselect 
-selected_state_annual = st.multiselect(label = 'Seleccióna una provincia', options = df["Provincias"].unique(),
+selected_state_annual = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
                                 placeholder ="Provincias", key = "annual")
 disabled_year = not bool(selected_state_annual)
 
 # Year slider
-year_range = st.slider('Seleccióna un rango de años', min_value = 1990, max_value = 2022, value = (1990, 2022), disabled = disabled_year)
+year_range = st.slider('Selecciona un rango de años', min_value = 1990, max_value = 2022, value = (1990, 2022), disabled = disabled_year)
 
 start_year, end_year = year_range
 
@@ -113,7 +113,7 @@ if selected_state_annual and selected_values:
 ###########################################
 st.markdown("<h4>Comparación de la temperatura mensual por provincias</h4>", unsafe_allow_html=True)
 
-selected_state_monthly = st.multiselect(label = 'Seleccióna una provincia', options = df["Provincias"].unique(),
+selected_state_monthly = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
                                 placeholder ="Provincias", key = "monthly")
 disabled_monthly = not bool(selected_state_monthly)
 
@@ -121,11 +121,11 @@ disabled_monthly = not bool(selected_state_monthly)
 months = { "Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,
         "Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
 
-year_monthly = st.slider('Seleccióna un rango de años', min_value = 1990, max_value = 2022,
+year_monthly = st.slider('Selecciona un rango de años', min_value = 1990, max_value = 2022,
                          value = (1990, 2022), disabled = disabled_monthly, key = "year_monthly")
 start_year, end_year = year_monthly
 
-selected_month_name = st.select_slider('Seleccióna rango de meses', options= list(months.keys()),
+selected_month_name = st.select_slider('Selecciona rango de meses', options= list(months.keys()),
                       value=("Enero", "Diciembre"), disabled = disabled_monthly)
 start_month, end_month = selected_month_name
 
@@ -208,12 +208,12 @@ if selected_state_monthly:
 ##################################################
 st.markdown("<h4>Comparación de la temperatura anual por región</h4>", unsafe_allow_html=True)
 
-selected_región_annual = st.multiselect(label = 'Seleccióna una región', options = df["Región"].unique(),
+selected_región_annual = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
                                 placeholder ="Región", key = "annual_región")
 
 disabled_región_year = not bool(selected_región_annual)
 
-year_range_región = st.slider('Seleccióna un rango de años', min_value = 1990, max_value = 2022, disabled = disabled_región_year)
+year_range_región = st.slider('Selecciona un rango de años', min_value = 1990, max_value = 2022, disabled = disabled_región_year)
 
 selected_values = []
 options = {"Temperatura máxima media" : "Temperatura max med", 
@@ -270,14 +270,14 @@ if selected_región_annual:
 ##################################################
 st.markdown("<h4>Comparación de la temperatura mensual por región</h4>", unsafe_allow_html=True)
 
-selected_región_monthly = st.multiselect(label = 'Seleccióna una región', options = df["Región"].unique(),
+selected_región_monthly = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
                                 placeholder ="Región", key = "monthly_región")
 
 disabled_región_monthly = not bool(selected_región_monthly)
 
-monthly_year = st.slider('Seleccióna un año', min_value = 1990, max_value = 2022, disabled = disabled_región_monthly)
+monthly_year = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, disabled = disabled_región_monthly)
 
-selected_month = st.select_slider('Seleccióna un mes', options= list(months.keys()),
+selected_month = st.select_slider('Selecciona un mes', options= list(months.keys()),
                       value=("Enero", "Diciembre"), disabled = disabled_región_monthly)
 
 start_month, end_month = selected_month
@@ -363,12 +363,12 @@ data_zone["Zona"] = data_zone["Zona"].replace("Playa Girón", "Ciénaga de Zapat
 data_zone = data_zone.loc[:, ["Año", "Mes","Temperatura max med","Temperatura med",
                     "Temperatura min med", "Zona"]]
 
-selected_zone = st.multiselect(label = 'Seleccióna una zona', options = data_zone["Zona"].unique(),
+selected_zone = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
                                 placeholder ="Zona", key = "annual_zone")
 
 disabled_zone = not bool(selected_zone)
 
-zone_year = st.slider('Seleccióna un año', min_value = 1990, max_value = 2022, disabled = disabled_zone, key= "year_zone")
+zone_year = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, disabled = disabled_zone, key= "year_zone")
 
 selected_values = []
 options = {"Temperatura máxima media" : "Temperatura max med", 
@@ -415,17 +415,17 @@ if selected_zone:
 ###############################################################
 st.markdown("<h4>Comparación de la temperatura mensual en las zona turísiticas</h4>", unsafe_allow_html=True)
 
-selected_zone_monthly = st.multiselect(label = 'Seleccióna una zona', options = data_zone["Zona"].unique(),
+selected_zone_monthly = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
                                 placeholder ="Zona", key = "annual_zone_monthly")
 
 disabled_zone_monthly = not bool(selected_zone_monthly)
 
-monthly_year_zone = st.slider('Seleccióna un año', min_value = 1990, max_value = 2022, value= (1990, 2022),
+monthly_year_zone = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, value= (1990, 2022),
                               disabled = disabled_zone_monthly, key = "mon_zone")
 
 start_year, end_year = monthly_year_zone
 
-selected_month_zone = st.select_slider('Seleccióna un rango de meses', options= list(months.keys()),
+selected_month_zone = st.select_slider('Selecciona un rango de meses', options= list(months.keys()),
                       value=("Enero", "Diciembre"), disabled = disabled_zone_monthly)
 
 start_month, end_month = selected_month_zone
@@ -502,13 +502,13 @@ df = df.dropna()
 # Calcular el promedio de humedad relativa por años
 promed = df.groupby(["Nombres Estaciónes","Año"])["Temperatura med"].mean().reset_index()
 
-# Agregar un slider para filtrar por el año selecciónado
-año_selecciónado = st.slider('Seleccióna un año', 1990, 2022, 1990)
+# Agregar un slider para filtrar por el año seleccionado
+año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
 
-promed_año_selecciónado = promed[promed['Año'] == año_selecciónado]
+promed_año_seleccionado = promed[promed['Año'] == año_seleccionado]
 
 # En el popup aparecerá el promedio correspondiente de cada estación en ese año
-dic = dict(zip(promed_año_selecciónado["Nombres Estaciónes"], promed_año_selecciónado["Temperatura med"]))
+dic = dict(zip(promed_año_seleccionado["Nombres Estaciónes"], promed_año_seleccionado["Temperatura med"]))
 
 # Definir las ubicaciónes
 coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str)), axis=1).values
@@ -526,9 +526,9 @@ for i ,(ubicación, estación) in  enumerate(zip(ubicaciónes, estaciónes_unica
     if promedio:
         folium.Marker(ubicación, popup=f"{estación}: {promedio}").add_to(mapa_estaciónes)
     
-datos_mapa_calor = [(ubicación[0], ubicación[1], promedio) for ubicación, promedio in zip(ubicaciónes, promed_año_selecciónado["Temperatura med"]) if promedio is not None]
+datos_mapa_calor = [(ubicación[0], ubicación[1], promedio) for ubicación, promedio in zip(ubicaciónes, promed_año_seleccionado["Temperatura med"]) if promedio is not None]
 
 HeatMap(datos_mapa_calor).add_to(mapa_estaciónes)
 
 folium_static(mapa_estaciónes)
-st.write(promed_año_selecciónado.reset_index(drop = True))
+st.write(promed_año_seleccionado.reset_index(drop = True))

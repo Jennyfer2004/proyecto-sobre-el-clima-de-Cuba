@@ -82,9 +82,9 @@ colores = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#00FFFF", "#FF00FF", "#C
 
 lista_anos = h_r["Año"].unique()
 
-anos_selecciónados = st.multiselect('Seleccióna los años que quieres visualizar:',options=lista_anos, default=[])  
+anos_seleccionados = st.multiselect('Selecciona los años que quieres visualizar:',options=lista_anos, default=[])  
 
-df_filtrado = h_r[h_r["Año"].isin(anos_selecciónados) | (anos_selecciónados == [])]  
+df_filtrado = h_r[h_r["Año"].isin(anos_seleccionados) | (anos_seleccionados == [])]  
 
 fig = px.line(df_filtrado, x="Mes", y="Humedad Relat", color="Año", color_discrete_sequence=colores, title='Humedad Relativa por mes y año',labels={"Humedad Relat": "Humedad Relativa" , "Año": "Años"}, markers=True)
 st.plotly_chart(fig)
@@ -98,13 +98,13 @@ estación_default = df_humedad["Nombres Estaciónes"].unique()[0]
 año_inicio_default = min(df_humedad["Año-Mes"].unique())
 año_fin_default = max(df_humedad["Año-Mes"].unique())
 
-estación = st.selectbox("Seleccióna una estación:", [estación_default] + df_humedad["Nombres Estaciónes"].unique().tolist())
-año_inicio = st.selectbox("Seleccióna el año de inicio:", [año_inicio_default] + df_humedad["Año-Mes"].unique().tolist())
-año_fin = st.selectbox("Seleccióna el año de fin:", [año_fin_default] + df_humedad["Año-Mes"].unique().tolist())
+estación = st.selectbox("Selecciona una estación:", [estación_default] + df_humedad["Nombres Estaciónes"].unique().tolist())
+año_inicio = st.selectbox("Selecciona el año de inicio:", [año_inicio_default] + df_humedad["Año-Mes"].unique().tolist())
+año_fin = st.selectbox("Selecciona el año de fin:", [año_fin_default] + df_humedad["Año-Mes"].unique().tolist())
 
 df_estación = df_humedad[(df_humedad["Nombres Estaciónes"] == estación) & (df_humedad["Año-Mes"] >= año_inicio) & (df_humedad["Año-Mes"] <= año_fin)]
 if df_estación.empty:
-    st.warning("No hay datos disponibles para la estación y el rango de años selecciónados")
+    st.warning("No hay datos disponibles para la estación y el rango de años seleccionados")
 else:
     fig = px.line(df_estación, x="Año-Mes", y="Humedad Relat", title=f"Húmedad Relativa en la estación {estación}({año_inicio} - {año_fin})")
     st.plotly_chart(fig)
@@ -119,8 +119,8 @@ data = df_humedad
 selected_stations_default = df_humedad["Nombres Estaciónes"].unique()[:3].tolist()
 selected_years_default = [year for year in df_humedad["Año-Mes"].unique() if '1990' in year]
 
-selected_stations = st.multiselect("Seleccióna las estaciónes:", df_humedad["Nombres Estaciónes"].unique().tolist(), default=selected_stations_default)
-selected_years = st.multiselect('Seleccióna los años', data["Año-Mes"].unique(), default=selected_years_default)
+selected_stations = st.multiselect("Selecciona las estaciónes:", df_humedad["Nombres Estaciónes"].unique().tolist(), default=selected_stations_default)
+selected_years = st.multiselect('Selecciona los años', data["Año-Mes"].unique(), default=selected_years_default)
 
 filtered_data = data.loc[(data["Año-Mes"].isin(selected_years)) & (data["Nombres Estaciónes"].isin(selected_stations))]
 
@@ -138,7 +138,7 @@ df_humedad["Estación"] = df_humedad["Nombres Estaciónes"]
 
 df_promedio_años = df_humedad.groupby(["Año","Estación"])["Humedad Relat"].mean()
 
-estación_elegida = st.selectbox('Seleccióna la estación a analizar', df_humedad["Nombres Estaciónes"].unique())
+estación_elegida = st.selectbox('Selecciona la estación a analizar', df_humedad["Nombres Estaciónes"].unique())
 
 df_filtrado = df_humedad[df_humedad["Estación"] == estación_elegida]
 
@@ -170,13 +170,13 @@ df_promedio_años = df_humedad.groupby(["Estación", df_humedad["Año"]])["Humed
 
 promed = df_promedio_años.reset_index()
 
-# Agregar un slider para filtrar por el año selecciónado
-año_selecciónado = st.slider('Seleccióna un año', 1990, 2022, 1990)
+# Agregar un slider para filtrar por el año seleccionado
+año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
 
-promed_año_selecciónado = promed[promed['Año'] == año_selecciónado]
+promed_año_seleccionado = promed[promed['Año'] == año_seleccionado]
 
 # En el popup aparecerá el promedio correspondiente de cada estación en ese año
-dict = dict(zip(promed_año_selecciónado["Estación"], promed_año_selecciónado["Humedad Relat"]))
+dict = dict(zip(promed_año_seleccionado["Estación"], promed_año_seleccionado["Humedad Relat"]))
 
 # Definir las ubicaciónes
 coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str)), axis=1).values
@@ -194,7 +194,7 @@ for i ,(ubicación, estación) in  enumerate(zip(ubicaciónes, estaciónes_unica
     if promedio is not None:
         folium.Marker(ubicación, popup=f"{estación}: {promedio}").add_to(mapa_estaciónes)
     
-datos_mapa_calor = [(ubicación[0], ubicación[1], promedio) for ubicación, promedio in zip(ubicaciónes, promed_año_selecciónado["Humedad Relat"]) if promedio is not None]
+datos_mapa_calor = [(ubicación[0], ubicación[1], promedio) for ubicación, promedio in zip(ubicaciónes, promed_año_seleccionado["Humedad Relat"]) if promedio is not None]
 
 HeatMap(datos_mapa_calor).add_to(mapa_estaciónes)
 
@@ -251,16 +251,16 @@ df_promedio_estaciónes = df_humedad.groupby("Estación")["Humedad Relat"].mean(
 # Crear un DataFrame con los nombres de las estaciónes y los promedios de humedad
 pro_est = pd.DataFrame({"Estaciónes": df_promedio_estaciónes.index, "Promedio de humedad": df_promedio_estaciónes.values})
 
-# Definir las estaciónes selecciónadas por defecto
-estaciónes_selecciónadas_default = pro_est['Estaciónes'][:3]
+# Definir las estaciónes seleccionadas por defecto
+estaciónes_seleccionadas_default = pro_est['Estaciónes'][:3]
 
-# Permitir al usuario selecciónar las estaciónes
-estaciónes_selecciónadas = st.multiselect('Seleccióna las estaciónes que quieres comparar :', pro_est['Estaciónes'], default=estaciónes_selecciónadas_default)
+# Permitir al usuario seleccionar las estaciónes
+estaciónes_seleccionadas = st.multiselect('Selecciona las estaciónes que quieres comparar :', pro_est['Estaciónes'], default=estaciónes_seleccionadas_default)
 
-if estaciónes_selecciónadas:
-    pro_est_filtrado = pro_est[pro_est['Estaciónes'].isin(estaciónes_selecciónadas)]
+if estaciónes_seleccionadas:
+    pro_est_filtrado = pro_est[pro_est['Estaciónes'].isin(estaciónes_seleccionadas)]
     fig = px.scatter(pro_est_filtrado, x="Estaciónes", y="Promedio de humedad", 
-                     title="Comparación de humedad promedio por cada estación selecciónada",
+                     title="Comparación de humedad promedio por cada estación seleccionada",
                      color="Estaciónes", color_discrete_sequence=colores)
     fig.update_layout(legend={
         'title': 'Estaciónes',

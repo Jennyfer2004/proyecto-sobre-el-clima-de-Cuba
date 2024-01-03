@@ -17,7 +17,7 @@ df_storms = pd.read_csv("./data/tstorms.csv")
 st.title("Huracanes y Tormentas Tropicales")
 
 opciónes = ["Huracanes", "Tormentas Tropicales"]
-selección = st.selectbox('Seleccióna una opción:', opciónes)
+selección = st.selectbox('Selecciona una opción:', opciónes)
 
 #######################################################################################################################
 #HURACANES

@@ -12,7 +12,7 @@ st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333
 
 
 opciónes = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Análisis Multivariado', "Huracanes y Tormentas Tropicales", "Fuentes e Información"]
-selección = st.sidebar.radio('Seleccióna una opción:', opciónes)
+selección = st.sidebar.radio('Selecciona una opción:', opciónes)
 
 #################################################################################################################################
 #Introducción
@@ -47,11 +47,11 @@ Este data product te permitirá explorar estas variables en profundidad. Al ente
     st.markdown('### ¿Cómo navegar el Data Product?')
     st.markdown("<hr style='height:5px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
     st.markdown('''
-Arriba a la izquierda, encontrarás un menú desplegable en donde podras elegir que variable quieres explorar. Dentro de cada una de las secciónes encontrarás distintos medios de interacción y visualización para hacer mas clara la comprensión de las variables y sus relaciónes. Nuestro objetivo es que el usurario reciba claramente los datos que busca, para que pueda utilizarlos por sí mismo para realizar los análisis que necesite.
+Arriba a la izquierda, encontrarás un menú desplegable en donde podras elegir que variable quieres explorar. Dentro de cada una de las secciones encontrarás distintos medios de interacción y visualización para hacer mas clara la comprensión de las variables y sus relaciónes. Nuestro objetivo es que el usurario reciba claramente los datos que busca, para que pueda utilizarlos por sí mismo para realizar los análisis que necesite.
 ''')
 
 ####################################################################################################################################
-#Secciónes del DataFrame
+#Secciones del DataFrame
 ####################################################################################################################################
 
 
