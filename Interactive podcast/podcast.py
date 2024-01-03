@@ -7,7 +7,7 @@ import csv
 import os 
 
 
-df = pd.read_csv("./app/data/base_datos.csv")
+df = pd.read_csv("../app/data/base_datos.csv")
 
 temp_med_anual = df.groupby(["Año","Mes"])["Temperatura med"].mean()
 
@@ -27,7 +27,7 @@ años_específicos = [2019]
 df_filtrado = df_new[df_new.index.get_level_values(0).isin(años_específicos)]
 
 data = df_filtrado.reset_index()
-print(data)
+
 
 
 
