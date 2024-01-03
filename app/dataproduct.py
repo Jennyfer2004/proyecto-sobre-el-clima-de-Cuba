@@ -4,7 +4,6 @@ import os
 import io
 
 
-
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")
 st.set_page_config(layout = "wide")

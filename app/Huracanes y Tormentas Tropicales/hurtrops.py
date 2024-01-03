@@ -4,7 +4,9 @@ import matplotlib.pyplot as plt
 import os
 import io
 import PIL as pl
-import seaborn as sns
+import folium
+from streamlit_folium import folium_static
+from folium.plugins import MarkerCluster
 
 current_path = os.getcwd()
 path= os.path.dirname(current_path)
@@ -42,6 +44,10 @@ Por último, el estudio de los huracanes puede proporcionar información valiosa
 
 En resumen, el estudio de los huracanes en Cuba es crucial para proteger la economía, el medio ambiente y la vida de las personas. A través de la investigación y la educación, podemos mejorar nuestra capacidad para predecir, prepararnos y responder a estos eventos extremos.''')
 
+    st.markdown("### Huracanes en Cuba en el periodo 1996-2022")
+
+
+    st.write(df)
 
 
 ###########################################################################################################
@@ -62,7 +68,7 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
     ax.bar(data['Año'], data['Huracanes'])
     ax.set_title('Número de Huracanes por Año')
     ax.set_xlabel('Año')
-    ax.set_ylabel('Número de huracanes')
+    ax.set_ylabel('Número de Huracanes')
     ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
 
     plt.xticks(rotation='horizontal')
@@ -129,6 +135,4 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
         else:
             col.warning(f"No se encontró la imagen para el huracán {hurricane}")
 
-###########################################################################################################
-#Informacion General de los Huracanes
-###########################################################################################################
+
