@@ -15,7 +15,7 @@ nombres_estaciones = {
     78333:"Playa Girón.Matanzas",
     78344:"Cienfuegos Ciudad",
     78343:"El Yabú.Santa Clara",
-    78349:"Sancti Spirítus Ciudad",
+    78349:"Sancti Spíritus Ciudad",
     78346:"Venezuela.Ciego de Ávila",
     78339:"Cayo Coco.Ciego de Ávila",
     78355:"Camagüey Ciudad",

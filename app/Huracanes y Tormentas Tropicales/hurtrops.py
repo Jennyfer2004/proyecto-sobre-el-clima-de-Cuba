@@ -32,7 +32,7 @@ if seleccion == "Huracanes":
 
     col1.image(imagen)
 
-    col2.write('''Los huracanes son fenómenos meteorológicos extremos que pueden tener un impacto significativo en las regiones donde ocurren. En particular, Cuba, una isla en el Caribe, es una región que a menudo se ve afectada por estos eventos. El estudio de los huracanes en Cuba es de vital importancia por varias razones.
+    col2.write('''Los huracanes son fenómenos meteorológicos extremos que pueden tener un impacto significativo en las regiones donde ocurren. En particular, Cuba, una isla en el Caribe, es una región que a menúdo se ve afectada por estos eventos. El estudio de los huracanes en Cuba es de vital importancia por varias razones.
     
 Los huracanes pueden causar daños significativos a la infraestructura y a la economía. Los fuertes vientos y las lluvias intensas pueden destruir edificios, carreteras y otras infraestructuras, lo que puede costar millones de dólares en reparaciones. Además, los huracanes pueden interrumpir las actividades económicas, como el turismo, que es una fuente importante de ingresos para Cuba.
 
@@ -51,9 +51,9 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
 
 
 ###########################################################################################################
-#Cantidad de Huracanes por Mes Categoria y Ano
+#Cantidad de Huracanes por Mes Categoría y Ano
 ###########################################################################################################
-    st.markdown("### Cantidad de Huracanes en Cuba por Mes, Año, Categoria y Region de Entrada")
+    st.markdown("### Cantidad de Huracanes en Cuba por Mes, Año, Categoría y Región de Entrada")
 
     col1, col2 = st.columns(2)
 
@@ -85,22 +85,22 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
     plt.xticks(rotation='horizontal')
     col1.pyplot(fig)
 
-    data = df.groupby('Categoria').size().reset_index(name='Huracanes')
+    data = df.groupby('Categoría').size().reset_index(name='Huracanes')
     fig, ax = plt.subplots()
-    ax.bar(data['Categoria'], data['Huracanes'])
-    ax.set_title('Número de Huracanes por Categoria')
-    ax.set_xlabel('Categoria')
+    ax.bar(data['Categoría'], data['Huracanes'])
+    ax.set_title('Número de Huracanes por Categoría')
+    ax.set_xlabel('Categoría')
     ax.set_ylabel('Número de Huracanes')
     ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
 
     plt.xticks(rotation='horizontal')
     col1.pyplot(fig)
 
-    data = df.groupby('Region').size().reset_index(name='Huracanes')
+    data = df.groupby('Región').size().reset_index(name='Huracanes')
     fig, ax = plt.subplots()
-    ax.bar(data['Region'], data['Huracanes'])
-    ax.set_title('Número de Huracanes por Region')
-    ax.set_xlabel('Region')
+    ax.bar(data['Región'], data['Huracanes'])
+    ax.set_title('Número de Huracanes por Región')
+    ax.set_xlabel('Región')
     ax.set_ylabel('Número de Huracanes')
     ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
 

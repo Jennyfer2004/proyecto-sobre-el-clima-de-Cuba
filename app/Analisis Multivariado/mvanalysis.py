@@ -4,7 +4,7 @@ import sys
 import os
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")
-sys.path.append(f'{ruta}' + '/Analisis Multivariado')
+sys.path.append(f'{ruta}' + '/Análisis Multivariado')
 import mvLogic
 
 st.title("Análisis Multivariado")
@@ -27,7 +27,7 @@ df_May = df.loc[df['Provincias'] == 'Mayabeque']
 df_Mat = df.loc[df['Provincias'] == 'Matanzas']
 df_Vcl = df.loc[df['Provincias'] == 'Villa Clara']
 df_Cfg = df.loc[df['Provincias'] == 'Cienfuegos']
-df_Ssp = df.loc[df['Provincias'] == 'Sancti Spirítus'] 
+df_Ssp = df.loc[df['Provincias'] == 'Sancti Spíritus'] 
 df_Cav = df.loc[df['Provincias'] == 'Ciego de Ávila']
 df_Cam = df.loc[df['Provincias'] == 'Camagüey']
 df_Ltu = df.loc[df['Provincias'] == 'Las Tunas']
@@ -42,7 +42,7 @@ opciones = ['General', 'Occidente', 'Centro', 'Oriente']
 seleccion = st.selectbox('Selecciona una Región:', opciones)
 
 ######################################################################################################################################################################################
-#Analisis Multivariado General
+#Análisis Multivariado General
 ######################################################################################################################################################################################
 
 if seleccion == "General":
@@ -59,7 +59,7 @@ if seleccion == "General":
 
 
 ###########################################################################################################################################################################
-#Analisis Multivariado Occidente
+#Análisis Multivariado Occidente
 ############################################################################################################################################################################
     
 if seleccion == "Occidente":
@@ -167,7 +167,7 @@ if seleccion == "Occidente":
 
 
 ##################################################################################################################################
-#Analisis Multivariado Centro
+#Análisis Multivariado Centro
 ##################################################################################################################################
     
 if seleccion == "Centro":
@@ -271,7 +271,7 @@ if seleccion == "Centro":
 
 
 ##################################################################################################################################
-#Analisis Multivariado Oriente
+#Análisis Multivariado Oriente
 ##################################################################################################################################
     
 if seleccion == "Oriente":

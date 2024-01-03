@@ -7,11 +7,11 @@ import io
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")
 st.set_page_config(layout = "wide")
-st.title("Analisis de variables climatologicas en Cuba en el periodo 1990-2022")
+st.title("\"Análisis de variables climatológicas en Cuba en el periodo 1990-2022\"")
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
 
 
-opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Analisis Multivariado', "Huracanes y Tormentas Tropicales"]
+opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Análisis Multivariado', "Huracanes y Tormentas Tropicales"]
 seleccion = st.sidebar.radio('Selecciona una opción:', opciones)
 
 #################################################################################################################################
@@ -47,7 +47,7 @@ Este data product te permitirá explorar estas variables en profundidad. Al ente
     st.markdown('### ¿Cómo navegar el Data Product?')
     st.markdown("<hr style='height:5px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
     st.markdown('''
-Arriba a la izquierda, encontraras un menu desplegable en donde podras elegir que variable o analisis quieres explorar. Dentro de cada una de las secciones encontraras distintos medios de interaccion y visualizacion para hacer mas clara la comprension de las variables y sus relaciones. Nuestro objetivo es que el usurario reciba claramente los datos que busca, para que pueda utilizarlos por si mismo para realizar los analisis que necesite.
+Arriba a la izquierda, encontrarás un menú desplegable en donde podras elegir que variable quieres explorar. Dentro de cada una de las secciones encontrarás distintos medios de interacción y visualización para hacer mas clara la comprensión de las variables y sus relaciones. Nuestro objetivo es que el usurario reciba claramente los datos que busca, para que pueda utilizarlos por sí mismo para realizar los análisis que necesite.
 ''')
 
 ####################################################################################################################################
@@ -67,8 +67,8 @@ elif seleccion == 'Temperatura':
     with open(f'{ruta}' + '/temperature/main.py', encoding="UTF-8") as f:
         exec(f.read())
 
-elif seleccion == "Analisis Multivariado":
-    with open(f'{ruta}' + '/Analisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
+elif seleccion == "Análisis Multivariado":
+    with open(f'{ruta}' + '/Análisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
         exec(f.read())
 
 elif seleccion == "Huracanes y Tormentas Tropicales":
