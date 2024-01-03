@@ -6,7 +6,7 @@ import io
 import PIL as pl
 import folium
 from streamlit_folium import folium_static
-from folium.plugins import MarkerCluster
+
 
 current_path = os.getcwd()
 path= os.path.dirname(current_path)
@@ -136,3 +136,41 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
             col.warning(f"No se encontró la imagen para el huracán {hurricane}")
 
 
+if seleccion == "Tormentas Tropicales":
+
+    col1, col2 = st.columns(2)
+    with open(f'{path}' + '/app/images/tropstorm.jpg', 'rb') as f:
+        datos_imagen = f.read()
+    imagen = pl.Image.open(io.BytesIO(datos_imagen)).resize((1000,700))
+
+    col2.image(imagen)
+
+    col1.write('''Conocer los datos sobre las tormentas tropicales es de vital importancia para Cuba debido a la alta frecuencia con la que este país es afectado por estos fenómenos. Los datos precisos sobre estos sistemas meteorológicos permiten a los expertos predecir su trayectoria, intensidad y posibles efectos, lo que a su vez permite a las autoridades y a la población prepararse de manera adecuada.
+
+Además, el análisis de estos datos a lo largo del tiempo puede revelar patrones y tendencias que podrían ser útiles para entender cómo estos fenómenos podrían cambiar en el futuro debido al cambio climático y otros factores. Esto es especialmente relevante para un país como Cuba, que se encuentra en una región propensa a las tormentas tropicales.
+
+Finalmente, estos datos también son fundamentales para la planificación urbana y el desarrollo de infraestructuras resistentes al clima en Cuba. Por ejemplo, los datos sobre las zonas más afectadas por las tormentas tropicales pueden informar las decisiones sobre dónde construir nuevas viviendas o infraestructuras, o cómo mejorar las existentes para resistir mejor a estos eventos.''')
+    
+    st.markdown("### Tormentas Tropicales en Cuba en el periodo 1992-2022")
+
+    st.markdown('')
+    st.markdown('')
+    
+    col1,col2 = st.columns([1.75,2.5])
+    col1.write(df_storms)
+
+
+    df_storms['lat'] = pd.to_numeric(df_storms['lat'])
+    df_storms['lon'] = pd.to_numeric(df_storms['lon'])
+
+    m = folium.Map(location=[df_storms['lat'].mean(), df_storms['lon'].mean()], zoom_start=6)
+
+    for idx, row in df_storms.iterrows():
+        row_as_str = ', '.join(row.map(str))
+        folium.Marker(location=[row['lat'], row['lon']], 
+                    popup=row_as_str).add_to(m)
+        
+    with col2: folium_static(m)
+
+
+    
