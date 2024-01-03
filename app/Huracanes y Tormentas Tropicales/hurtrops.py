@@ -16,14 +16,14 @@ df_storms = pd.read_csv("./data/tstorms.csv")
 
 st.title("Huracanes y Tormentas Tropicales")
 
-opciones = ["Huracanes", "Tormentas Tropicales"]
-seleccion = st.selectbox('Selecciona una opción:', opciones)
+opciónes = ["Huracanes", "Tormentas Tropicales"]
+selección = st.selectbox('Seleccióna una opción:', opciónes)
 
 #######################################################################################################################
 #HURACANES
 #######################################################################################################################
 
-if seleccion == "Huracanes":
+if selección == "Huracanes":
 
     col1, col2 = st.columns(2)
     with open(f'{path}' + '/app/images/HurricaneAI.jpg', 'rb') as f:
@@ -32,19 +32,19 @@ if seleccion == "Huracanes":
 
     col1.image(imagen)
 
-    col2.write('''Los huracanes son fenómenos meteorológicos extremos que pueden tener un impacto significativo en las regiones donde ocurren. En particular, Cuba, una isla en el Caribe, es una región que a menúdo se ve afectada por estos eventos. El estudio de los huracanes en Cuba es de vital importancia por varias razones.
+    col2.write('''Los huracanes son fenómenos meteorológicos extremos que pueden tener un impacto significativo en las regiónes donde ocurren. En particular, Cuba, una isla en el Caribe, es una región que a menúdo se ve afectada por estos eventos. El estudio de los huracanes en Cuba es de vital importancia por varias razones.
     
-Los huracanes pueden causar daños significativos a la infraestructura y a la economía. Los fuertes vientos y las lluvias intensas pueden destruir edificios, carreteras y otras infraestructuras, lo que puede costar millones de dólares en reparaciones. Además, los huracanes pueden interrumpir las actividades económicas, como el turismo, que es una fuente importante de ingresos para Cuba.
+Los huracanes pueden causar daños significativos a la infraestructura y a la economía. Los fuertes vientos y las lluvias intensas pueden destruir edificios, carreteras y otras infraestructuras, lo que puede costar millones de dólares en reparaciónes. Además, los huracanes pueden interrumpir las actividades económicas, como el turismo, que es una fuente importante de ingresos para Cuba.
 
 Tambien, los huracanes también pueden tener un impacto significativo en el medio ambiente. Pueden causar erosión en las playas y en las zonas costeras, dañar los arrecifes de coral y alterar los ecosistemas marinos y terrestres.''')
     
     st.write('''Ademas, los huracanes pueden tener un impacto directo en la vida y la seguridad de las personas. Pueden causar lesiones o incluso la muerte, y pueden desplazar a las personas de sus hogares. El estudio de los huracanes puede ayudar a predecir su trayectoria y su intensidad, lo que puede permitir una mejor preparación y respuesta a estos eventos.
 
-Por último, el estudio de los huracanes puede proporcionar información valiosa para entender los efectos del cambio climático. Se espera que la intensidad y la frecuencia de los huracanes aumenten como resultado del calentamiento global, por lo que entender estos fenómenos puede ayudar a predecir y prepararse para los efectos futuros del cambio climático.
+Por último, el estudio de los huracanes puede proporciónar información valiosa para entender los efectos del cambio climático. Se espera que la intensidad y la frecuencia de los huracanes aumenten como resultado del calentamiento global, por lo que entender estos fenómenos puede ayudar a predecir y prepararse para los efectos futuros del cambio climático.
 
 En resumen, el estudio de los huracanes en Cuba es crucial para proteger la economía, el medio ambiente y la vida de las personas. A través de la investigación y la educación, podemos mejorar nuestra capacidad para predecir, prepararnos y responder a estos eventos extremos.''')
 
-    st.markdown("### Huracanes en Cuba en el periodo 1996-2022")
+    st.markdown("### Huracanes en Cuba en el período 1996-2022")
 
 
     st.write(df)
@@ -108,10 +108,10 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
     col2.pyplot(fig)
 
 ###########################################################################################################
-#Informacion General de los Huracanes
+#Información General de los Huracanes
 ###########################################################################################################
     
-    st.markdown("### Visualizacion Comparativa de la informacion sobre Huracanes")
+    st.markdown("### Visualización Comparativa de la información sobre Huracanes")
 
     hurricane_names = df['Nombre'].unique().tolist()
 
@@ -133,10 +133,15 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
             imagen = pl.Image.open(io.BytesIO(datos_imagen)).resize((1000,700))
             col.image(imagen, caption=hurricane, use_column_width=True)
         else:
-            col.warning(f"No se encontró la imagen para el huracán {hurricane}")
+            col.warning(f"No se encontró la trayectoria para el huracán {hurricane}")
 
 
-if seleccion == "Tormentas Tropicales":
+#############################################################################################################################
+#TORMENTAS TROPICALES
+#############################################################################################################################
+
+
+if selección == "Tormentas Tropicales":
 
     col1, col2 = st.columns(2)
     with open(f'{path}' + '/app/images/tropstorm.jpg', 'rb') as f:
@@ -151,7 +156,7 @@ Además, el análisis de estos datos a lo largo del tiempo puede revelar patrone
 
 Finalmente, estos datos también son fundamentales para la planificación urbana y el desarrollo de infraestructuras resistentes al clima en Cuba. Por ejemplo, los datos sobre las zonas más afectadas por las tormentas tropicales pueden informar las decisiones sobre dónde construir nuevas viviendas o infraestructuras, o cómo mejorar las existentes para resistir mejor a estos eventos.''')
     
-    st.markdown("### Tormentas Tropicales en Cuba en el periodo 1992-2022")
+    st.markdown("### Tormentas Tropicales en Cuba en el período 1992-2022")
 
     st.markdown('')
     st.markdown('')

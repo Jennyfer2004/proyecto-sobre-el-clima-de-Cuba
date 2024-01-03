@@ -24,14 +24,12 @@ col1.image(imagen)
 col2.write("Se llama temperatura atmosférica a uno de los elementos constitutivos del clima que se refiere al grado de calor específico del aire en un lugar y momento determinados así como la evolución temporal y espacial de dicho elemento en las distintas zonas climáticas. Constituye el elemento meteorológico más importante en la delimitación de la mayor parte de los tipos climáticos.")
 col2.write("Medir la temperatura en el clima es fundamental para comprender el comportamiento atmosférico y predecir cambios en el clima a corto y largo plazo. La temperatura del aire es una medida clave que influye en una amplia gama de fenómenos meteorológicos, como la formación de nubes, la lluvia, las tormentas y la dirección del viento.")
 col2.markdown("**Temperatura máxima:** Es la mayor temperatura del aire alcanzada en un lugar en un día (máxima diaria), en un mes (máxima mensual) o en un año (máxima anual). También puede referirse a la temperatura máxima registrada en un lugar durante mucho tiempo (máxima absoluta). Las máximas mensuales suelen alcanzarse durante julio o agosto en la zona del hemisferio norte. Las máximas absolutas dependen de muchos factores, sobre todo de la insolación, de la continentalidad, de la mayor o menor humedad, de los vientos y de otros.")
-st.markdown("**Temperatura mínima:** Se trata de la menor temperatura alcanzada en un lugar en un día, en un mes o en un año y también la mínima absoluta alcanzada en los registros de temperaturas de un lugar determinado. También en condiciones normales, las temperaturas mínimas diarias se registran en horas del amanecer, las mínimas mensuales se obtienen en enero o febrero en el hemisferio norte y en julio o agosto en el hemisferio sur. Y también las temperaturas mínimas absolutas dependen de numerosos factores.")
+st.markdown("**Temperatura mínima:** Se trata de la menor temperatura alcanzada en un lugar en un día, en un mes o en un año y también la mínima absoluta alcanzada en los registros de temperaturas de un lugar determinado. También en condiciónes normales, las temperaturas mínimas diarias se registran en horas del amanecer, las mínimas mensuales se obtienen en enero o febrero en el hemisferio norte y en julio o agosto en el hemisferio sur. Y también las temperaturas mínimas absolutas dependen de numerosos factores.")
 st.markdown("**Temperatura media:** Se trata de los promedios estadísticos obtenidos entre las temperaturas máximas y mínimas. Con las temperaturas medias mensuales (promedio de las temperaturas medias diarias a lo largo del mes) se obtiene un gráfico de las temperaturas medias de un lugar para un año determinado. Y con estos mismos datos referidos a una sucesión de muchos años (30 o más) se obtiene un promedio estadístico de la temperatura en dicho lugar. Estos últimos datos, unidos al promedio de los montos pluviométricos (lluvias) mensuales de ese mismo lugar ofrecen los datos necesarios para la elaboración de un gráfico climático (a veces identificado como climograma) de dicho lugar. En el climograma empleado como ejemplo, las temperaturas mínimas se producen en enero y las máximas en julio o agosto. El gráfico podría servir como ejemplo de un clima templado templado lluvioso.")
 
 df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", 
-        "Nombres Estaciones", "Latitud", "Longitud", "Región", "Provincias"]]
-
-st.markdown("<h3>Selecciona en cada caso para visualizar y obtener los datos &#128071;</h3>", unsafe_allow_html=True)
+        "Nombres Estaciónes", "Latitud", "Longitud", "Región", "Provincias"]]
 
 ##########################################
 # Comparación de la temperatura anual
@@ -39,12 +37,12 @@ st.markdown("<h3>Selecciona en cada caso para visualizar y obtener los datos &#1
 st.markdown("<h4>Comparación de la temperatura anual por provincias</h4>", unsafe_allow_html=True)
 
 # Station Multiselect 
-selected_state_annual = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
+selected_state_annual = st.multiselect(label = 'Seleccióna una provincia', options = df["Provincias"].unique(),
                                 placeholder ="Provincias", key = "annual")
 disabled_year = not bool(selected_state_annual)
 
 # Year slider
-year_range = st.slider('Selecciona un rango de años', min_value = 1990, max_value = 2022, value = (1990, 2022), disabled = disabled_year)
+year_range = st.slider('Seleccióna un rango de años', min_value = 1990, max_value = 2022, value = (1990, 2022), disabled = disabled_year)
 
 start_year, end_year = year_range
 
@@ -115,7 +113,7 @@ if selected_state_annual and selected_values:
 ###########################################
 st.markdown("<h4>Comparación de la temperatura mensual por provincias</h4>", unsafe_allow_html=True)
 
-selected_state_monthly = st.multiselect(label = 'Selecciona una provincia', options = df["Provincias"].unique(),
+selected_state_monthly = st.multiselect(label = 'Seleccióna una provincia', options = df["Provincias"].unique(),
                                 placeholder ="Provincias", key = "monthly")
 disabled_monthly = not bool(selected_state_monthly)
 
@@ -123,11 +121,11 @@ disabled_monthly = not bool(selected_state_monthly)
 months = { "Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,
         "Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12}
 
-year_monthly = st.slider('Selecciona un rango de años', min_value = 1990, max_value = 2022,
+year_monthly = st.slider('Seleccióna un rango de años', min_value = 1990, max_value = 2022,
                          value = (1990, 2022), disabled = disabled_monthly, key = "year_monthly")
 start_year, end_year = year_monthly
 
-selected_month_name = st.select_slider('Selecciona rango de meses', options= list(months.keys()),
+selected_month_name = st.select_slider('Seleccióna rango de meses', options= list(months.keys()),
                       value=("Enero", "Diciembre"), disabled = disabled_monthly)
 start_month, end_month = selected_month_name
 
@@ -186,7 +184,7 @@ if selected_state_monthly:
                                              text = data['Popup'], hoverinfo = 'text+y',
                                              marker=dict(size=8)))
 
-            # Crear un gráfico adicional con mode='lines' para unificar los puntos según el mes
+            # Crear un gráfico adiciónal con mode='lines' para unificar los puntos según el mes
             unique_meses = data['Mes'].unique()
             for mes in unique_meses:
                 mes_data = data[data['Mes'] == mes]
@@ -206,16 +204,16 @@ if selected_state_monthly:
     st.write(table)
 
 ##################################################
-# Comparación de la temperatura anual por region
+# Comparación de la temperatura anual por región
 ##################################################
 st.markdown("<h4>Comparación de la temperatura anual por región</h4>", unsafe_allow_html=True)
 
-selected_region_annual = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
-                                placeholder ="Región", key = "annual_region")
+selected_región_annual = st.multiselect(label = 'Seleccióna una región', options = df["Región"].unique(),
+                                placeholder ="Región", key = "annual_región")
 
-disabled_region_year = not bool(selected_region_annual)
+disabled_región_year = not bool(selected_región_annual)
 
-year_range_region = st.slider('Selecciona un rango de años', min_value = 1990, max_value = 2022, disabled = disabled_region_year)
+year_range_región = st.slider('Seleccióna un rango de años', min_value = 1990, max_value = 2022, disabled = disabled_región_year)
 
 selected_values = []
 options = {"Temperatura máxima media" : "Temperatura max med", 
@@ -226,61 +224,61 @@ cols = st.columns(len(options))
 
 for i, (label, value) in enumerate(options.items()):
     with cols[i]:
-        option = st.checkbox(label = label, disabled = disabled_region_year, 
-                             value = not disabled_region_year, key = f"region {i}")
+        option = st.checkbox(label = label, disabled = disabled_región_year, 
+                             value = not disabled_región_year, key = f"región {i}")
         if option:
             selected_values.append(value)
 
 def filter_data_by_one_year(database: pd.DataFrame, year: int) -> pd.DataFrame:
     return database[database["Año"] == year]
 
-def separate_by_region(database: pd.DataFrame) -> Dict[str, pd.DataFrame]:
+def separate_by_región(database: pd.DataFrame) -> Dict[str, pd.DataFrame]:
     states = database.Región.unique()
     return {state : database[database["Región"] == state] for state in states}
 
-def filter_data_by_region(database: pd.DataFrame, year: int, indicators: List[str]) -> Dict[str, pd.DataFrame]:
+def filter_data_by_región(database: pd.DataFrame, year: int, indicators: List[str]) -> Dict[str, pd.DataFrame]:
     year = filter_data_by_one_year(database, year)
-    states = filter_data_by_state(year, selected_region_annual, "Región")
-    separate = separate_by_region(states)
+    states = filter_data_by_state(year, selected_región_annual, "Región")
+    separate = separate_by_región(states)
     temperature = average_temperature(separate, indicators)
     return temperature
 
-if selected_region_annual:
-    filtered_region_data = filter_data_by_region(df, year_range_region, selected_values)
+if selected_región_annual:
+    filtered_región_data = filter_data_by_región(df, year_range_región, selected_values)
 
-    table = pd.concat([j for i, j in filtered_region_data.items()])
-    table["Región"] = selected_region_annual
+    table = pd.concat([j for i, j in filtered_región_data.items()])
+    table["Región"] = selected_región_annual
     
-    fig_region = go.Figure()
+    fig_región = go.Figure()
     for indicator in selected_values:
-        for region, data in filtered_region_data.items():
-            fig_region.add_trace(go.Bar(x=[region], y=data[indicator], name=f"{indicator} del {region}"))
+        for región, data in filtered_región_data.items():
+            fig_región.add_trace(go.Bar(x=[región], y=data[indicator], name=f"{indicator} del {región}"))
            
-        fig_region.add_trace(go.Scatter(x=table['Región'], y=table[indicator], mode='lines+markers', showlegend = False))
+        fig_región.add_trace(go.Scatter(x=table['Región'], y=table[indicator], mode='lines+markers', showlegend = False))
     
                   
-    fig_region.update_layout(title="Gráfico de barras de temperatura por región",
+    fig_región.update_layout(title="Gráfico de barras de temperatura por región",
                              xaxis_title="Región",
                              yaxis_title="Valor de Temperatura",
                              barmode='overlay')  
                              
-    st.plotly_chart(fig_region)
+    st.plotly_chart(fig_región)
     st.write(table.reset_index(drop= True))
 
 ##################################################
-# Comparación de la temperatura mensual por region
+# Comparación de la temperatura mensual por región
 ##################################################
 st.markdown("<h4>Comparación de la temperatura mensual por región</h4>", unsafe_allow_html=True)
 
-selected_region_monthly = st.multiselect(label = 'Selecciona una región', options = df["Región"].unique(),
-                                placeholder ="Región", key = "monthly_region")
+selected_región_monthly = st.multiselect(label = 'Seleccióna una región', options = df["Región"].unique(),
+                                placeholder ="Región", key = "monthly_región")
 
-disabled_region_monthly = not bool(selected_region_monthly)
+disabled_región_monthly = not bool(selected_región_monthly)
 
-monthly_year = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, disabled = disabled_region_monthly)
+monthly_year = st.slider('Seleccióna un año', min_value = 1990, max_value = 2022, disabled = disabled_región_monthly)
 
-selected_month = st.select_slider('Selecciona un mes', options= list(months.keys()),
-                      value=("Enero", "Diciembre"), disabled = disabled_region_monthly)
+selected_month = st.select_slider('Seleccióna un mes', options= list(months.keys()),
+                      value=("Enero", "Diciembre"), disabled = disabled_región_monthly)
 
 start_month, end_month = selected_month
 
@@ -293,54 +291,54 @@ cols = st.columns(len(options))
 
 for i, (label, value) in enumerate(options.items()):
     with cols[i]:
-        option = st.checkbox(label = label, disabled = disabled_region_monthly, 
-                             value = not disabled_region_monthly, key = f"region_{i}")
+        option = st.checkbox(label = label, disabled = disabled_región_monthly, 
+                             value = not disabled_región_monthly, key = f"región_{i}")
         if option:
             selected_values.append(value)
       
-def separate_by_region_and_months(database: pd.DataFrame, start_month: str, end_month: str):
+def separate_by_región_and_months(database: pd.DataFrame, start_month: str, end_month: str):
     states = database.Región.unique()
     return {state : database[(database["Región"] == state) & (database["Mes"] >= months[start_month])
                              & (database["Mes"] <= months[end_month])] for state in states}      
           
-def filter_data_monthly_by_region(database: pd.DataFrame,year: int ,
+def filter_data_monthly_by_región(database: pd.DataFrame,year: int ,
                                 states: List[str], start_month: str, end_month: str,
                                 indicators: List[str]) -> Dict[str, pd.DataFrame]:
     years = filter_data_by_one_year(database, year)
     states = filter_data_by_state(years, states, "Región")
-    separate = separate_by_region_and_months(states, start_month, end_month)
+    separate = separate_by_región_and_months(states, start_month, end_month)
     temperatures = average_temperature_also_by_month(separate, indicators)
     return temperatures
 
-if selected_region_monthly:
-    filtered_monthly_by_region = filter_data_monthly_by_region(df, monthly_year,
-                            selected_region_monthly, start_month, end_month, selected_values)
+if selected_región_monthly:
+    filtered_monthly_by_región = filter_data_monthly_by_región(df, monthly_year,
+                            selected_región_monthly, start_month, end_month, selected_values)
     
-    fig_monthly_region = go.Figure()
-    for name, data in filtered_monthly_by_region.items():
+    fig_monthly_región = go.Figure()
+    for name, data in filtered_monthly_by_región.items():
         for indicator in selected_values:
             data['Mes'] = data['Mes'].replace({1: 'enero', 2: 'febrero', 3: 'marzo', 4: 'abril',
                                    5: 'mayo', 6: 'junio', 7: 'julio', 8: 'agosto', 
                                    9: 'septiembre', 10: 'octubre', 11: 'noviembre', 12: 'diciembre'})
             
-            fig_monthly_region.add_trace(go.Bar(x=data['Mes'], y=data[indicator], 
+            fig_monthly_región.add_trace(go.Bar(x=data['Mes'], y=data[indicator], 
                                                 name=f"{indicator} de {name}", hoverinfo = f'y'))
             
             
-            if len(selected_region_monthly) == 1 and len(selected_values) < 3:
+            if len(selected_región_monthly) == 1 and len(selected_values) < 3:
                 data['Popup'] = data['Mes'].astype(str)  + '-' + data['Año'].astype(str) + '-' + name 
             
-                fig_monthly_region.add_trace(go.Scatter(x = data['Mes'], y = data[indicator], name = f"{indicator} de {name}",
+                fig_monthly_región.add_trace(go.Scatter(x = data['Mes'], y = data[indicator], name = f"{indicator} de {name}",
                                                     text = data["Popup"], hoverinfo = 'text+y', 
                                                     marker=dict(size=8)))
             
-    fig_monthly_region.update_layout(title="Gráfico de barras de temperatura por mes por región",
+    fig_monthly_región.update_layout(title="Gráfico de barras de temperatura por mes por región",
                              xaxis_title="Mes",
                              yaxis_title="Valor de Temperatura")
     
-    st.plotly_chart(fig_monthly_region)
+    st.plotly_chart(fig_monthly_región)
     
-    table = filtered_monthly_by_region
+    table = filtered_monthly_by_región
     for i, d in table.items(): 
         d['Región'] = np.nan
         d['Región'] = d['Región'].fillna(i)
@@ -357,20 +355,20 @@ st.markdown("<h4>Comparación de la temperatura anual en las zona turísiticas</
 zones = ['Cabo de San Antonio.Pinar del Río', 'Varadero.Matanzas', 'Playa Girón.Matanzas',
          'Cayo Coco.Ciego de Ávila','Cabo Lucrecia.Holguín', 'Cabo Cruz.Granma', 'Punta de Maisí.Guantánamo']
 
-data_zone = df[df["Nombres Estaciones"].isin(zones)].copy()
-data_zone["Zona"] = data_zone["Nombres Estaciones"].str.split(".").str[0]
+data_zone = df[df["Nombres Estaciónes"].isin(zones)].copy()
+data_zone["Zona"] = data_zone["Nombres Estaciónes"].str.split(".").str[0]
 data_zone["Zona"] = data_zone["Zona"].replace("Cabo Lucrecia", "Guardalavaca")
 data_zone["Zona"] = data_zone["Zona"].replace("Playa Girón", "Ciénaga de Zapata")
 
 data_zone = data_zone.loc[:, ["Año", "Mes","Temperatura max med","Temperatura med",
                     "Temperatura min med", "Zona"]]
 
-selected_zone = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
+selected_zone = st.multiselect(label = 'Seleccióna una zona', options = data_zone["Zona"].unique(),
                                 placeholder ="Zona", key = "annual_zone")
 
 disabled_zone = not bool(selected_zone)
 
-zone_year = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, disabled = disabled_zone, key= "year_zone")
+zone_year = st.slider('Seleccióna un año', min_value = 1990, max_value = 2022, disabled = disabled_zone, key= "year_zone")
 
 selected_values = []
 options = {"Temperatura máxima media" : "Temperatura max med", 
@@ -417,17 +415,17 @@ if selected_zone:
 ###############################################################
 st.markdown("<h4>Comparación de la temperatura mensual en las zona turísiticas</h4>", unsafe_allow_html=True)
 
-selected_zone_monthly = st.multiselect(label = 'Selecciona una zona', options = data_zone["Zona"].unique(),
+selected_zone_monthly = st.multiselect(label = 'Seleccióna una zona', options = data_zone["Zona"].unique(),
                                 placeholder ="Zona", key = "annual_zone_monthly")
 
 disabled_zone_monthly = not bool(selected_zone_monthly)
 
-monthly_year_zone = st.slider('Selecciona un año', min_value = 1990, max_value = 2022, value= (1990, 2022),
+monthly_year_zone = st.slider('Seleccióna un año', min_value = 1990, max_value = 2022, value= (1990, 2022),
                               disabled = disabled_zone_monthly, key = "mon_zone")
 
 start_year, end_year = monthly_year_zone
 
-selected_month_zone = st.select_slider('Selecciona un rango de meses', options= list(months.keys()),
+selected_month_zone = st.select_slider('Seleccióna un rango de meses', options= list(months.keys()),
                       value=("Enero", "Diciembre"), disabled = disabled_zone_monthly)
 
 start_month, end_month = selected_month_zone
@@ -502,35 +500,35 @@ st.markdown("<h4>Mapa de Temperatura media anual por estación</h4>", unsafe_all
 df = df.dropna()
 
 # Calcular el promedio de humedad relativa por años
-promed = df.groupby(["Nombres Estaciones","Año"])["Temperatura med"].mean().reset_index()
+promed = df.groupby(["Nombres Estaciónes","Año"])["Temperatura med"].mean().reset_index()
 
-# Agregar un slider para filtrar por el año seleccionado
-año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
+# Agregar un slider para filtrar por el año selecciónado
+año_selecciónado = st.slider('Seleccióna un año', 1990, 2022, 1990)
 
-promed_año_seleccionado = promed[promed['Año'] == año_seleccionado]
+promed_año_selecciónado = promed[promed['Año'] == año_selecciónado]
 
 # En el popup aparecerá el promedio correspondiente de cada estación en ese año
-dic = dict(zip(promed_año_seleccionado["Nombres Estaciones"], promed_año_seleccionado["Temperatura med"]))
+dic = dict(zip(promed_año_selecciónado["Nombres Estaciónes"], promed_año_selecciónado["Temperatura med"]))
 
-# Definir las ubicaciones
+# Definir las ubicaciónes
 coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str)), axis=1).values
 coordenadas_unicas = list(OrderedDict.fromkeys(coordenadas))
-ubicaciones = [tuple(map(float, ubicacion.split(','))) for ubicacion in coordenadas_unicas]
+ubicaciónes = [tuple(map(float, ubicación.split(','))) for ubicación in coordenadas_unicas]
 
-# Definir las estaciones únicas
-estaciones = df["Nombres Estaciones"].values
-estaciones_unicas = list(OrderedDict.fromkeys(estaciones))
+# Definir las estaciónes únicas
+estaciónes = df["Nombres Estaciónes"].values
+estaciónes_unicas = list(OrderedDict.fromkeys(estaciónes))
 
-mapa_estaciones = folium.Map(location=[21.93277,-80.41813], zoom_start=6)
+mapa_estaciónes = folium.Map(location=[21.93277,-80.41813], zoom_start=6)
 
-for i ,(ubicacion, estacion) in  enumerate(zip(ubicaciones, estaciones_unicas)):
-    promedio = dic.get(estacion)
+for i ,(ubicación, estación) in  enumerate(zip(ubicaciónes, estaciónes_unicas)):
+    promedio = dic.get(estación)
     if promedio:
-        folium.Marker(ubicacion, popup=f"{estacion}: {promedio}").add_to(mapa_estaciones)
+        folium.Marker(ubicación, popup=f"{estación}: {promedio}").add_to(mapa_estaciónes)
     
-datos_mapa_calor = [(ubicacion[0], ubicacion[1], promedio) for ubicacion, promedio in zip(ubicaciones, promed_año_seleccionado["Temperatura med"]) if promedio is not None]
+datos_mapa_calor = [(ubicación[0], ubicación[1], promedio) for ubicación, promedio in zip(ubicaciónes, promed_año_selecciónado["Temperatura med"]) if promedio is not None]
 
-HeatMap(datos_mapa_calor).add_to(mapa_estaciones)
+HeatMap(datos_mapa_calor).add_to(mapa_estaciónes)
 
-folium_static(mapa_estaciones)
-st.write(promed_año_seleccionado.reset_index(drop = True))
+folium_static(mapa_estaciónes)
+st.write(promed_año_selecciónado.reset_index(drop = True))

@@ -3,7 +3,7 @@ import pandas as pd
 
 df = pd.read_excel("./data/data.xlsx")
 
-nombres_estaciones = {
+nombres_estaciónes = {
     78310:"Cabo de San Antonio.Pinar del Río",
     78315:"Pinar del Río Ciudad",
     78318:"Bahía Honda.Artemisa",
@@ -32,7 +32,7 @@ nombres_estaciones = {
     78325:"Casablanca.La Habana"
 }
 
-df["Nombres Estaciones"] = df["Estación"].replace(nombres_estaciones)
+df["Nombres Estaciónes"] = df["Estación"].replace(nombres_estaciónes)
 
 
 
@@ -124,7 +124,7 @@ df["Longitud"] = df["Estación"].replace(longitudes)
 
 
 
-regiones  = {
+regiónes  = {
     78310:"Occidente",
     78315:"Occidente",
     78318:"Occidente",
@@ -158,7 +158,7 @@ regiones  = {
 
 
 
-df["Región"] = df["Estación"].replace(regiones)
+df["Región"] = df["Estación"].replace(regiónes)
 
 
 

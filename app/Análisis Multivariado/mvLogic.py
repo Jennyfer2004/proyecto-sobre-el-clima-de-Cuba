@@ -11,7 +11,7 @@ import streamlit as st
 #COEFICIENTE DE RELACION
 ###################################
 
-def CoeficienteRelacion (df):
+def CoeficienteRelación (df):
 
     crtable = df.corr() 
     return crtable
@@ -59,10 +59,10 @@ def Dispersion(df, variable_x, variable_y):
 
 
 #################################################
-#Regresiones
+#Regresiónes
 #################################################
     
-def Regresion(df, variable_independiente, variable_dependiente):
+def Regresión(df, variable_independiente, variable_dependiente):
 
     plt.figure(figsize=(12, 8))
 
@@ -83,7 +83,7 @@ def Regresion(df, variable_independiente, variable_dependiente):
     
             plt.plot(grouped_df['Fecha'], grouped_df[variable_dependiente], marker='o')
             plt.plot(grouped_df['Fecha'], regression_line, color='red')
-            plt.title(f'Regresion de {variable_dependiente} a lo largo del tiempo')
+            plt.title(f'Regresión de {variable_dependiente} a lo largo del tiempo')
 
     elif variable_independiente in ["Longitud"]:
 
@@ -97,7 +97,7 @@ def Regresion(df, variable_independiente, variable_dependiente):
     
             plt.plot(grouped_df['Longitud'], grouped_df[variable_dependiente], marker='o')
             plt.plot(grouped_df['Longitud'], regression_line, color='red') 
-            plt.title(f'Regresion de {variable_dependiente} a lo largo de la Isla')
+            plt.title(f'Regresión de {variable_dependiente} a lo largo de la Isla')
 
     else:
             X = REWORKED_df[variable_independiente].values.reshape(-1, 1)
@@ -122,14 +122,14 @@ def Regresion(df, variable_independiente, variable_dependiente):
 
 def ScatLogic(df):
 
-    inicio_año, fin_año = st.slider('Selecciona el rango de años', min_value=df['Año'].min(), max_value=df['Año'].max(), value=(df['Año'].min(), df['Año'].max()))
-    inicio_mes, fin_mes = st.slider('Selecciona el rango de meses', min_value=df['Mes'].min(), max_value=df['Mes'].max(), value=(df['Mes'].min(), df['Mes'].max()))
+    inicio_año, fin_año = st.slider('Seleccióna el rango de años', min_value=df['Año'].min(), max_value=df['Año'].max(), value=(df['Año'].min(), df['Año'].max()))
+    inicio_mes, fin_mes = st.slider('Seleccióna el rango de meses', min_value=df['Mes'].min(), max_value=df['Mes'].max(), value=(df['Mes'].min(), df['Mes'].max()))
 
     df_filtrado = df[(df['Año'] >= inicio_año) & (df['Año'] <= fin_año) & (df['Mes'] >= inicio_mes) & (df['Mes'] <= fin_mes)]
 
-    variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
-    variable_x = st.selectbox('Selecciona la variable para el eje X', variables)
-    variable_y = st.selectbox('Selecciona la variable para el eje Y', variables)
+    variables = ["Temperatura Media",'Temperatura Máxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa']
+    variable_x = st.selectbox('Seleccióna la variable para el eje X', variables)
+    variable_y = st.selectbox('Seleccióna la variable para el eje Y', variables)
 
     col1,col2 = st.columns(2)
 
@@ -141,16 +141,16 @@ def ScatLogic(df):
 
 def RegLogic(df):
 
-    variables = ["Temperatura Media",'Temperatura Maxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa',"Año","Longitud"]
+    variables = ["Temperatura Media",'Temperatura Máxima Media', 'Temperatura Minima Media', 'Precipitaciones', 'Humedad Relativa',"Año","Longitud"]
 
-    variable_independiente = st.selectbox('Seleccione la variable independiente:', variables)
+    variable_independiente = st.selectbox('Seleccióne la variable independiente:', variables)
 
-    dependientes = [var for var in df.columns if var not in ["Mes", "Año", "Longitud", "Estacion", "Nombre de Estacion", "Latitud", "Región", "Provincias"]] # Todas las variables excepto "Año" y "Longitud" pueden ser dependientes
-    variable_dependiente = st.selectbox('Seleccione la variable dependiente:', dependientes)
+    dependientes = [var for var in df.columns if var not in ["Mes", "Año", "Longitud", "Estación", "Nombre de Estación", "Latitud", "Región", "Provincias"]] # Todas las variables excepto "Año" y "Longitud" pueden ser dependientes
+    variable_dependiente = st.selectbox('Seleccióne la variable dependiente:', dependientes)
 
     REWORKED_df = df.dropna(subset=[variable_independiente, variable_dependiente, 'Mes'])
 
-    st.write(Regresion(REWORKED_df, variable_independiente, variable_dependiente))
+    st.write(Regresión(REWORKED_df, variable_independiente, variable_dependiente))
 
 
 def JDist(df,variable1,variable2):
