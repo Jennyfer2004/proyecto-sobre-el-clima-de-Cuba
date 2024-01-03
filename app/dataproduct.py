@@ -4,7 +4,6 @@ import os
 import io
 
 
-
 ruta = os.getcwd()
 ruta = ruta.replace("\\", "/")
 st.set_page_config(layout = "wide")
@@ -12,7 +11,7 @@ st.title("Analisis de variables climatologicas en Cuba en el periodo 1990-2022")
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
 
 
-opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Analisis Multivariado', "Huracanes"]
+opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', 'Analisis Multivariado', "Huracanes y Tormentas Tropicales"]
 seleccion = st.sidebar.radio('Selecciona una opción:', opciones)
 
 #################################################################################################################################
@@ -72,7 +71,7 @@ elif seleccion == "Analisis Multivariado":
     with open(f'{ruta}' + '/Analisis Multivariado/mvanalysis.py', encoding="UTF-8") as f:
         exec(f.read())
 
-elif seleccion == "Huracanes":
+elif seleccion == "Huracanes y Tormentas Tropicales":
     with open(f'{ruta}' + '/Huracanes y Tormentas Tropicales/hurtrops.py', encoding="UTF-8") as f:
         exec(f.read())
 
