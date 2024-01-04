@@ -7,4 +7,4 @@ Este proyecto fue creado como un proyecto de las asignaturas Programacion y Comu
 
 Los datos fueron obtenidos directamente del Instituto de Meteorologia y otras fuentes citadas dentro del Data Product.
 
-Para ejecutarlo, ejecutar el archivo dataproduct.py dentro de la carpeta /app y ejecutar -----streamlit run dataproduct.py------.
+Para ejecutarlo, cambiar la ruta a la carpeta /app dentro del proyecto y ejecutar -----streamlit run dataproduct.py------.
