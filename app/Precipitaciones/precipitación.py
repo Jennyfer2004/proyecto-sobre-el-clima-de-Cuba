@@ -23,9 +23,9 @@ with open(f'{path}' + '/app/images/CubaRain.jpg', 'rb') as f:
         datos_imagen = f.read()
 imagen = pl.Image.open(io.BytesIO(datos_imagen)).resize((1000,700))
 col2.image(imagen)
-col1.write("La precipitación es un factor fundamental en el estudio del clima y el entorno atmosférico. En Cuba, las lluvias tienen un impacto significativo en la vida cotidiana, la agricultura, la ecología y muchos otros aspectos de la sociedad. Con el objetivo de proporciónar una comprensión detallada de las precipitaciones en la isla caribeña, nuestra plataforma ofrece un análisis exhaustivo de los datos pluviométricos recopilados a lo largo de los últimos años")
+col1.write("La precipitación es un factor fundamental en el estudio del clima y el entorno atmosférico. En Cuba, las lluvias tienen un impacto significativo en la vida cotidiana, la agricultura, la ecología y muchos otros aspectos de la sociedad. Con el objetivo de proporcionar una comprensión detallada de las precipitaciones en la isla caribeña, nuestra plataforma ofrece un análisis exhaustivo de los datos pluviométricos recopilados a lo largo de los últimos años")
 col1.write("Al igual que la humedad relativa, la precipitación es una variable crucial que varía en función de la ubicación geográfica, las condiciónes atmosféricas y la época del año. Nuestra herramienta interactiva te permitirá explorar estos aspectos y comprender mejor las tendencias y variaciónes en las precipitaciones en Cuba. A través de gráficos intuitivos y datos precisos, podrás sumergirte en el fascinante mundo de las lluvias y su impacto en el clima cubano.")
-st.write("Desde 1990 hasta la actualidad, nuestra página te brindará una visión clara y concisa de las precipitaciones por años, meses y estaciónes, permitiéndote obtener una comprensión profunda de este aspecto crucial del medio ambiente cubano. Te invitamos a que explorar nuestra plataforma y a que descubras la riqueza de información que tenemos para ofrecerte. ¡Bienvenido a nuestro análisis detallado de las lluvias en Cuba!")
+st.write("Desde 1990 hasta la actualidad, nuestra página te brindará una visión clara y concisa de las precipitaciones por años, meses y estaciones, permitiéndote obtener una comprensión profunda de este aspecto crucial del medio ambiente cubano. Te invitamos a que explorar nuestra plataforma y a que descubras la riqueza de información que tenemos para ofrecerte. ¡Bienvenido a nuestro análisis detallado de las lluvias en Cuba!")
 # read database with pandas
 df = pd.read_csv("./data/base_datos.csv")
 # write on the page
@@ -56,7 +56,7 @@ df_filtered = df_mean[df_mean["Año"].isin(selected_years) | (selected_years == 
 fig = px.line(df_filtered, x="Mes", y="Precipitaciones", color="Año", color_discrete_sequence=colors, title='Precipitaciones por mes respecto a los años',labels={"Año": "Años"}, markers=True)
 st.plotly_chart(fig)
 # write on the page
-st.write("Cuba, una isla caribeña situada en el mar Caribe, se caracteriza por su clima tropical que se divide en dos estaciónes principales: la temporada de lluvias y la temporada seca.")
+st.write("Cuba, una isla caribeña situada en el mar Caribe, se caracteriza por su clima tropical que se divide en dos estaciones principales: la temporada de lluvias y la temporada seca.")
 st.write("Durante los meses secos en Cuba, que van de noviembre a abril, el clima tiende a ser más seco y con menos precipitaciones. Los días suelen ser soleados y las temperaturas son cálidas y agradables. Por otro lado, durante la temporada de lluvias, que generalmente abarca los meses de mayo a octubre, se experimentan fuertes precipitaciones, con un clima más húmedo y cálido. Las lluvias pueden ser intensas.")
 # create a dicctionary with the dry and raing months
 time={1:"seco",2:"seco",3:"seco",4:"seco",5:"lluviosa",6:"lluviosa",7:"lluviosa",
@@ -72,11 +72,11 @@ fig = px.line(df_month_sum, x="Año", y="Precipitaciones", color="Tiempos",
                  color_discrete_sequence=[ 'Blue', 'Green'])
 st.plotly_chart(fig)
 # write on the page
-st.write("   Comparación del comportamiento de diferentes estaciónes meteororlógicas desde 1990 hasta 2022 en diferentes rangos de tiempo")
+st.write("   Comparación del comportamiento de diferentes estaciones meteororlógicas desde 1990 hasta 2022 en diferentes rangos de tiempo")
 # unite all stations once
 selected_stations_default = df["Nombres Estaciónes"].unique()[:3].tolist()
 # create multiselect from stations
-selected_stations = st.multiselect("Selecciona las estaciónes:", df["Nombres Estaciónes"].unique().tolist(), default=selected_stations_default)
+selected_stations = st.multiselect("Selecciona las estaciones:", df["Nombres Estaciónes"].unique().tolist(), default=selected_stations_default)
 # create a minimun and maximun year by default
 start_year_default  = min(df["fecha"].unique())
 end_year_default  = max(df["fecha"].unique())
@@ -89,10 +89,10 @@ filtered_data = df[(df["Nombres Estaciónes"].isin(selected_stations)) & (df["fe
 if filtered_data.empty:
     st.warning("No hay datos disponibles para la estación y el rango de años seleccionados o ha puesto la fecha inicial por encima de la final, vuelva a intentarlo")
 else:
-    fig = px.line(filtered_data, x='fecha', y='Precipitaciones', color='Nombres Estaciónes', title='Comparación respecto a las precipitaciones en diferentes rangos de tiempo y diferentes estaciónes',)
+    fig = px.line(filtered_data, x='fecha', y='Precipitaciones', color='Nombres Estaciónes', title='Comparación respecto a las precipitaciones en diferentes rangos de tiempo y diferentes estaciones',)
     st.plotly_chart(fig)
 # write on the page
-st.write("Comportamiento de las estaciónes según sus precipitaciones anuales")
+st.write("Comportamiento de las estaciones según sus precipitaciones anuales")
 # groupby a dataframe from years and stations name with sum
 df_mean_years = df.groupby(["Año","Nombres Estaciónes"])["Precipitaciones"].sum()
 # create a selectbox from the station name
@@ -111,7 +111,7 @@ fig = px.bar(df_mean_years_estación, x="Año", y="Precipitaciones", color="Año
 st.plotly_chart(fig)
 
 # write on the page
-st.write("Si luego de indagar en esta página web, te surge la pregunta: ¿Cúales son las estaciónes o zonas de Cuba con mayores o menores precipitaciones?")
+st.write("Si luego de indagar en esta página web, te surge la pregunta: ¿Cúales son las estaciones o zonas de Cuba con mayores o menores precipitaciones?")
 st.write("Te recomiendo que interactues con el siguiente mapa de calor, y llegues a tus propias conclusiones")
 #  group the data according to the sum of rainfall for year and name of season
 df_mean_years = df.groupby(["Nombres Estaciónes", df["Año"]])["Precipitaciones"].sum()

@@ -515,20 +515,20 @@ coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str))
 coordenadas_unicas = list(OrderedDict.fromkeys(coordenadas))
 ubicaciónes = [tuple(map(float, ubicación.split(','))) for ubicación in coordenadas_unicas]
 
-# Definir las estaciónes únicas
-estaciónes = df["Nombres Estaciónes"].values
-estaciónes_unicas = list(OrderedDict.fromkeys(estaciónes))
+# Definir las estaciones únicas
+estaciones = df["Nombres Estaciónes"].values
+estaciones_unicas = list(OrderedDict.fromkeys(estaciones))
 
-mapa_estaciónes = folium.Map(location=[21.93277,-80.41813], zoom_start=6)
+mapa_estaciones = folium.Map(location=[21.93277,-80.41813], zoom_start=6)
 
-for i ,(ubicación, estación) in  enumerate(zip(ubicaciónes, estaciónes_unicas)):
+for i ,(ubicación, estación) in  enumerate(zip(ubicaciónes, estaciones_unicas)):
     promedio = dic.get(estación)
     if promedio:
-        folium.Marker(ubicación, popup=f"{estación}: {promedio}").add_to(mapa_estaciónes)
+        folium.Marker(ubicación, popup=f"{estación}: {promedio}").add_to(mapa_estaciones)
     
 datos_mapa_calor = [(ubicación[0], ubicación[1], promedio) for ubicación, promedio in zip(ubicaciónes, promed_año_seleccionado["Temperatura med"]) if promedio is not None]
 
-HeatMap(datos_mapa_calor).add_to(mapa_estaciónes)
+HeatMap(datos_mapa_calor).add_to(mapa_estaciones)
 
-folium_static(mapa_estaciónes)
+folium_static(mapa_estaciones)
 st.write(promed_año_seleccionado.reset_index(drop = True))

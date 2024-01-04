@@ -38,9 +38,9 @@ Los huracanes pueden causar daños significativos a la infraestructura y a la ec
 
 Tambien, los huracanes también pueden tener un impacto significativo en el medio ambiente. Pueden causar erosión en las playas y en las zonas costeras, dañar los arrecifes de coral y alterar los ecosistemas marinos y terrestres.''')
     
-    st.write('''Ademas, los huracanes pueden tener un impacto directo en la vida y la seguridad de las personas. Pueden causar lesiones o incluso la muerte, y pueden desplazar a las personas de sus hogares. El estudio de los huracanes puede ayudar a predecir su trayectoria y su intensidad, lo que puede permitir una mejor preparación y respuesta a estos eventos.
+    st.write('''Además, los huracanes pueden tener un impacto directo en la vida y la seguridad de las personas. Pueden causar lesiones o incluso la muerte, y pueden desplazar a las personas de sus hogares. El estudio de los huracanes puede ayudar a predecir su trayectoria y su intensidad, lo que puede permitir una mejor preparación y respuesta a estos eventos.
 
-Por último, el estudio de los huracanes puede proporciónar información valiosa para entender los efectos del cambio climático. Se espera que la intensidad y la frecuencia de los huracanes aumenten como resultado del calentamiento global, por lo que entender estos fenómenos puede ayudar a predecir y prepararse para los efectos futuros del cambio climático.
+Por último, el estudio de los huracanes puede proporcionar información valiosa para entender los efectos del cambio climático. Se espera que la intensidad y la frecuencia de los huracanes aumenten como resultado del calentamiento global, por lo que entender estos fenómenos puede ayudar a predecir y prepararse para los efectos futuros del cambio climático.
 
 En resumen, el estudio de los huracanes en Cuba es crucial para proteger la economía, el medio ambiente y la vida de las personas. A través de la investigación y la educación, podemos mejorar nuestra capacidad para predecir, prepararnos y responder a estos eventos extremos.''')
 
@@ -176,6 +176,70 @@ Finalmente, estos datos también son fundamentales para la planificación urbana
                     popup=row_as_str).add_to(m)
         
     with col2: folium_static(m)
+
+
+
+###########################################################################################################
+#Cantidad de Tormentas Tropicales por Mes Categoría y Ano
+###########################################################################################################
+    
+
+
+    st.markdown("### Cantidad de Tormentas Tropicales en Cuba por Mes, Año, Categoría y Región de Entrada")
+
+    col1, col2 = st.columns(2)
+
+    df_storms['Fecha'] = pd.to_datetime(df_storms['Fecha'], format='%m/%d/%Y')
+
+    df_storms['Mes'] = df_storms['Fecha'].dt.month
+    df_storms['Año'] = df_storms['Fecha'].dt.year
+
+    data = df_storms.groupby('Año').size().reset_index(name='Tormentas Tropicales')
+###########################################
+    fig, ax = plt.subplots()
+    ax.bar(data['Año'], data['Tormentas Tropicales'])
+    ax.set_title('Número de Tormentas Tropicales por Año')
+    ax.set_xlabel('Año')
+    ax.set_ylabel('Número de Tormentas Tropicales')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+    plt.xticks(rotation='horizontal')
+    col2.pyplot(fig)
+#############################################
+    data = df_storms.groupby('Mes').size().reset_index(name='Tormentas Tropicales')
+    fig, ax = plt.subplots()
+    ax.bar(data['Mes'], data['Tormentas Tropicales'])
+    ax.set_title('Número de Tormentas Tropicales por Mes')
+    ax.set_xlabel('Mes')
+    ax.set_ylabel('Número de Tormentas Tropicales')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+    plt.xticks(rotation='horizontal')
+    col1.pyplot(fig)
+#################################################
+
+    data = df_storms.groupby('Vientos Máximos').size().reset_index(name='Tormentas Tropicales')
+    fig, ax = plt.subplots()
+    ax.bar(data['Vientos Máximos'], data['Tormentas Tropicales'])
+    ax.set_title('Número de Tormentas Tropicales')
+    ax.set_xlabel('Vientos Máximos')
+    ax.set_ylabel('Número de Tormentas Tropicales')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+    plt.xticks(rotation='horizontal')
+    col1.pyplot(fig)
+
+#####################################################
+    data = df.groupby('Región').size().reset_index(name='Tormentas Tropicales')
+    fig, ax = plt.subplots()
+    ax.bar(data['Región'], data['Tormentas Tropicales'])
+    ax.set_title('Número de Tormentas Tropicales por Región')
+    ax.set_xlabel('Región')
+    ax.set_ylabel('Número de Tormentas Tropicales')
+    ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
+
+    plt.xticks(rotation='horizontal')
+    col2.pyplot(fig)
 
 
     

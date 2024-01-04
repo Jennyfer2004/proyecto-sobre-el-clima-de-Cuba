@@ -1,12 +1,12 @@
-Nombre,Fecha,lat,lon,Vientos Máximos
-Gordon,11/13/1994,20.0,-74.9,40
-Irene,10/14/1999,21.7,-83.0,60
-Arlene,06/10/2005,21.8,-84.5,45
-Ernesto,08/28/2006,19.9,-75.5,35
-Noel,10/30/2007,21.1,-75.8,50
-Fay,08/18/2008,22.1,-80.8,45
-Paula,10/14/2010,22.7,-83.9,55
-Isaac,08/25/2012,20.1,-74.5,50
-Ophelia,10/28/2017,22.2,-81.6,35
-Laura,08/25/2020,22.3,-83.3,55
-Elsa,07/05/2021,22.2,-81.6,55
+Nombre,Fecha,lat,lon,Vientos Máximos,Región
+Gordon,11/13/1994,20.0,-74.9,40,Oriente
+Irene,10/14/1999,21.7,-83.0,60,Occidente
+Arlene,06/10/2005,21.8,-84.5,45,Occidente
+Ernesto,08/28/2006,19.9,-75.5,35,Oriente
+Noel,10/30/2007,21.1,-75.8,50,Oriente
+Fay,08/18/2008,22.1,-80.8,45,Centro
+Paula,10/14/2010,22.7,-83.9,55,Occidente
+Isaac,08/25/2012,20.1,-74.5,50,Oriente
+Ophelia,10/28/2017,22.2,-81.6,35,Oriente
+Laura,08/25/2020,22.3,-83.3,55,Occidente
+Elsa,07/05/2021,22.2,-81.6,55,Occidente
