@@ -14,7 +14,7 @@ path = path.replace("\\", "/")
 df = pd.read_csv("./data/huracanes.csv")
 df_storms = pd.read_csv("./data/tstorms.csv")
 
-st.title("Huracanes y Tormentas Tropicales")
+st.markdown("# Huracanes y Tormentas Tropicales")
 
 opciónes = ["Huracanes", "Tormentas Tropicales"]
 selección = st.selectbox('Selecciona una opción:', opciónes)
@@ -221,7 +221,7 @@ Finalmente, estos datos también son fundamentales para la planificación urbana
     data = df_storms.groupby('Vientos Máximos').size().reset_index(name='Tormentas Tropicales')
     fig, ax = plt.subplots()
     ax.bar(data['Vientos Máximos'], data['Tormentas Tropicales'])
-    ax.set_title('Número de Tormentas Tropicales')
+    ax.set_title('Número de Tormentas Tropicales por Vientos Máximos')
     ax.set_xlabel('Vientos Máximos')
     ax.set_ylabel('Número de Tormentas Tropicales')
     ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))

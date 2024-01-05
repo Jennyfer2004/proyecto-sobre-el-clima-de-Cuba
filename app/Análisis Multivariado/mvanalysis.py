@@ -7,14 +7,14 @@ ruta = ruta.replace("\\", "/")
 sys.path.append(f'{ruta}' + '/Análisis Multivariado')
 import mvLogic
 
-st.title("Análisis Multivariado")
+st.markdown("# Análisis Multivariado", unsafe_allow_html=True)
 
 df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Estación", "Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", "Humedad Relat", "Precipitaciones",
-        "Nombres Estaciónes", "Latitud", "Longitud", "Región", "Provincias"]]
+        "Nombres Estaciones", "Latitud", "Longitud", "Región", "Provincias"]]
 
 df = df.rename(columns={"Temperatura max med": "Temperatura Máxima Media", "Temperatura min med": "Temperatura Minima Media", "Temperatura med": "Temperatura Media", "Humedad Relat": "Humedad Relativa",
-        "Nombres Estaciónes": "Nombre de Estación"})
+        "Nombres Estaciones": "Nombre de Estación"})
 
 df_Occidente = df.loc[df['Región'] == 'Occidente']
 df_Centro = df.loc[df['Región'] == 'Centro']
@@ -36,7 +36,7 @@ df_Gra = df.loc[df['Provincias'] == 'Granma']
 df_Sdc = df.loc[df['Provincias'] == 'Santiago de Cuba']
 df_Gua = df.loc[df['Provincias'] == 'Guantánamo']
 
-st.markdown("## Seleccione la región en la que quiere explorar datos")
+st.markdown("## Seleccione la región en la que quiere explorar datos:")
 
 opciónes = ['General', 'Occidente', 'Centro', 'Oriente']
 selección = st.selectbox('Selecciona una Región:', opciónes)
@@ -47,14 +47,14 @@ selección = st.selectbox('Selecciona una Región:', opciónes)
 
 if selección == "General":
     
-        st.markdown("### Coeficiente de Correlación entre las variables")
+        st.markdown("### Coeficiente de Correlación entre las variables:")
         df_corr = df[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
         st.write(df_corr.corr()) 
 
-        st.markdown("### Gráficos de Dispersión")
+        st.markdown("### Gráficos de Dispersión:")
         mvLogic.ScatLogic(df)
 
-        st.markdown("### Gráficos de Regresión Lineal")
+        st.markdown("### Gráficos de Regresión Lineal:")
         mvLogic.RegLogic(df)
 
 
@@ -74,14 +74,14 @@ if selección == "Occidente":
 ################################################
         if selección == 'General':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Occidente[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Occidente)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Occidente)
 
 
@@ -91,14 +91,14 @@ if selección == "Occidente":
 
         elif selección == 'Pinar del Río':    
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Pdr[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Pdr)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Pdr)
 
 ###############################################
@@ -107,14 +107,14 @@ if selección == "Occidente":
 
         elif selección == 'Artemisa':
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Art[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Art)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Art)
 
 ###############################################
@@ -123,14 +123,14 @@ if selección == "Occidente":
 
         elif selección == 'La Habana':
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Hab[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Hab)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Hab)
 
 ###############################################
@@ -139,14 +139,14 @@ if selección == "Occidente":
 
         elif selección == 'Mayabeque':
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_May[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_May)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_May)
 
 ###############################################
@@ -155,14 +155,14 @@ if selección == "Occidente":
 
         elif selección == 'Matanzas':
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Mat[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Mat)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Mat)
 
 
@@ -181,29 +181,29 @@ if selección == "Centro":
 ################################################
         if selección == 'General':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Centro[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Centro)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Centro)
 
 ################################################
 #Villa Clara
 ################################################
-        if selección == 'General':      
+        if selección == 'Villa Clara':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Vcl[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Vcl)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Vcl)
 
 ################################################
@@ -211,14 +211,14 @@ if selección == "Centro":
 ################################################
         if selección == 'Cienfuegos':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Cfg[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Cfg)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Cfg)
 
 
@@ -227,14 +227,14 @@ if selección == "Centro":
 ################################################
         if selección == 'Sancti Spíritus':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Ssp[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Ssp)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Ssp)
 
 ################################################
@@ -242,14 +242,14 @@ if selección == "Centro":
 ################################################
         if selección == 'Ciego de Ávila':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Cav[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Cav)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Cav)
 
 ################################################
@@ -258,14 +258,14 @@ if selección == "Centro":
                 
         if selección == 'Camagüey':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Cam[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Cam)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Cam)
 
 
@@ -286,14 +286,14 @@ if selección == "Oriente":
 ################################################
         if selección == 'General':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Occidente[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Occidente)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Occidente)
 
 ################################################
@@ -301,14 +301,14 @@ if selección == "Oriente":
 ################################################
         if selección == 'Las Tunas':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Ltu[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Ltu)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Ltu)
 
 ################################################
@@ -316,14 +316,14 @@ if selección == "Oriente":
 ################################################
         if selección == 'Holguín':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Hol[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Hol)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Hol)
 
 ################################################
@@ -331,14 +331,14 @@ if selección == "Oriente":
 ################################################
         if selección == 'Granma':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Gra[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Gra)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Gra)
 
 ################################################
@@ -346,14 +346,14 @@ if selección == "Oriente":
 ################################################
         if selección == 'Santiago de Cuba':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Sdc[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Sdc)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Sdc)
 
 ################################################
@@ -361,12 +361,12 @@ if selección == "Oriente":
 ################################################
         if selección == 'Guantánamo':      
 
-                st.markdown("### Coeficiente de Correlación entre las variables")
+                st.markdown("### Coeficiente de Correlación entre las variables:")
                 df_corr = df_Gua[["Temperatura Media", "Temperatura Máxima Media", "Temperatura Minima Media", "Humedad Relativa", "Precipitaciones"]]
                 st.write(df_corr.corr()) 
 
-                st.markdown("### Gráficos de Dispersión")
+                st.markdown("### Gráficos de Dispersión:")
                 mvLogic.ScatLogic(df_Gua)
 
-                st.markdown("### Gráficos de Regresión Lineal")
+                st.markdown("### Gráficos de Regresión Lineal:")
                 mvLogic.RegLogic(df_Gua)

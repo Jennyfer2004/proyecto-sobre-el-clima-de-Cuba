@@ -4,35 +4,35 @@ import pandas as pd
 df = pd.read_excel("./data/data.xlsx")
 
 nombres_estaciones = {
-    78310:"Cabo de San Antonio.Pinar del Río",
-    78315:"Pinar del Río Ciudad",
+    78310:"Cabo de San Antonio en Pinar del Río",
+    78315:"Ciudad de Pinar del Río",
     78318:"Bahía Honda.Artemisa",
-    78320:"Güira de Melena.Artemisa",
-    78321:"Santa Fe.Isla de la Juventud",
-    78323:"Güines.Mayabeque",
-    78328:"Varadero.Matanzas",
-    78330:"Jovellanos.Matanzas",
-    78333:"Playa Girón.Matanzas",
-    78344:"Cienfuegos Ciudad",
-    78343:"El Yabú.Santa Clara",
+    78320:"Güira de Melena en Artemisa",
+    78321:"Santa Fé en Isla de la Juventud",
+    78323:"Güines en Mayabeque",
+    78328:"Varadero en Matanzas",
+    78330:"Jovellanos en Matanzas",
+    78333:"Playa Girón en Matanzas",
+    78344:"Ciudad de Cienfuegos",
+    78343:"El Yabú en Santa Clara",
     78349:"Sancti Spíritus Ciudad",
-    78346:"Venezuela.Ciego de Ávila",
-    78339:"Cayo Coco.Ciego de Ávila",
-    78355:"Camagüey Ciudad",
-    78351:"Santa Cruz del Sur.Camagüey",
-    78357:"Las Tunas Ciudad",
-    78372:"Pedagogico.Holguín",
-    78365:"Cabo Lucrecia.Holguín",
-    78377:"Veguitas.Granma",
-    78360:"Cabo Cruz.Granma",
-    78371:"Pinares de Mayarí.Holguín",
-    78364:"Universidad.Santiago de Cuba",
-    78368:"Guantánamo Ciudad",
-    78369:"Punta de Maisí.Guantánamo",
-    78325:"Casablanca.La Habana"
+    78346:"Venezuela en Ciego de Ávila",
+    78339:"Cayo Coco en Ciego de Ávila",
+    78355:"Ciudad de Camagüey",
+    78351:"Santa Cruz del Sur en Camagüey",
+    78357:"Ciudad de Las Tunas",
+    78372:"Pedagogico de Holguín",
+    78365:"Cabo Lucrecia en Holguín",
+    78377:"Veguitas en Granma",
+    78360:"Cabo Cruz en Granma",
+    78371:"Pinares de Mayarí en Holguín",
+    78364:"Universidad de Santiago de Cuba",
+    78368:"Ciudad de Guantánamo",
+    78369:"Punta de Maisí en Guantánamo",
+    78325:"Casablanca en La Habana"
 }
 
-df["Nombres Estaciónes"] = df["Estación"].replace(nombres_estaciones)
+df["Nombres Estaciones"] = df["Estación"].replace(nombres_estaciones)
 
 
 

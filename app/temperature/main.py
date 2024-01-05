@@ -13,7 +13,7 @@ import io
 import PIL as pl
 
 
-st.title("Temperatura")
+st.markdown("# Temperaturas")
 
 col1, col2 = st.columns(2)
 with open(f'./images/CubaHeat.jpg', 'rb') as f:
@@ -29,7 +29,7 @@ st.markdown("**Temperatura media:** Se trata de los promedios estadísticos obte
 
 df = pd.read_csv("./data/base_datos.csv")
 df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Temperatura med", 
-        "Nombres Estaciónes", "Latitud", "Longitud", "Región", "Provincias"]]
+        "Nombres Estaciones", "Latitud", "Longitud", "Región", "Provincias"]]
 
 ##########################################
 # Comparación de la temperatura anual
@@ -352,11 +352,11 @@ if selected_región_monthly:
 #############################################################
 st.markdown("<h4>Comparación de la temperatura anual en las zona turísiticas</h4>", unsafe_allow_html=True)
 
-zones = ['Cabo de San Antonio.Pinar del Río', 'Varadero.Matanzas', 'Playa Girón.Matanzas',
-         'Cayo Coco.Ciego de Ávila','Cabo Lucrecia.Holguín', 'Cabo Cruz.Granma', 'Punta de Maisí.Guantánamo']
+zones = ['Cabo de San Antonio en Pinar del Río', 'Varadero en Matanzas', 'Playa Girón en Matanzas',
+         'Cayo Coco en Ciego de Ávila','Cabo Lucrecia en Holguín', 'Cabo Cruz en Granma', 'Punta de Maisí en Guantánamo']
 
-data_zone = df[df["Nombres Estaciónes"].isin(zones)].copy()
-data_zone["Zona"] = data_zone["Nombres Estaciónes"].str.split(".").str[0]
+data_zone = df[df["Nombres Estaciones"].isin(zones)].copy()
+data_zone["Zona"] = data_zone["Nombres Estaciones"].str.split(".").str[0]
 data_zone["Zona"] = data_zone["Zona"].replace("Cabo Lucrecia", "Guardalavaca")
 data_zone["Zona"] = data_zone["Zona"].replace("Playa Girón", "Ciénaga de Zapata")
 
@@ -500,7 +500,7 @@ st.markdown("<h4>Mapa de Temperatura media anual por estación</h4>", unsafe_all
 df = df.dropna()
 
 # Calcular el promedio de humedad relativa por años
-promed = df.groupby(["Nombres Estaciónes","Año"])["Temperatura med"].mean().reset_index()
+promed = df.groupby(["Nombres Estaciones","Año"])["Temperatura med"].mean().reset_index()
 
 # Agregar un slider para filtrar por el año seleccionado
 año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
@@ -508,7 +508,7 @@ año_seleccionado = st.slider('Selecciona un año', 1990, 2022, 1990)
 promed_año_seleccionado = promed[promed['Año'] == año_seleccionado]
 
 # En el popup aparecerá el promedio correspondiente de cada estación en ese año
-dic = dict(zip(promed_año_seleccionado["Nombres Estaciónes"], promed_año_seleccionado["Temperatura med"]))
+dic = dict(zip(promed_año_seleccionado["Nombres Estaciones"], promed_año_seleccionado["Temperatura med"]))
 
 # Definir las ubicaciónes
 coordenadas = df[["Latitud","Longitud"]].apply(lambda x: ','.join(x.astype(str)), axis=1).values
@@ -516,7 +516,7 @@ coordenadas_unicas = list(OrderedDict.fromkeys(coordenadas))
 ubicaciónes = [tuple(map(float, ubicación.split(','))) for ubicación in coordenadas_unicas]
 
 # Definir las estaciones únicas
-estaciones = df["Nombres Estaciónes"].values
+estaciones = df["Nombres Estaciones"].values
 estaciones_unicas = list(OrderedDict.fromkeys(estaciones))
 
 mapa_estaciones = folium.Map(location=[21.93277,-80.41813], zoom_start=6)
