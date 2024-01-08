@@ -25,6 +25,12 @@ selección = st.selectbox('Selecciona una opción:', opciones)
 
 if selección == "Huracanes":
 
+    df_temp = df
+    df_temp['Fecha'] = pd.to_datetime(df['Fecha'], format='%m/%d/%Y')
+    df_temp['Año'] = df['Fecha'].dt.year
+    media_huracanes = df_temp.groupby('Año').size().mean()
+
+
     col1, col2 = st.columns(2)
     with open(f'{path}' + '/app/images/HurricaneAI.jpg', 'rb') as f:
         datos_imagen = f.read()
@@ -32,7 +38,7 @@ if selección == "Huracanes":
 
     col1.image(imagen)
 
-    col2.write('''Los huracanes son fenómenos meteorológicos extremos que pueden tener un impacto significativo en las regiónes donde ocurren. En particular, Cuba, una isla en el Caribe, es una región que a menúdo se ve afectada por estos eventos. El estudio de los huracanes en Cuba es de vital importancia por varias razones.
+    col2.write('''Los huracanes son fenómenos meteorológicos extremos que pueden tener un impacto significativo en las regiónes donde ocurren. En particular, Cuba, una isla en el Caribe, es una región que a menúdo se ve afectada por estos eventos. El estudio de los huracanes en Cuba es de vital importancia por varias razones:
     
 Los huracanes pueden causar daños significativos a la infraestructura y a la economía. Los fuertes vientos y las lluvias intensas pueden destruir edificios, carreteras y otras infraestructuras, lo que puede costar millones de dólares en reparaciónes. Además, pueden interrumpir las actividades económicas, como el turismo, que es una fuente importante de ingresos para Cuba.
 
@@ -45,9 +51,11 @@ Por último, el estudio de los huracanes puede proporcionar información valiosa
 En resumen, el estudio de los huracanes en Cuba es crucial para proteger la economía, el medio ambiente y la vida de las personas. A través de la investigación y la educación, podemos mejorar nuestra capacidad para predecir, prepararnos y responder a estos eventos extremos.''')
 
     st.markdown("### Huracanes en Cuba en el período 1996-2022")
-
-
-    st.write(df)
+    
+    df_show = df[["Nombre","Fecha","Vientos Máximos", "Presion Central", "Categoría", "Región"]]
+    df_show['Fecha'] = pd.to_datetime(df_show['Fecha']).dt.date
+    st.write(df_show)
+    st.write(f"La media de huracanes por año fue de {media_huracanes}")
 
 
 ###########################################################################################################
