@@ -37,22 +37,63 @@ Impacto de las variables en la vida del mosquito
 
 El mosquito aedes aegypti, presenta un rango de temperatura ideal para su desarrollo de entre 25 y 30 grados. tambien, las Precipitaciones
 y lugares humedos cntribuyen a crear un ambiente propicio para la reproduccion del mosquito.
-en nuestro pais, la temperatura maxima media en el periodo estuvo entre 13,1 grados, y 32,8 grados, sin embargo, la temperatura media
-fue de aproximadamente 25 grados celcius. En cuanto a la humedad relativa y precipitaciones, los valores medios fueron:
+Segun el Ministerio de Salud Pública, de septiembre a novimebre ocurre historicamente un pico maximo en la infestacion de aedes aegyptis en el pais.
+Esto coincide con el final de la temporadas de lluvia, donde estas son mas abundates y copiosas. Tambien, en este periodo la humedad relativa media
+fue de un 77%, q con una desviacion estandar de solamente 4.73, resulta un ambiente propicio para la proliferacion del vector.
 
 
 De acuerdo con datos del Ministerio de Salud Pública, las 
-provincias con transmisión de dengue mas importantes en el país han sido La Habana, Sancti Spíritus, 
-Camagüey, Las Tunas, Holguín, Santiago de Cuba y Guantánamo.
+provincias con transmisión de dengue mas importantes en el país historicamente han sido La Habana, Sancti Spíritus, 
+Camagüey, Las Tunas, Holguín, Santiago de Cuba y Guantánamo. Esto esta sustentado en brotes relevantes como
 
-Durante este periodo, podemos observar q las tempraturas medias de Santiago de Cuba y Guantanamo,
-fueron mayores a 25 grados y menores a 29, situandose en este rango ideal, y el resto de las provincias mencionadas, encontro su temperatura
-media en un rango cercano a 25 grados. Sin embargo, a excepcion de Granma, el resto de provincias prsentaron temperaturas medias similares en el periodo,
-asi q resulta pertinente realizar un analisis mas enfocados en los meses de proliferacion del mosquito
+En 1992, en Santiago de Cuba se reporta la reinfestación gradual y paulatina por Aedes aegypti que se ha encontrado 
+en neumáticos importados.
 
-Segun el MINSAP, de semptiembre a novimebre ocurre historicamente un pico maximo en la infestacion de aedes aegyptis.
-En estos meses, para las provincias seleccionadas la temperatura media fue superior en todos los anos superior a 25 grados, alcanzando
-su maximo siempre en Santiago de Cuba, la provincia mas calurosa del pais. Pero resulta 
+En el año 2000, hubo un brote de dengue en la Ciudad de La Habana q logro ser erradicado.
+
+En 2006 en santiago de Cuba un brote importante fue predominantemente de dengue clásico, y el 10,3% de los casos ocurrieron en niños. 
+
+En 2022, se reportó la mayor cantidad de focos del peligroso vector de los últimos 15 años, 
+con un crecimiento del 21.7 % en comparación con similar etapa de 20212. 
+Las provincias de La Habana, Camagüey, Las Tunas y Holguín tenian declarada transmisión de la enfermedad.
+
+
+En estas provincias de mayor complejidad, resulta interesantes q sus valores medios de precipitaciones y humedad relativas
+son mas bajos que las de otras provincias con menos proliferacion de aedes aegipty en el caso de las provincias orientales, 
+sin embargo, su temepratura media fue superior a la del resto de provincias del pais.
+
+haciendo un analisis en los meses de septiembre a noviembre, vemos q estas relaciones se siguen cumpliendo, por lo q podemos decir
+q existe una relacion inversa entre la humedad relativa y las precipitaciones y la existencia de importnates brotes.
+
+Sin embargo, la temperatura esta relacionada directamente. La excepcion, podria ser la provincai de la habana, 
+cuyos valores de temperaturas son esencialmente menores, sin embargo, En lsa fuentes consultadas se menciona q la situacion en la habana 
+responde a otras caracteristicas de la provincia, como la centralizacion de intercambios comerciales y las caracteristicas demograficas
+del territorio, que da lugar a mayor acumulacion de residuos por km cuadrado y al descuido de la higiene en areas de alta densidad poblacional.
+
+Resulta interesante entonces que en dos lugares con condicionales climaticas tan diferentes, condiciones artificales den lugar a resultados
+semejantes en cuanto a la existencia de focos. 
+
+Se ha demostrado que las altsa temperaturas aumntan la época de dengue en las áreas endémicas y promoueven que se establezca en 
+áreas nuevas. Además, la temperatura puede influir en la tasa de desarrollo y supervivencia del mosquito, que puede variar en respuesta a muchos factores bióticos y abióticos del ambiente1. 
+Por ejemplo, se ha postulado que debido a los diferentes cambios climáticos,  el mosquito se ha presentado en lugares 
+en los cuales no era frecuente, permitiendo que los virus se diseminen de forma descontrolada en diferentes regiones.
+
+Estpo resulta relevante, pues si observamos la tendencia de la temperatura de todo el pais, es a subir gradualmente, tanto en temperatura
+media, como maximas y minimas. Ademas, las precipitaciones y humedad relativa tienden ligeramente a disminuir. Esto con el paso del tiempo
+podria crear condiciones propicias para el habitat del mosquito en nuevas regiones que antes no tenian tanta relevancia.
+
+
+Ante la clara senal peligro q resulta de estudiar el mosquito desde las variables climatologicas, y la situacion especial de La Habana,
+podemos llegar a la conclusion de que solo la accion humana puede ayudar a mitigar o controlar los estragos causados por el vector.
+
+Desde la prevencion, es posible hacer mucho para destruir los focos y pesquisar adecuadamente los casos de enfermedades transmitidas
+por el aedes para su apropiado analisis. Asi, se podria ampliar la bibliografia con un mayor numero de datos, que actualmente son escasos.
+Por lo tanto, concluimos que las medidas de higiene en la comunidad y el hogar, seran las que determinaran la preparacion de la poblacion 
+del pais para enfrentar la nueva realidad climatica que traera consigo una mayor complejidad en el trato de enfermedades transmitidas por el
+aedes aegypti.
+
+
+
 
 
 

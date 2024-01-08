@@ -131,7 +131,9 @@ En resumen, el estudio de los huracanes en Cuba es crucial para proteger la econ
         
         col = col1 if i % 2 == 0 else col2
 
-        hurricane_data = df[df['Nombre'] == hurricane].drop(['Latitud', 'Longitud', 'Mes', 'Año'], axis=1)
+        hurricane_data = df[df['Nombre'] == hurricane].drop(['Mes', 'Año'], axis=1)
+        hurricane_data = hurricane_data[["Nombre","Fecha","Vientos Máximos", "Presion Central", "Categoría", "Región"]]
+        hurricane_data['Fecha'] = pd.to_datetime(hurricane_data['Fecha']).dt.date
 
         col.write(hurricane_data)
 
