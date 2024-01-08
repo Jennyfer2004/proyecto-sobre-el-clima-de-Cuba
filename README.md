@@ -11,3 +11,5 @@ Para ejecutarlo: :point_down:
 ```
 sh app.sh
 ```
+
+![Foto](./app/images/condiciones_climaticas.jpg)
