@@ -11,7 +11,7 @@ st.title("\"Análisis de variables climatológicas en Cuba en el período 1990-2
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
 
 
-opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', "Huracanes y Tormentas Tropicales", "Análisis Multivariado", "Fuentes e Información"]
+opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', "Huracanes y Tormentas Tropicales", "Análisis Multivariado", "Podcast", "Fuentes e Información"]
 selección = st.sidebar.radio('Selecciona una opción:', opciones)
 
 #################################################################################################################################
@@ -77,6 +77,10 @@ elif selección == "Huracanes y Tormentas Tropicales":
 
 elif selección == "Fuentes e Información":
     with open(f'{ruta}' + '/Fuentes e Información/biblio.py', encoding="UTF-8") as f:
+        exec(f.read())
+        
+elif selección == "Podcast":
+    with open(f'{ruta}' + '/podcast_web/main.py', encoding="UTF-8") as f:
         exec(f.read())
 
 
