@@ -73,6 +73,23 @@ st.write("En esta aplicación se realiza un análisis detallado sobre la H.R en 
 #COMO SE COMPORTO LA HUMEDAD RELATIVA A LO LARGO DEL TIEMPO 
 ###########################################################
   
+st.markdown("### Valores Globales:")
+
+media = df['Humedad Relat'].mean()
+mediana = df['Humedad Relat'].median()
+desviacion_estandar = df['Humedad Relat'].std()
+varianza = df['Humedad Relat'].var()
+maximo = df['Humedad Relat'].max()
+minimo = df['Humedad Relat'].min()
+
+# Crea un nuevo DataFrame
+data = {'Estadísticas': ['Media', 'Mediana', 'Desviacion Estandar', 'Varianza', 'Maximo', 'Minimo'], 
+        'Valor': [media, mediana, desviacion_estandar, varianza, maximo, minimo]}
+nuevo_df = pd.DataFrame(data)
+st.write(nuevo_df)
+
+
+################################################################################################################
 st.markdown("### La Humedad Relativa a través del Tiempo")
 
 hu_re = df.groupby(["Año","Mes"])["Humedad Relat"].mean()

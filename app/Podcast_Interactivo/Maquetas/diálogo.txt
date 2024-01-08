@@ -38,7 +38,8 @@ Impacto de las variables en la vida del mosquito
 El mosquito aedes aegypti, presenta un rango de temperatura ideal para su desarrollo de entre 25 y 30 grados. tambien, las Precipitaciones
 y lugares humedos cntribuyen a crear un ambiente propicio para la reproduccion del mosquito.
 en nuestro pais, la temperatura maxima media en el periodo estuvo entre 13,1 grados, y 32,8 grados, sin embargo, la temperatura media
-fue de aproximadamente 25 grados celcius. 
+fue de aproximadamente 25 grados celcius. En cuanto a la humedad relativa y precipitaciones, los valores medios fueron:
+
 
 De acuerdo con datos del Ministerio de Salud Pública, las 
 provincias con transmisión de dengue mas importantes en el país han sido La Habana, Sancti Spíritus, 
@@ -51,7 +52,7 @@ asi q resulta pertinente realizar un analisis mas enfocados en los meses de prol
 
 Segun el MINSAP, de semptiembre a novimebre ocurre historicamente un pico maximo en la infestacion de aedes aegyptis.
 En estos meses, para las provincias seleccionadas la temperatura media fue superior en todos los anos superior a 25 grados, alcanzando
-su maximo siempre en Santiago de Cuba, la provincia mas calurosa del pais.
+su maximo siempre en Santiago de Cuba, la provincia mas calurosa del pais. Pero resulta 
 
 
 

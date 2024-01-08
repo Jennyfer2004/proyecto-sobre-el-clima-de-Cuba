@@ -38,8 +38,8 @@ df_Gua = df.loc[df['Provincias'] == 'Guantánamo']
 
 st.markdown("## Seleccione la región en la que quiere explorar datos:")
 
-opciónes = ['General', 'Occidente', 'Centro', 'Oriente']
-selección = st.selectbox('Selecciona una Región:', opciónes)
+opciones = ['General', 'Occidente', 'Centro', 'Oriente']
+selección = st.selectbox('Selecciona una Región:', opciones)
 
 ######################################################################################################################################################################################
 #Análisis Multivariado General
@@ -64,8 +64,8 @@ if selección == "General":
     
 if selección == "Occidente":
 
-        opciónes = ['General', 'Pinar del Río', 'Artemisa', 'La Habana', 'Mayabeque', 'Matanzas']
-        selección = st.selectbox('Selecciona una Provincia:', opciónes)
+        opciones = ['General', 'Pinar del Río', 'Artemisa', 'La Habana', 'Mayabeque', 'Matanzas']
+        selección = st.selectbox('Selecciona una Provincia:', opciones)
 
         
 
@@ -172,8 +172,8 @@ if selección == "Occidente":
     
 if selección == "Centro":
 
-        opciónes = ['General', 'Villa Clara', 'Cienfuegos', 'Sancti Spíritus', 'Ciego de Ávila', 'Camagüey']
-        selección = st.selectbox('Selecciona una Provincia:', opciónes)
+        opciones = ['General', 'Villa Clara', 'Cienfuegos', 'Sancti Spíritus', 'Ciego de Ávila', 'Camagüey']
+        selección = st.selectbox('Selecciona una Provincia:', opciones)
 
         
 ################################################
@@ -276,8 +276,8 @@ if selección == "Centro":
     
 if selección == "Oriente":
 
-        opciónes = ['General', 'Las Tunas', 'Granma', 'Holguín', 'Santiago de Cuba', 'Guantánamo']
-        selección = st.selectbox('Selecciona una Provincia:', opciónes)
+        opciones = ['General', 'Las Tunas', 'Granma', 'Holguín', 'Santiago de Cuba', 'Guantánamo']
+        selección = st.selectbox('Selecciona una Provincia:', opciones)
 
         
 

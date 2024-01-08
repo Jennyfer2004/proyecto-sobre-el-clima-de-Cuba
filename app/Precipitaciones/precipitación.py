@@ -32,6 +32,22 @@ df = pd.read_csv("./data/base_datos.csv")
 #Analisis
 ##################################################################################################
 
+st.markdown("### Valores Globales:")
+
+media = df['Precipitaciones'].mean()
+mediana = df['Precipitaciones'].median()
+desviacion_estandar = df['Precipitaciones'].std()
+varianza = df['Precipitaciones'].var()
+maximo = df['Precipitaciones'].max()
+minimo = df['Precipitaciones'].min()
+data = {'Estadísticas': ['Media', 'Mediana', 'Desviacion Estandar', 'Varianza', 'Maximo', 'Minimo'], 
+        'Valor': [media, mediana, desviacion_estandar, varianza, maximo, minimo]}
+nuevo_df = pd.DataFrame(data)
+st.write(nuevo_df)
+
+
+###########################################################################
+
 
 st.write("### Precipitaciones promedios y totales de Cuba en los últimos 30 años:")
 df=df.dropna(subset=["Precipitaciones"]) 

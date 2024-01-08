@@ -11,8 +11,8 @@ st.title("\"Análisis de variables climatológicas en Cuba en el período 1990-2
 st.markdown("<hr style='height:10px;border:none;color:#333;background-color:#333;' />", unsafe_allow_html=True)
 
 
-opciónes = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', "Huracanes y Tormentas Tropicales", "Análisis Multivariado", "Fuentes e Información"]
-selección = st.sidebar.radio('Selecciona una opción:', opciónes)
+opciones = ['Introducción', 'Humedad Relativa', 'Precipitaciones', 'Temperatura', "Huracanes y Tormentas Tropicales", "Análisis Multivariado", "Fuentes e Información"]
+selección = st.sidebar.radio('Selecciona una opción:', opciones)
 
 #################################################################################################################################
 #Introducción

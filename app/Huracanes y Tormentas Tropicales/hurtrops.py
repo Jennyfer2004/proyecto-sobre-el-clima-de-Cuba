@@ -16,8 +16,8 @@ df_storms = pd.read_csv("./data/tstorms.csv")
 
 st.markdown("# Huracanes y Tormentas Tropicales")
 
-opciónes = ["Huracanes", "Tormentas Tropicales"]
-selección = st.selectbox('Selecciona una opción:', opciónes)
+opciones = ["Huracanes", "Tormentas Tropicales"]
+selección = st.selectbox('Selecciona una opción:', opciones)
 
 #######################################################################################################################
 #HURACANES
@@ -34,11 +34,11 @@ if selección == "Huracanes":
 
     col2.write('''Los huracanes son fenómenos meteorológicos extremos que pueden tener un impacto significativo en las regiónes donde ocurren. En particular, Cuba, una isla en el Caribe, es una región que a menúdo se ve afectada por estos eventos. El estudio de los huracanes en Cuba es de vital importancia por varias razones.
     
-Los huracanes pueden causar daños significativos a la infraestructura y a la economía. Los fuertes vientos y las lluvias intensas pueden destruir edificios, carreteras y otras infraestructuras, lo que puede costar millones de dólares en reparaciónes. Además, los huracanes pueden interrumpir las actividades económicas, como el turismo, que es una fuente importante de ingresos para Cuba.
+Los huracanes pueden causar daños significativos a la infraestructura y a la economía. Los fuertes vientos y las lluvias intensas pueden destruir edificios, carreteras y otras infraestructuras, lo que puede costar millones de dólares en reparaciónes. Además, pueden interrumpir las actividades económicas, como el turismo, que es una fuente importante de ingresos para Cuba.
 
-Tambien, los huracanes también pueden tener un impacto significativo en el medio ambiente. Pueden causar erosión en las playas y en las zonas costeras, dañar los arrecifes de coral y alterar los ecosistemas marinos y terrestres.''')
+Tambien pueden tener un impacto significativo en el medio ambiente, pues pueden causar erosión en las playas y en las zonas costeras, dañar los arrecifes de coral y alterar los ecosistemas marinos y terrestres.''')
     
-    st.write('''Además, los huracanes pueden tener un impacto directo en la vida y la seguridad de las personas. Pueden causar lesiones o incluso la muerte, y pueden desplazar a las personas de sus hogares. El estudio de los huracanes puede ayudar a predecir su trayectoria y su intensidad, lo que puede permitir una mejor preparación y respuesta a estos eventos.
+    st.write('''Además, impactan directamente la vida y la seguridad de las personas. Pueden causar lesiones o incluso la muerte, y pueden desplazar a las personas de sus hogares. El estudio de los huracanes puede ayudar a predecir su trayectoria y su intensidad, lo que puede permitir una mejor preparación y respuesta a estos eventos.
 
 Por último, el estudio de los huracanes puede proporcionar información valiosa para entender los efectos del cambio climático. Se espera que la intensidad y la frecuencia de los huracanes aumenten como resultado del calentamiento global, por lo que entender estos fenómenos puede ayudar a predecir y prepararse para los efectos futuros del cambio climático.
 
@@ -240,6 +240,7 @@ Finalmente, estos datos también son fundamentales para la planificación urbana
 
     plt.xticks(rotation='horizontal')
     col2.pyplot(fig)
+
 
 
     

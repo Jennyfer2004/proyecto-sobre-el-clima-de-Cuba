@@ -34,6 +34,47 @@ df = df.loc[:, ["Año", "Mes", "Temperatura max med", "Temperatura min med", "Te
 ##########################################
 # Comparación de la temperatura anual
 ###########################################
+
+col1,col2,col3 = st.columns(3)
+col1.markdown("### Valores Globales T.Medias:")
+
+media = df['Temperatura med'].mean()
+mediana = df['Temperatura med'].median()
+desviacion_estandar = df['Temperatura med'].std()
+varianza = df['Temperatura med'].var()
+maximo = df['Temperatura med'].max()
+minimo = df['Temperatura med'].min()
+data = {'Estadísticas': ['Media', 'Mediana', 'Desviacion Estandar', 'Varianza', 'Maximo', 'Minimo'], 
+        'Valor': [media, mediana, desviacion_estandar, varianza, maximo, minimo]}
+nuevo_df = pd.DataFrame(data)
+col1.write(nuevo_df)
+
+col2.markdown("### Valores Globales T.Máximas:")
+
+media = df['Temperatura max med'].mean()
+mediana = df['Temperatura max med'].median()
+desviacion_estandar = df['Temperatura max med'].std()
+varianza = df['Temperatura max med'].var()
+maximo = df['Temperatura max med'].max()
+minimo = df['Temperatura max med'].min()
+data = {'Estadísticas': ['Media', 'Mediana', 'Desviacion Estandar', 'Varianza', 'Maximo', 'Minimo'], 
+        'Valor': [media, mediana, desviacion_estandar, varianza, maximo, minimo]}
+nuevo_df = pd.DataFrame(data)
+col2.write(nuevo_df)
+
+col3.markdown("### Valores Globales T.Mínimas:")
+
+media = df['Temperatura min med'].mean()
+mediana = df['Temperatura min med'].median()
+desviacion_estandar = df['Temperatura min med'].std()
+varianza = df['Temperatura min med'].var()
+maximo = df['Temperatura min med'].max()
+minimo = df['Temperatura min med'].min()
+data = {'Estadísticas': ['Media', 'Mediana', 'Desviacion Estandar', 'Varianza', 'Maximo', 'Minimo'], 
+        'Valor': [media, mediana, desviacion_estandar, varianza, maximo, minimo]}
+nuevo_df = pd.DataFrame(data)
+col3.write(nuevo_df)
+############################################################################
 st.markdown("<h4>Comparación de la temperatura anual por provincias</h4>", unsafe_allow_html=True)
 
 # Station Multiselect 
