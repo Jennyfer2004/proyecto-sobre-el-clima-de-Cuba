@@ -18,7 +18,7 @@ st.write("Todas las Imágenes fueron creadas usando Bing Chat.")
 st.markdown("## <u>Acerca de:</u>", unsafe_allow_html=True)
 
 st.markdown('''### Creadores: 
-- Angélica Martínez Céspedes, 
-- Jenifer Sánchez Santana, 
+- Angélica María Martínez Céspedes, 
+- Jennifer de la Caridad Sánchez Santana, 
 - Guillermo Ferriol Ravelo, 
 - Diego Puentes Fernández.''')

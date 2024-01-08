@@ -59,7 +59,7 @@ selected2 = filtered.groupby("Provincias")['Precipitaciones'].mean()
 media_mensual_total = df2['Precipitaciones'].mean()
 media_mensual_por_provincia = df3.groupby('Provincias')['Precipitaciones'].mean().reset_index()
 
-# Crear el gráfico interactivo con Altair
+#
 bar_chart = alt.Chart(filtered).mark_bar().encode(
     x='Provincias',
     y='Precipitaciones'
