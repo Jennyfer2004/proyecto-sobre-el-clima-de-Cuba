@@ -54,9 +54,8 @@ En el año 2000, hubo un brote de dengue en la Ciudad de La Habana q logro ser e
 En 2006 en santiago de Cuba un brote importante fue predominantemente de dengue clásico, y el 10,3% de los casos ocurrieron en niños. 
 
 En 2022, se reportó la mayor cantidad de focos del peligroso vector de los últimos 15 años, 
-con un crecimiento del 21.7 % en comparación con similar etapa de 20212. 
+con un crecimiento del 21.7 % en comparación con similar etapa de 2012. 
 Las provincias de La Habana, Camagüey, Las Tunas y Holguín tenian declarada transmisión de la enfermedad.
-
 
 En estas provincias de mayor complejidad, resulta interesantes q sus valores medios de precipitaciones y humedad relativas
 son mas bajos que las de otras provincias con menos proliferacion de aedes aegipty en el caso de las provincias orientales, 
@@ -78,7 +77,7 @@ Se ha demostrado que las altsa temperaturas aumntan la época de dengue en las �
 Por ejemplo, se ha postulado que debido a los diferentes cambios climáticos,  el mosquito se ha presentado en lugares 
 en los cuales no era frecuente, permitiendo que los virus se diseminen de forma descontrolada en diferentes regiones.
 
-Estpo resulta relevante, pues si observamos la tendencia de la temperatura de todo el pais, es a subir gradualmente, tanto en temperatura
+Esto resulta relevante, pues si observamos la tendencia de la temperatura de todo el pais, es a subir gradualmente, tanto en temperatura
 media, como maximas y minimas. Ademas, las precipitaciones y humedad relativa tienden ligeramente a disminuir. Esto con el paso del tiempo
 podria crear condiciones propicias para el habitat del mosquito en nuevas regiones que antes no tenian tanta relevancia.
 
