@@ -1,0 +1,79 @@
+
+###############################################################################################
+INTRODUCCION
+###############################################################################################
+
+
+
+En la isla de Cuba, las enfermedades transmitidas por vectores son un problema mas antiguo incluso que el descubriemnto de los mismos vectores.
+
+La fiebre amarilla comenzó a atacar el territorio nacional en el año 1620, a partir de entonces y principalmente desde el año 1649 en que la epidemia fue más extensa, 
+esta enfermedad hizo presa de la población de nuestra isla en forma endemoepidémica, manteniéndose durante los siglos XVII, XVIII, XIX y principios del siglo XX, hasta el año 1909 
+en que la enfermedad se extinguió del territorio nacional.
+
+El agente transmisor de esta enfermedad, no fue otro que el descubierto por el cientifico cubano Carlos Juan Finlay, quien describió la importancia del 
+vector biológico en la transmisión de enfermedades, 
+aplicándola a la fiebre amarilla, transmitida por la hembra fecundada del mosquito Aedes aegypti.
+
+A pesar de que la fiebre amarilla no reporta transmision en Cuba desde 1904, esta especie de mosquito, originario de África​ y hoy hallado en 
+regiones tropicales y subtropicales en todo el mundo, continua siendo un agente transmisor
+de infermedades muy relevantes en los contextos regional y nacional, como lo son: el dengue, el zika, o el chikungunya.
+
+Estas enfermedades tropicales han sido responsables de importantes crisis sanitarias en sudamerica, centroamerica y el caribe, por ejemplo,
+En 2013, se detectó por primera vez la transmisión autóctona del virus chikungunya en la Región de las Américas. Y hasta 
+octubre de 2014 se habían registrado más de 776.000 casos sospechosos. Y en el periodo de 2015-2016,
+el Zika ya tenia reportados 137,300 casos. Pero la enfermedad transmitida por el Aedes aegypti mas relevante para Cuba es el dengue, causante de graves crisis sanitarias
+en nuestro pais, como el dengue hemorragico en 1981, en la cual se reportaron más de 344 203 enfermos, con 10 312 casos graves y muy graves, y 158 fallecidos.
+
+Por la importancia de el aedes aegypti y el dengue en el contexto de la salud en la Isla, pretendemos ofrecer un acercamiento a su situacion 
+desde el punto de vista de las variables climatologicas temperaturas, Humedad Relativa y Precipitaciones en el periodo de 
+1990 a 2022.
+
+
+###############################################################################################
+Impacto de las variables en la vida del mosquito
+###############################################################################################
+
+
+El mosquito aedes aegypti, presenta un rango de temperatura ideal para su desarrollo de entre 25 y 30 grados. tambien, las Precipitaciones
+y lugares humedos cntribuyen a crear un ambiente propicio para la reproduccion del mosquito.
+en nuestro pais, la temperatura maxima media en el periodo estuvo entre 13,1 grados, y 32,8 grados, sin embargo, la temperatura media
+fue de aproximadamente 25 grados celcius. 
+
+De acuerdo con datos del Ministerio de Salud Pública, las 
+provincias con transmisión de dengue mas importantes en el país han sido La Habana, Sancti Spíritus, 
+Camagüey, Las Tunas, Holguín, Santiago de Cuba y Guantánamo.
+
+Durante este periodo, podemos observar q las tempraturas medias de Santiago de Cuba y Guantanamo,
+fueron mayores a 25 grados y menores a 29, situandose en este rango ideal, y el resto de las provincias mencionadas, encontro su temperatura
+media en un rango cercano a 25 grados. Sin embargo, a excepcion de Granma, el resto de provincias prsentaron temperaturas medias similares en el periodo,
+asi q resulta pertinente realizar un analisis mas enfocados en los meses de proliferacion del mosquito
+
+Segun el MINSAP, de semptiembre a novimebre ocurre historicamente un pico maximo en la infestacion de aedes aegyptis.
+En estos meses, para las provincias seleccionadas la temperatura media fue superior en todos los anos superior a 25 grados, alcanzando
+su maximo siempre en Santiago de Cuba, la provincia mas calurosa del pais.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S1561-30032000000300011
+https://www.cdc.gov/mosquitoes/es/about/life-cycles/aedes.html
