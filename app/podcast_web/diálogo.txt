@@ -3,93 +3,63 @@
 INTRODUCCION
 ###############################################################################################
 
+En la isla de Cuba, las enfermedades transmitidas por vectores, son un problema más antiguo incluso que el descubrimiento de los mismos vectores.
 
-
-En la isla de Cuba, las enfermedades transmitidas por vectores son un problema mas antiguo incluso que el descubriemnto de los mismos vectores.
-
-La fiebre amarilla comenzó a atacar el territorio nacional en el año 1620, a partir de entonces y principalmente desde el año 1649 en que la epidemia fue más extensa, 
-esta enfermedad hizo presa de la población de nuestra isla en forma endemoepidémica, manteniéndose durante los siglos XVII, XVIII, XIX y principios del siglo XX, hasta el año 1909 
+La fiebre amarilla comenzó a atacar el territorio nacional en el año 1620, a partir de entonces, y principalmente desde el año 1649,año en que la epidemia fue más extensa, esta enfermedad hizo presa de la población de nuestra isla en forma endemoepidémica, manteniéndose durante los siglos XVII, XVIII, XIX y principios del siglo XX, hasta el año 1909 
 en que la enfermedad se extinguió del territorio nacional.
 
-El agente transmisor de esta enfermedad, no fue otro que el descubierto por el cientifico cubano Carlos Juan Finlay, quien describió la importancia del 
-vector biológico en la transmisión de enfermedades, 
-aplicándola a la fiebre amarilla, transmitida por la hembra fecundada del mosquito Aedes aegypti.
+El agente transmisor de esta enfermedad, no fue otro que el descubierto por el científico cubano "Carlos Juan Finlay", quien describió la importancia del vector biológico en la transmisión de enfermedades, aplicándola a la fiebre amarilla, transmitida por la hembra fecundada del mosquito Aedes aegypti.
 
-A pesar de que la fiebre amarilla no reporta transmision en Cuba desde 1904, esta especie de mosquito, originario de África​ y hoy hallado en 
-regiones tropicales y subtropicales en todo el mundo, continua siendo un agente transmisor
-de infermedades muy relevantes en los contextos regional y nacional, como lo son: el dengue, el zika, o el chikungunya.
+A pesar de que la fiebre amarilla no reporta transmisión en Cuba desde 1904, esta especie de mosquito, originario de África​, y hoy hallado en regiones tropicales y subtropicales en todo el mundo, continúa siendo un agente transmisor
+de enfermedades muy relevantes, en los contextos regional y nacional, como lo son: el dengue, el zika, o el chikungunya.
 
-Estas enfermedades tropicales han sido responsables de importantes crisis sanitarias en sudamerica, centroamerica y el caribe, por ejemplo,
-En 2013, se detectó por primera vez la transmisión autóctona del virus chikungunya en la Región de las Américas. Y hasta 
-octubre de 2014 se habían registrado más de 776.000 casos sospechosos. Y en el periodo de 2015-2016,
-el Zika ya tenia reportados 137,300 casos. Pero la enfermedad transmitida por el Aedes aegypti mas relevante para Cuba es el dengue, causante de graves crisis sanitarias
-en nuestro pais, como el dengue hemorragico en 1981, en la cual se reportaron más de 344 203 enfermos, con 10 312 casos graves y muy graves, y 158 fallecidos.
+Estas enfermedades tropicales han sido responsables de importantes crisis sanitarias en Sudamérica, Centroamérica y el Caribe, por ejemplo: En 2013, se detectó por primera vez la transmisión autóctona del virus chikungunya en la Región de las Américas, y hasta octubre de 2014 se habían registrado más de 776.000  casos sospechosos, además, en el período de 2015-2016, el Zika ya tenía reportados 137,300  casos. 
 
-Por la importancia de el aedes aegypti y el dengue en el contexto de la salud en la Isla, pretendemos ofrecer un acercamiento a su situacion 
-desde el punto de vista de las variables climatologicas temperaturas, Humedad Relativa y Precipitaciones en el periodo de 
-1990 a 2022.
+Por otra parte la enfermedad transmitida por el Aedes aegypti más relevante para Cuba es el "dengue", causante de graves crisis sanitarias en nuestro país, como el dengue hemorragico en 1981, en la cual se reportaron más de 344 203 enfermos, con 10 312 casos graves y muy graves, y 158 fallecidos.
+
+
+Dada la relevancia que el Aedes aegypti y el dengue tienen en el ámbito de la salud en la Isla,mi objetivo es presentarles un análisis de su situación, desde la perspectiva de las variables climáticas: temperaturas, humedad relativa y precipitaciones, durante el período comprendido entre 1990 y 2022.
 
 
 ###############################################################################################
 Impacto de las variables en la vida del mosquito
 ###############################################################################################
 
+El mosquito aedes aegypti, presenta un rango de temperatura ideal para su desarrollo de entre 25 y 30 grados. También, las precipitaciones y lugares humedos contribuyen a crear un ambiente propicio para la reproducción del mosquito.
 
-El mosquito aedes aegypti, presenta un rango de temperatura ideal para su desarrollo de entre 25 y 30 grados. tambien, las Precipitaciones
-y lugares humedos cntribuyen a crear un ambiente propicio para la reproduccion del mosquito.
-Segun el Ministerio de Salud Pública, de septiembre a novimebre ocurre historicamente un pico maximo en la infestacion de aedes aegyptis en el pais.
-Esto coincide con el final de la temporadas de lluvia, donde estas son mas abundates y copiosas. Tambien, en este periodo la humedad relativa media
-fue de un 77%, q con una desviacion estandar de solamente 4.73, resulta un ambiente propicio para la proliferacion del vector.
+Los meses de septiembre a noviembre, es cuando ocurre históricamente un pico máximo en la infestación de aedes aegyptis en el país, coincide con el final de la temporada de lluvias, en la cual estas se vuelven más abundantes y copiosas. Además, durante este período, se registró una humedad relativa promedio del 77%, con una desviación estándar de solo 4.73. Estas condiciones ambientales generan un entorno propicio para la proliferación  del vector.
 
+De acuerdo con datos del Ministerio de Salud Pública, las provincias con transmisión de dengue más importantes en el país a lo largo de la historia han sido La Habana, Sancti Spíritus, Camagüey, Las Tunas, Holguín, Santiago de Cuba y Guantánamo. Está información está sustentada en brotes relevantes como :
 
-De acuerdo con datos del Ministerio de Salud Pública, las 
-provincias con transmisión de dengue mas importantes en el país historicamente han sido La Habana, Sancti Spíritus, 
-Camagüey, Las Tunas, Holguín, Santiago de Cuba y Guantánamo. Esto esta sustentado en brotes relevantes como
+-En 1992, en la provincia de Santiago de Cuba, se reporta la reinfestación gradual y paulatina por Aedes aegypti que se ha encontrado en neumáticos importados.
 
-En 1992, en Santiago de Cuba se reporta la reinfestación gradual y paulatina por Aedes aegypti que se ha encontrado 
-en neumáticos importados.
+-En el año 2000, hubo un brote de dengue en la Ciudad de La Habana, el cual logró ser erradicado.
 
-En el año 2000, hubo un brote de dengue en la Ciudad de La Habana q logro ser erradicado.
+-En 2006 en Santiago de Cuba un brote importante que fue predominantemente de dengue clásico, y el 10,3% de los casos ocurrieron en niños. 
 
-En 2006 en santiago de Cuba un brote importante fue predominantemente de dengue clásico, y el 10,3% de los casos ocurrieron en niños. 
+-En 2022, se reportó la mayor cantidad de focos del peligroso vector de los últimos 15 años, con un crecimiento del 21.7 % en comparación con similar etapa de 2012. 
 
-En 2022, se reportó la mayor cantidad de focos del peligroso vector de los últimos 15 años, 
-con un crecimiento del 21.7 % en comparación con similar etapa de 2012. 
-Las provincias de La Habana, Camagüey, Las Tunas y Holguín tenian declarada transmisión de la enfermedad.
+Las provincias de La Habana, Camagüey, Las Tunas y Holguín tenían declarada transmisión de la enfermedad.
 
-En estas provincias de mayor complejidad, resulta interesantes q sus valores medios de precipitaciones y humedad relativas
-son mas bajos que las de otras provincias con menos proliferacion de aedes aegipty en el caso de las provincias orientales, 
-sin embargo, su temepratura media fue superior a la del resto de provincias del pais.
+En estas provincias de mayor complejidad, resulta interesante que sus valores medios de precipitaciones y humedad relativas, son más bajos que las de otras provincias, con menos proliferación de aedes aegipty, en el caso de las provincias orientales, sin embargo, su temepratura media fue superior a la del resto de provincias del país.
 
-haciendo un analisis en los meses de septiembre a noviembre, vemos q estas relaciones se siguen cumpliendo, por lo q podemos decir
-q existe una relacion inversa entre la humedad relativa y las precipitaciones y la existencia de importnates brotes.
+Realizando un análisis en los meses de septiembre a noviembre, se observa que estas relaciones se siguen cumpliendo, por lo que se puede decir que existe una relación inversa, entre la humedad relativa, las precipitaciones y la existencia de importantes brotes, aún así, la temperatura está relacionada directamente. La excepción, podría ser la provincia de La Habana, cuyos valores de temperaturas son esencialmente menores, no obstante, En las fuentes consultadas se menciona q la situación en La Habana responde a otras características de la provincia, como la centralización de intercambios comerciales y las características demográficas del territorio, que da lugar a mayor acumulación de residuos por km cuadrado, y al descuido de la higiene en áreas de alta densidad poblacional.
 
-Sin embargo, la temperatura esta relacionada directamente. La excepcion, podria ser la provincai de la habana, 
-cuyos valores de temperaturas son esencialmente menores, sin embargo, En lsa fuentes consultadas se menciona q la situacion en la habana 
-responde a otras caracteristicas de la provincia, como la centralizacion de intercambios comerciales y las caracteristicas demograficas
-del territorio, que da lugar a mayor acumulacion de residuos por km cuadrado y al descuido de la higiene en areas de alta densidad poblacional.
+Resulta interesante que en dos lugares con condiciones climáticas tan diferentes, condiciones artificales den lugar a resultados semejantes en cuanto a la existencia de focos. 
 
-Resulta interesante entonces que en dos lugares con condicionales climaticas tan diferentes, condiciones artificales den lugar a resultados
-semejantes en cuanto a la existencia de focos. 
+Se ha demostrado que las altas temperaturas aumentan la época de dengue en las áreas endémicas y promueven que se establezca en áreas nuevas, igualmente, la temperatura puede influir en la tasa de desarrollo y supervivencia del mosquito, que puede variar, en respuesta a muchos factores bióticos y abióticos del ambiente.
+ 
+Por ejemplo, se ha postulado que debido a los diferentes cambios climáticos, el mosquito se ha presentado en lugares 
+en los cuales no era frecuente, permitiendo que los virus se propaguen de forma descontrolada en diferentes regiones.
 
-Se ha demostrado que las altsa temperaturas aumntan la época de dengue en las áreas endémicas y promoueven que se establezca en 
-áreas nuevas. Además, la temperatura puede influir en la tasa de desarrollo y supervivencia del mosquito, que puede variar en respuesta a muchos factores bióticos y abióticos del ambiente1. 
-Por ejemplo, se ha postulado que debido a los diferentes cambios climáticos,  el mosquito se ha presentado en lugares 
-en los cuales no era frecuente, permitiendo que los virus se diseminen de forma descontrolada en diferentes regiones.
+Esto adquiere una relevancia significativa, dado que al analizar la tendencia de la temperatura en el país completo, se observa un aumento gradual tanto en las temperaturas medias, como máximas y mínimas. Además, las precipitaciones y la humedad relativa tienen una ligera tendencia a disminuir. Con el paso del tiempo, este cambio podría generar condiciones propicias para el hábitat del mosquito en regiones previamente no consideradas relevantes.
 
-Esto resulta relevante, pues si observamos la tendencia de la temperatura de todo el pais, es a subir gradualmente, tanto en temperatura
-media, como maximas y minimas. Ademas, las precipitaciones y humedad relativa tienden ligeramente a disminuir. Esto con el paso del tiempo
-podria crear condiciones propicias para el habitat del mosquito en nuevas regiones que antes no tenian tanta relevancia.
+Ante la evidente peligrosidad que se desprende del análisis del mosquito a través de las variables climáticas, y considerando la situación particular en la Ciudad de La Habana, se llega a la conclusión de que solo la intervención humana puede contribuir a mitigar y controlar los graves daños ocasionados por este vector.
 
+Mediante la implementación de medidas preventivas, es factible realizar importantes avances en la eliminación de los criaderos, y en la identificación precisa de los casos de enfermedades transmitidas por el mosquito Aedes, con el objetivo de llevar a cabo un análisis exhaustivo. De esta manera, se lograría aumentar considerablemente la disponibilidad de datos bibliográficos, los cuales en la actualidad son limitados.
 
-Ante la clara senal peligro q resulta de estudiar el mosquito desde las variables climatologicas, y la situacion especial de La Habana,
-podemos llegar a la conclusion de que solo la accion humana puede ayudar a mitigar o controlar los estragos causados por el vector.
+En consecuencia, se llega a la conclusión de que las medidas de higiene aplicadas tanto a nivel comunitario, como doméstico serán determinantes en la preparación de la población del país para enfrentar los desafíos planteados por la nueva realidad climática, la cual implica una mayor complejidad en el abordaje de enfermedades transmitidas por el mosquito Aedes aegypti.
 
-Desde la prevencion, es posible hacer mucho para destruir los focos y pesquisar adecuadamente los casos de enfermedades transmitidas
-por el aedes para su apropiado analisis. Asi, se podria ampliar la bibliografia con un mayor numero de datos, que actualmente son escasos.
-Por lo tanto, concluimos que las medidas de higiene en la comunidad y el hogar, seran las que determinaran la preparacion de la poblacion 
-del pais para enfrentar la nueva realidad climatica que traera consigo una mayor complejidad en el trato de enfermedades transmitidas por el
-aedes aegypti.
 
 
 https://oncubanews.com/cuba/cuba-autoridades-confirman-la-mayor-infestacion-de-mosquitos-transmisores-del-dengue-de-los-ultimos-15-anos
