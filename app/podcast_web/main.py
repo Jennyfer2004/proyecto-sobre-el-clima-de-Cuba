@@ -5,6 +5,8 @@ import os
 import io
 import PIL as pl
 from typing import List
+import time
+from pydub import AudioSegment
 
 st.markdown("# Podcast Interactivo")
 
@@ -19,7 +21,7 @@ st.image(upload_image("mosquito.png"))
 df = pd.read_csv("./data/base_datos.csv")
 df = df.dropna()
 
-def actualizar_grafico(segundo: float) -> None:
+def update_graphics(segundo: float) -> None:
     if segundo <= 28:
         pass
     elif segundo > 28 and segundo < 35:
@@ -29,6 +31,11 @@ def actualizar_grafico(segundo: float) -> None:
 
 st.title('Visualización de gráfico basado en el tiempo de audio')
 
+
+with open("./podcast_web/audio.mp3", "rb") as audio_file:
+    audio_bytes = audio_file.read()
+
+audio = st.audio(audio_bytes, format='audio/mp3', start_time = 0)
 
 ##################
 # Med Temperatures
@@ -94,7 +101,7 @@ st.title("La Habana - 2000 🦟 :x:")
 
 # 
 st.image(upload_image("ninos_santiago.jpg"))
-st.title("En Santiango de Cuba el 10,3\% de los casos ocurrieron en niños :boy: :girl:")
+st.title("En 2006, el 10,3\% de los casos que ocurrieron en Santiango de Cuba fueron niños :boy: :girl:")
 
 # 
 st.image(upload_image("dengue_cuba.png"))
